@@ -106,9 +106,6 @@ De loading state bevat ook een plaatje maar dit zijn HTML elementen die vormgege
 
 >Er worden geen custom fonts gebruikt op mijn website; verder zijn er fallbacks voor alle fonts (Arial, Helvetica, sans-serif)
 
-**Kleur uitzetten & Kleurenblindheid instellen**
-
-
 **Muis/Trackpad uitzetten**
 
 Je kan de volledige website door navigeren met `tab`; het enige probleem is dat er geen visuele feedback is omdat `*:focus { outline: none; }` in de CSS staat. Verder is de setup zo gemaakt dat het over de oude content geplaatst is met een `z-index`, de oude content is echter nogsteeds toegankelijk dmv `tab` dit betekent dat de gebruiker dus al naar pagina's kan navigeren door de header te gebruiken met `tab`.
@@ -156,9 +153,6 @@ De loading state bevat ook een plaatje maar dit zijn HTML elementen die vormgege
 
 >Er worden geen custom fonts gebruikt op mijn website; verder zijn er fallbacks voor alle fonts (Arial, Helvetica, sans-serif)
 
-**Kleur uitzetten & Kleurenblindheid instellen**
-
-
 **Muis/Trackpad uitzetten**
 
 In Firefox kan je niet door de website navigeren, alles is kapot qua navigatie; header navigatie links, inputs & anchors zijn allemaal niet tabbaar. 
@@ -195,21 +189,27 @@ Device : macOS Catalina 10.15
 >UA : Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_1) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Safari/605.1.15
 
 
+**De iconen input-konden niet geladen worden op safari**
+
+>Failed to load resource: the server responded with a status of 404 () https://isirthijs.github.io/assets/icons/book_closed.svg
+
 **Afbeeldingen uitzetten**
 
+Icons laden niet (maar dat was ook al zo zonder de `disable images`), het logo in de header word wel geshowed. Dit is raar want dat is een `<img>` tag en ik had verwacht dat deze niet zichtbaar zou zijn.
+
+(uitgezet in: Develop > disable images)
 
 **Custom Fonts uitzetten**
 
 >Er worden geen custom fonts gebruikt op mijn website; verder zijn er fallbacks voor alle fonts (Arial, Helvetica, sans-serif)
 
-**Kleur uitzetten & Kleurenblindheid instellen**
-
-
 **Muis/Trackpad uitzetten**
 
+Website werkt niet, het enige in wat focus kan krijgen is de safari zoekbalk. Alle elementen worden genegeerd.
 
 **Throttle internet (slow internet)**
 
+- Niet mogelijk zonder een extern programma te installeren (hypothese: waarschijnlijk gebeurd hetzelfde als bij chrome & firefox)
 
 **Javascript uitzetten**
 
@@ -221,6 +221,8 @@ Wanneer JS uitstaat kan de gebruiker alleen de header zien/gebruiken. Deze heeft
 
 **localStorage uitzetten**
 
+Wanneer localStorage uitstaat gaat de hele website kapot. Hetzelfde gebeurd er als bij chrome en firefox alleen deze keer weer met een andere error!
 
+>SecurityError: The operation is insecure.
 
 </details>
