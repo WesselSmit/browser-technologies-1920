@@ -12,13 +12,22 @@
 ## Geteste Features 
 
 * Afbeeldingen uitzetten
+	* De browser prevent websites van images laten zien (dmv `<img>` & `background-image`?)
 * Custom Fonts uitzetten
+	* De browser prevent websites van custom fonts laten zien (dmv extensions; `.woff`, `.toff`, `,otf` etc?)
 * Kleur uitzetten & Kleurenblindheid instellen
+	* Er zijn vele soorten kleurenblindheid en het is eigenlijk onmogelijk om je website er mooi uit te laten zien voor alle verschillende soorten kleurenblindheid. Wel kan je ervoor zorgen dat mensen je content kunnen lezen dmv contrast.
 * Muis/Trackpad uitzetten
+	* De OS prevent websites van de trackpad gebruiken, kan je zonder een muis (goed) door de website navigeren?
 * Throttle internet (slow internet)
+	* Hoe ziet jouw website eruit als files langzamer/niet ingeladen worden?
 * Javascript uitzetten
+	* Hoe ziet jouw website eruit als de JS file niet geaccessed kan worden?
 * Cookies uitzetten
+	* Hoe ziet jouw website eruit als de cookies niet geaccessed kunnen worden?
 * localStorage uitzetten
+	* Hoe ziet jouw website eruit als de localStorage niet geaccessed kan worden?
+
 
 
 
@@ -106,6 +115,16 @@ De loading state bevat ook een plaatje maar dit zijn HTML elementen die vormgege
 
 >Er worden geen custom fonts gebruikt op mijn website; verder zijn er fallbacks voor alle fonts (Arial, Helvetica, sans-serif)
 
+**Kleur uitzetten & Kleurblindheid**
+
+OBA heeft weinig kleur, eigenlijk gebruikt het grotendeels wit & zwart met af en toe een beetje rood. Dit kleurenpalet maakt voor een goed contrast.
+
+Om ervoor te zorgen dat de website te gebruiken is voor mensen met kleurenblindheid moet het contrast goed zijn; ik heb een test gedaan op https://color.a11y.com/Contrast/
+
+>Congratulations
+
+>No automated color contrast issues found on the webpage tested
+
 **Muis/Trackpad uitzetten**
 
 Je kan de volledige website door navigeren met `tab`; het enige probleem is dat er geen visuele feedback is omdat `*:focus { outline: none; }` in de CSS staat. Verder is de setup zo gemaakt dat het over de oude content geplaatst is met een `z-index`, de oude content is echter nogsteeds toegankelijk dmv `tab` dit betekent dat de gebruiker dus al naar pagina's kan navigeren door de header te gebruiken met `tab`.
@@ -152,6 +171,16 @@ De loading state bevat ook een plaatje maar dit zijn HTML elementen die vormgege
 **Custom Fonts uitzetten**
 
 >Er worden geen custom fonts gebruikt op mijn website; verder zijn er fallbacks voor alle fonts (Arial, Helvetica, sans-serif)
+
+**Kleur uitzetten & Kleurblindheid**
+
+OBA heeft weinig kleur, eigenlijk gebruikt het grotendeels wit & zwart met af en toe een beetje rood. Dit kleurenpalet maakt voor een goed contrast.
+
+Om ervoor te zorgen dat de website te gebruiken is voor mensen met kleurenblindheid moet het contrast goed zijn; ik heb een test gedaan op https://color.a11y.com/Contrast/
+
+>Congratulations
+
+>No automated color contrast issues found on the webpage tested
 
 **Muis/Trackpad uitzetten**
 
@@ -203,6 +232,16 @@ Icons laden niet (maar dat was ook al zo zonder de `disable images`), het logo i
 
 >Er worden geen custom fonts gebruikt op mijn website; verder zijn er fallbacks voor alle fonts (Arial, Helvetica, sans-serif)
 
+**Kleur uitzetten & Kleurblindheid**
+
+OBA heeft weinig kleur, eigenlijk gebruikt het grotendeels wit & zwart met af en toe een beetje rood. Dit kleurenpalet maakt voor een goed contrast.
+
+Om ervoor te zorgen dat de website te gebruiken is voor mensen met kleurenblindheid moet het contrast goed zijn; ik heb een test gedaan op https://color.a11y.com/Contrast/
+
+>Congratulations
+
+>No automated color contrast issues found on the webpage tested
+
 **Muis/Trackpad uitzetten**
 
 Website werkt niet, het enige in wat focus kan krijgen is de safari zoekbalk. Alle elementen worden genegeerd.
@@ -226,3 +265,139 @@ Wanneer localStorage uitstaat gaat de hele website kapot. Hetzelfde gebeurd er a
 >SecurityError: The operation is insecure.
 
 </details>
+
+
+
+
+
+
+## Browser Feature : Theorieën, Bevindingen & Oplossingen
+
+<details><summary>Afbeeldingen uitzetten</summary>
+
+Afbeeldingen laden niet -> maar sommige formaten kunnen wel geladen worden.
+
+Zo worden de volgende elementen NIET weergegeven:
+* `<img>`
+* `background-image`
+
+Maar worden de volgende elementen WEL weergegeven:
+* `<video>`
+* favicons (zelfs als .png ipv .ico)
+* `<picture>`
+* unicode karakters 
+* `<svg>`
+
+Ik denk dat de browser niet kijkt naar file extension maar kijkt naar de tag/property names en deze automatisch blokkeert.
+
+Een van de grootste problemen is dat zonder images de layouts van websites kapot gaan & er veel image reflow plaats vind. Ook zijn er veel `background-images` voor decoratieve doeleinden. Als je een witte body background-color hebt met een donkere background-image met daarover weer witte tekst dan kan je de witte tekst niet lezen omdat deze nu op de witte achtergrond staat.
+
+Deze problemen zijn allemaal voorkombaar; gebruik een skeleton UI om image reflow te voorkomen en je layout intact te houden. Geef naast een background-image ook een background-color op. Door een background-color te gebruiken valt de tekst niet meer weg.
+
+
+</details>
+
+
+
+<details><summary>Custom Fonts uitzetten</summary>
+
+Custom Fonts laden niet -> de browser gebruikt fallbacks.
+
+Ik denk dat de browser kijkt naar de extensions en op deze manier bepaald welke files er niet geladen mogen worden (`.woff`, `.toff`, `.otf` etc.)
+
+Het kan ervoor zorgen dat de website voor een splitseconde geen tekst laat zien omdat de browser probeert het custom font te laden.
+
+Verder heeft het niet echt een super grote impact voor de meeste websites. Bijna alle websites op het web gebruiken fallbacks en het is een commenly-used best-practice. Wel kan het ervoor zorgen dat de website er minder mooi uitziet omdat de fallback fonts minder goed samen gaan met het design.
+
+Als oplossing kan je font-display gebruiken om de browser eerst een fallback font te laten zien terwijl het custom font word ingeladen. 
+
+</details>
+
+
+<details><summary>Kleur uitzetten & Kleurenblindheid instellen</summary>
+
+Kleurenblindheid is een veel voorkomend probleem wat ervoor kan zorgen dat mensen sommige kleuren niet goed kunnen zien/als andere kleuren zien.
+
+Het grootste probleem met kleurenblindheid is dat er soms bijna geen sprake is van contrast omdat 2 kleuren heel erg op elkaar lijken. Dit kan ervoor zorgen dat de gebruiker sommige content niet ziet/kan lezen.
+
+Om dit op te lossen moet je rekening houden met het design en het gebruikte kleurenpalet. Ook kan je zelf een functie schrijven die het gebruikte kleurenpalet kan aanpassen. 
+
+</details>
+
+
+
+<details><summary>Muis/Trackpad uitzetten</summary>
+
+De muis & trackpad events triggeren geen functies 
+
+Dit kan ervoor zorgen dat pagina's moeilijk/niet te gebruiken zijn, als de navigatie niet meer werkt kan de gebruiker ook meteen je website niet meer gebruiken.
+
+Om dit te voorkomen moet je je HTML slim schrijven, hiermee kan je bijna alle problemen al oplossen. `a`, `button`, `input` & `textarea` tags zijn allemaal uit zichzelf focussable. Dit betekent dat ze focus kunnen krijgen. Alle elementen die focus kunnen krijgen kan je accessen/naar navigeren dmv `tab`. Want `tab` geeft focus aan het volgende element dat focussable is in de HTML volgorde -> als deze buiten de viewport staat word en automatisch naar gescrolled.
+
+Verder kan je het ook nog beter accessable maken dmv JS functies die andere vormen van navigatie aanbieden.
+
+</details>
+
+
+
+<details><summary>Throttle internet</summary>
+
+Internet is langzamer
+
+Een langzame internet connectie / een internet verbinding die vaak wegvalt kan erg problematisch zijn. De internet verbinding word namelijk gebruikt om de CSS, images, JS, externe scripts & data op te halen / in te laden.
+
+Als je internet verbinding echt te slecht is kan dit betekenen dat de files niet geladen worden. 
+
+Als de files/assets wat later worden ingeladen dan betekent het meestal dat de website er even wat lelijker uitziet of dat deze voor een korte tijd nog niet interactief is.
+
+Als de files/assets niet geladen worden dan kan dit betekenen dat de website niet te gebruiken valt.
+
+Om dit te voorkomen zijn er een paar dingen die je kan doen; de meeste komen neer op nadenken over wat je website echt allemaal nodig heeft.
+Heel veel websites zijn bedoeld om alleen maar informatie over te brengen. Dit kan je met HTML doen en daarvoor hoeft niet altijd perse JS geladen te worden. Verder moet je goed nadenken over wat je met JS doet, heel veel dingen die je in HTML kan doen worden vaak vervangen/gedaan in JS (denk bijvoorbeeld aan frameworks zoals React) dit kan ervoor zorgen dat functionaliteiten het niet doen die wel mogelijk zijn in alleen meet HTML.
+
+</details>
+
+
+
+<details><summary>Javascript uitzetten</summary>
+
+Javascript uitzetten zorgt ervoor dat mijn OBA website niet meer functioneert. Alle content (opm de header na) word opgehaald/gemaakt in JS en vervolgens in de DOM gezet. Dit betekent dat zonder JS al deze content niet bestaat en je een lege pagina gerserved krijgt.
+
+Al zou deze content in de HTML staan dan zouden waarschijnlijk veel interacties kapot zijn op de core-web interacties na (denk aan linken).
+
+Om te voorkomen dat de website kapot gaat zonder Javascript kan je ervoor zorgen dat alle basis functionaliteiten mogelijk zijn met HTML & CSS. Vervolgens kan je de interacties verbeteren (progressive enhancement) als resourcse zoals JS enabled zijn. (of server-side renderen?)
+
+</details>
+
+
+<details><summary>Cookies uitzetten </summary>
+
+Cookies worden veel gebruikt om gegevens op te slaan zoals user-profiles, log-ins & preferences. Zonder cookies zijn de websites die hier op relyen niet kapot maar wel minder gebruiks vriendelijk. Zo kan de gebruiker uitgelogd zijn of zijn custom styling opties (denk aan subreddits) weg zijn.
+
+De website is vaak nog wel gebruikbaar, de browser onthoud alleen wat minder gegevens van je en dus moet je deze mogelijk opnieuw beantwoorden (inloggen).
+
+Om dit te voorkomen kan je de gevevens opslaan in een database / localStorage ipv cookies maar dit brengt ook weer privacy/security risks en zijn het meestal niet waard.
+
+</details>
+
+
+<details><summary>localStorage uitzetten </summary>
+
+localStorage word vaak gebruikt om data op te slaan zodat deze niet elke keer opnieuw opgehaald hoeft te worden.
+
+Als je localStorage uitzet kan het zijn dat websites wat minder data hebben en deze moeten aanvullen. Dit zou betekenen dat de website resources moet laden en kan even duren. Websites kunnen echter ook nog verder kapot gaan -> veel websites handelen hun localStorage access check niet goed of hebben er geen een. Als dit niet goed afgehandeld word dan geeft de browser een error en loop het JS bestand vast.
+
+Dit probleem valt te voorkomen door te kijken of je access hebt tot de localStorage; dit kan met een simpele check en is eigenlijk een hele basisch oplossing.
+
+</details>
+
+
+
+
+## Screenreader
+
+Het is mij niet gelukt om succesvol de pagina's voor te laten lezen door een screenreader; ik krijg het ook niet voor elkaar om de voice-over utility op een logische manier in te stellen zodat ik het kan gebruiken.
+
+De screenreader leest alleen maar voor in wele tab ik zit en dat de als ik over iets hover dat de elementen gegrouped zijn en dat ik erin moet, maar als je er dan in gaat kan je ze alsnog niet laten voorlezen.
+
+Tips zijn welkom!
