@@ -1,141 +1,204 @@
-# Browser Technologies @cmda-minor-web 1920
-//Robuuste, toegankelijke websites ontwerpen en maken …
+# Opdracht 1.1 : Break The Web
 
-In het vak Browser Technologies leer je hoe je goede, robuuste, toegankelijke websites maakt. Je gaat leren over Progressive Enhancement, Feature Detection en Fallback. Het web is er voor iedereen. In dit vak leer je hoe je daarvoor kan zorgen.
+# TODO HIER MOETEN DE AANTEKENINGEN KOMEN VAN DEZE OPDRACHT/HET ONDERZOEK (ZIE NOTES)
 
-Een van de mooiste principes van het web is dat het er echt is voor iedereen. Iedereen met een computer en een browser moet gebruik kunnen maken van het web. Het web is geen gecontroleerde (programmeer) omgeving. Je kan er gerust van uit gaan dat niemand precies hetzelfde te zien krijgt als wat jij ziet in jouw browser. Er zijn natuurlijk de technische beperkingen. Zoals - Afmetingen van de browser - Grootte van het apparaat - Manier van interactie - Kwaliteit van de hardware - Kwaliteit van het netwerk. En er zijn mensen. Allemaal verschillende mensen ... Hoe zorg je er dan voor dat websites het altijd doen?
 
-## Leerdoelen
-- _Wat is Progressive enhancement en hoe kun je dit toepassen._
-- _Hoe doe je Feature Detection en wat doe je als een techniek niet werkt of wordt ondersteund._
-- _Leren een Browser Technologies onderzoeken, testen en implementeren als enhancement._
 
-[Rubric](https://docs.google.com/spreadsheets/d/1MV3BWwwg_Zz1n-S_qOM4iSm4gA4M6g0xAxGacyaPuac/edit?usp=sharing)
+# Opdracht 1.2 : Fork je OBA
 
-## Planning
+>Onderzochte website: https://isirthijs.github.io/project-1-1920
 
-| Planning  | Woensdag  |  Donderdag | Vrijdag  |
-|---|---|---|---|
-| <a href=#week-1>Week 1</a>  | Introductie, College over Progressive enhancement + briefing opdracht 1.1 | College Browser detect + presentaties opdracht 1.1 + briefing opdracht 1.2 Fork je OBA  | Feedbackgesprekken + Bowlen! |
-| <a href=#week-2>Week 2</a>  | College Feature detect + Briefing opdracht 2  | College Browsers + werken aan de opdracht | Feedbackgesprekken  |
-| <a href=#week-3>Week 3</a>  | College Notificaties + werken aan de opdracht  |  Werken aan de opdracht | Beoordelingsgesprekken  |
 
+## Geteste Features 
 
+* Afbeeldingen uitzetten
+* Custom Fonts uitzetten
+* Kleur uitzetten & Kleurenblindheid instellen
+* Muis/Trackpad uitzetten
+* Throttle internet (slow internet)
+* Javascript uitzetten
+* Cookies uitzetten
+* localStorage uitzetten
 
-## Programma
 
-### Week 1
-Het web is voor iedereen. Leren over Progressive enhancement en kennismaken met testen en het device lab. [Planning week 1](./slides/Week1.png)
 
-#### Woensdag
-- [Les 1 - Progressive enhancement & Briefing Opdracht 1.1](./slides/BT1920%20College%20Les1%20-%20Progressive%20Enhancement.pdf)
-- [Opdracht 1.1 - Breek het web](Opdracht1.1.md)
 
-#### Weekly Nerd
-Sanne 't Hooft over Interactie. Woensdag 11 Maart, 16:00 in het minorlokaal.
 
-#### Donderdag
-- [Les 2 - Features testen & Briefing opdracht 1.2](./slides/BT1920%20College%20Les2%20-%20Progressive%20Enhancement.pdf)
-- [Opdracht 1.2 - Fork je OBA](Opdracht1.2.md)
+## Devices
 
-Deze les gaan we onderstaande artikelen bespreken:
-- [Everyone has JavaScript, right? by Stuart Langridge](https://kryogenix.org/code/browser/everyonehasjs.html)
-- [The Web I Want by Chris James](https://dev.to/quii/the-web-i-want-43o)
+<details><summary>Huawei Ascend Y300</summary>
 
+Device : Huawei Ascend Y300
 
-#### Vrijdag
-Feedbackgesprekken opdracht 1.2 in groepjes en studentassistenten en docenten.
+Browser : Android Browser 
 
-Deze les gaan we onderstaand artikel bespreken:
-- [Lezen: Understanding Progressive Enhancement by Aaron Gustafson](https://alistapart.com/article/understandingprogressiveenhancement)
+OS : | running Android 4.1.1
 
+>UA : Mozilla/5.0 (Linux; U; Android 4.1.1; nl-nl; HUAWEI Y300-0100 Build/HuaweiY300-0100) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30
 
 
+Het onderzoeken van dit toestel is niet gelukt, want we konden geen verbinding maken met de website zelf. De website staat gehost op `github-pages`; Wanneer we op google op github zochten kregen we gewoon resultaten dus het lag niet aan de internet-verbinding. Maar als we dan op een link naar github klikte dan kregen we een melding/pop-up: `could not connect with secure server`. Vervolgens werd je herleid naar de google-search pagina.
 
+We hebben dit probleem niet kunnen verhelpen en uiteindelijk is het niet opgelost.
 
-### Week 2
-Wat laat je zien als een browser of gebruiker een 'enhancement' niet kan tonen of zien? Hoe doe je Feature Detection en wat doe je als een techniek niet werkt of wordt ondersteund? [Planning week 2](./slides/Week2.png)
+</details>
 
-#### Woensdag
-- [Les 3 - Over Feature detect & Briefing opdracht 2]()
-- [Opdracht 2 - Progressive Enhanced Browser Technologie](Opdracht2.md)
 
-Deze les gaan we onderstaande artikelen bespreken:
-- [The Role of Enhancement in Web Design by Raluca Budiu / Nielsen Norman Group](https://www.nngroup.com/articles/enhancement/)
-- [Accessibility Through Semantic HTML by Laura Kalbag](https://24ways.org/2017/accessibility-through-semantic-html/)
 
+<details><summary>Apple iPod Touch</summary>
 
-#### Weekly Nerd
-PE bij de Voorhoede.
+Device : Apple iPod Touch
 
+Browser : Safari 
 
-#### Donderdag
-- [Les 4 - Over Browsers]()
+OS : running iOS 5.0.1
 
-Deze les gaan we onderstaande artikelen bespreken:
-- [The accessibility mindset by Eric Eggert](https://24ways.org/2015/the-accessibility-mindset/)
-- [HTML: The Inaccessible Parts](https://daverupert.com/2020/02/html-the-inaccessible-parts/)
+>UA : Mozilla/5.0 (iPod; CPU iPhone OS 5_0_1 like MacOS X) AppleWebKit/534.46 (KHTML, like Gecko) Version/5.1 Mobile/9A405 Safari/7534.48.3
 
 
-#### Vrijdag
-Code review en feedbackgesprekken opdracht 2.
+Het onderzoeken van dit toestel is niet gelukt, want we konden geen verbinding maken met de website zelf. De website staat gehost op `github-pages`; Wanneer we op google op github zochten kregen we gewoon resultaten dus het lag niet aan de internet-verbinding. Maar als we dan op een link naar github klikte dan kregen we een melding/pop-up: `could not connect with secure server`. Vervolgens werd je herleid naar de google-search pagina.
 
+We hebben dit probleem niet kunnen verhelpen en uiteindelijk is het niet opgelost.
 
+</details>
 
 
-### Week 3
-Deze week werken we verder aan opdracht 2. [Planning week 3](./slides/Week3.png)
 
+<details><summary>Windows RT 8.1</summary>
 
-#### Woensdag
-- [Les 5 - Over Notificaties]()
+Device : Windows RT 8.1
 
-Deze les gaan we onderstaande artikelen bespreken:
-- [Progressive Enhancement and Data Visualizations by Chris Coyier](https://css-tricks.com/progressive-enhancement-data-visualizations/)
-- [Make the Web Work For Everyone by Justin Crawford, Chris Mills, Ali Spivak](https://hacks.mozilla.org/2016/07/make-the-web-work-for-everyone/)
+Browser : Internet Explorer 11.0
 
+OS : Windows 
 
-#### Weekly Nerd
-Op bezoek bij Bol.com
+>UA : Mozilla/5.0 (Windows NT 6.3; ARM; Trident/7.0; Touch; .MET4.OE; NET4.OC; Tablet PC 2.0; rv:11:0) like Gecko 
 
 
-#### Donderdag
-Verder werken aan opdracht 2
+Bij het onderzoeken van de website kwamen we al snel achter een probleem; JS ES6 modules worden niet gesupport in IE 11.0! In de JS code worden meteen als eerste de verschillende modules geimporteerd, dit betekent dat het bij de eerste regel JS al fout gaat.
 
+TODO: HIER MOET DE CANIUSE IMAGE KOMEN OVER MODULES IN IE 11.0!
 
+</details>
 
-#### Vrijdag
-Code review en beoordelingsgesprekken opdracht 2.
 
 
 
 
 
+## Browsers
 
+<details><summary>Chrome</summary>
 
+Browser (version) : Chrome 80
 
+Device : macOS Catalina 10.15
 
+>UA : Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.132 Safari/537.36
 
+**Afbeeldingen uitzetten**
 
+Mijn OBA website heeft bijna afbeeldingen; alleen een logo & custom checkbox indicators. Deze zijn allemaal weg. De inputs zijn nog steeds te gebruiken omdat de `:checked` state een zwaardere `font-weight` heeft, dit verschil is moeilijk te zien en valt niet op maar is in theorie functioneel. 
 
+De loading state bevat ook een plaatje maar dit zijn HTML elementen die vormgegeven zijn en zijn dus nog zichtbaar!
 
+**Custom Fonts uitzetten**
 
+>Er worden geen custom fonts gebruikt op mijn website; verder zijn er fallbacks voor alle fonts (Arial, Helvetica, sans-serif)
 
+**Kleur uitzetten & Kleurenblindheid instellen**
 
-<!-- Add a link to your live demo in Github Pages 🌐-->
 
-<!-- ☝️ replace this description with a description of your own work -->
+**Muis/Trackpad uitzetten**
 
-<!-- replace the code in the /docs folder with your own, so you can showcase your work with GitHub Pages 🌍 -->
+Je kan de volledige website door navigeren met `tab`; het enige probleem is dat er geen visuele feedback is omdat `*:focus { outline: none; }` in de CSS staat. Verder is de setup zo gemaakt dat het over de oude content geplaatst is met een `z-index`, de oude content is echter nogsteeds toegankelijk dmv `tab` dit betekent dat de gebruiker dus al naar pagina's kan navigeren door de header te gebruiken met `tab`.
 
-<!-- Add a nice poster image here at the end of the week, showing off your shiny frontend 📸 -->
+**Throttle internet (slow internet)**
 
-<!-- Maybe a table of contents here? 📚 -->
 
-<!-- How about a section that describes how to install this project? 🤓 -->
+**Javascript uitzetten**
 
-<!-- ...but how does one use this project? What are its features 🤔 -->
 
-<!-- Maybe a checklist of done stuff and stuff still on your wishlist? ✅ -->
+**Cookies uitzetten**
 
-<!-- How about a license here? 📜 (or is it a licence?) 🤷 -->
+
+**localStorage uitzetten**
+
+
+</details>
+
+
+
+
+
+<details><summary>Firefox</summary>
+
+Browser (version) : Firefox 74.0
+
+Device : macOS Catalina 10.15
+
+>UA : Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:74.0) Gecko/20100101 Firefox/74.0
+
+
+**Afbeeldingen uitzetten**
+
+
+**Custom Fonts uitzetten**
+
+>Er worden geen custom fonts gebruikt op mijn website; verder zijn er fallbacks voor alle fonts (Arial, Helvetica, sans-serif)
+
+**Kleur uitzetten & Kleurenblindheid instellen**
+
+
+**Muis/Trackpad uitzetten**
+
+
+**Throttle internet (slow internet)**
+
+
+**Javascript uitzetten**
+
+
+**Cookies uitzetten**
+
+
+**localStorage uitzetten**
+
+</details>
+
+
+
+<details><summary>Safari</summary>
+
+Browser (version) : Safari 13.0.3
+
+Device : macOS Catalina 10.15
+
+>UA : Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_1) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Safari/605.1.15
+
+
+**Afbeeldingen uitzetten**
+
+
+**Custom Fonts uitzetten**
+
+>Er worden geen custom fonts gebruikt op mijn website; verder zijn er fallbacks voor alle fonts (Arial, Helvetica, sans-serif)
+
+**Kleur uitzetten & Kleurenblindheid instellen**
+
+
+**Muis/Trackpad uitzetten**
+
+
+**Throttle internet (slow internet)**
+
+
+**Javascript uitzetten**
+
+
+**Cookies uitzetten**
+
+
+**localStorage uitzetten**
+
+</details>
