@@ -86,7 +86,7 @@ OS : Windows
 
 Bij het onderzoeken van de website kwamen we al snel achter een probleem; JS ES6 modules worden niet gesupport in IE 11.0! In de JS code worden meteen als eerste de verschillende modules geimporteerd, dit betekent dat het bij de eerste regel JS al fout gaat.
 
-TODO: HIER MOET DE CANIUSE IMAGE KOMEN OVER MODULES IN IE 11.0!
+![image](https://user-images.githubusercontent.com/45405413/76567512-32a5c300-64af-11ea-8c67-7805d40f4469.png)
 
 </details>
 
