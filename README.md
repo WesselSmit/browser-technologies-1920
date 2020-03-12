@@ -1,5 +1,6 @@
 # Opdracht 1.1 : Break The Web
 
+<details><summary>Opdracht 1.1 : Break The Web</summary>
 ## Afbeeldingen uitzetten
 >Deze kan je disabelen in chrome settings > site settings > images
 
@@ -59,9 +60,11 @@ https://soundcloud.com/
 
 * Soundcloud logt je uit
 
-
+</details>
 
 # Opdracht 1.2 : Fork je OBA
+
+<details><summary>Opdracht 1.2 : Fork je OBA</summary>
 
 >Onderzochte website: https://isirthijs.github.io/project-1-1920
 
@@ -458,3 +461,5 @@ Het is mij niet gelukt om succesvol de pagina's voor te laten lezen door een scr
 De screenreader leest alleen maar voor in wele tab ik zit en dat de als ik over iets hover dat de elementen gegrouped zijn en dat ik erin moet, maar als je er dan in gaat kan je ze alsnog niet laten voorlezen.
 
 Tips zijn welkom!
+
+</details>
