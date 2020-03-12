@@ -86,7 +86,7 @@ TODO: HIER MOET DE CANIUSE IMAGE KOMEN OVER MODULES IN IE 11.0!
 
 
 
-## Browsers
+## Browsers & Problemen die voorkwamen
 
 <details><summary>Chrome</summary>
 
@@ -115,15 +115,21 @@ Je kan de volledige website door navigeren met `tab`; het enige probleem is dat 
 
 **Throttle internet (slow internet)**
 
+Internet throttling (slow 3G) valt niet echt op op mijn OBA website, wanneer de data geladen moet worden is er een loading state te zien. Het enige effect is dat het wat langer kan duren om de data te `fetchen`. Alle JS die er is om user-input te verwerken/events te handelen, er gaat dus niks kapot omdat de user deze `addEventListeners` pas kan triggeren wanneer de content geladen is.
 
 **Javascript uitzetten**
 
+Wanneer JS uitstaat kan de gebruiker alleen de header zien/gebruiken. Deze heeft echter niet veel nut omdat de content van de pagina's geladen (& gemaakt) word in JS. Dit betekent dat de website niet te gebruiken is zonder JS op het moment.
 
 **Cookies uitzetten**
 
+>Er worden geen cookies gebruikt op mijn website
 
 **localStorage uitzetten**
 
+Als localStorage uitstaat gaat de gehele website kapot, dit heeft te maken met het feit dat er geen check is of de website `access` heeft tot de localStorage. Dit betekent dat er een error ontstaat en dat JS stopt.
+
+>Uncaught DOMException: Failed to read the 'localStorage' property from 'Window': Access is denied for this document.
 
 </details>
 
@@ -142,6 +148,9 @@ Device : macOS Catalina 10.15
 
 **Afbeeldingen uitzetten**
 
+Mijn OBA website heeft bijna afbeeldingen; alleen een logo & custom checkbox indicators. Deze zijn allemaal weg. De inputs zijn nog steeds te gebruiken omdat de `:checked` state een zwaardere `font-weight` heeft, dit verschil is moeilijk te zien en valt niet op maar is in theorie functioneel. 
+
+De loading state bevat ook een plaatje maar dit zijn HTML elementen die vormgegeven zijn en zijn dus nog zichtbaar!
 
 **Custom Fonts uitzetten**
 
@@ -152,17 +161,26 @@ Device : macOS Catalina 10.15
 
 **Muis/Trackpad uitzetten**
 
+In Firefox kan je niet door de website navigeren, alles is kapot qua navigatie; header navigatie links, inputs & anchors zijn allemaal niet tabbaar. 
 
 **Throttle internet (slow internet)**
 
+Internet throttling (regular 2G) is niet hinderend, de website is snel en alles laad alsnog bijna instantly. Het enige waarbij het te merken is dat wanneer je de pagina refreshed het een seconde duurt voordat die opnieuw JS uitvoert. (dit is te zien omdat je de pagina opnieuw gegenerate ziet worden wanneer de JS ingeladen is!)
 
 **Javascript uitzetten**
 
+Wanneer JS uitstaat kan de gebruiker alleen de header zien/gebruiken. Deze heeft echter niet veel nut omdat de content van de pagina's geladen (& gemaakt) word in JS. Dit betekent dat de website niet te gebruiken is zonder JS op het moment.
 
 **Cookies uitzetten**
 
+>Er worden geen cookies gebruikt op mijn website
 
 **localStorage uitzetten**
+
+Als localStorage uitstaat gaat de gehele website kapot, dit komt doordat de localStorage leeg is volgens de browser. Het aparte hier is dat het zegt dat de localStorage leeg is; dit is raar omdat een lege localStorage opgevangen word in JS en dan word de data aangemaakt in JS en vervolgens in localStorage gezet.  
+
+>TypeError: localStorage is null
+
 
 </details>
 
@@ -195,10 +213,14 @@ Device : macOS Catalina 10.15
 
 **Javascript uitzetten**
 
+Wanneer JS uitstaat kan de gebruiker alleen de header zien/gebruiken. Deze heeft echter niet veel nut omdat de content van de pagina's geladen (& gemaakt) word in JS. Dit betekent dat de website niet te gebruiken is zonder JS op het moment.
 
 **Cookies uitzetten**
 
+>Er worden geen cookies gebruikt op mijn website
 
 **localStorage uitzetten**
+
+
 
 </details>
