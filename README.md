@@ -1,6 +1,55 @@
 # Opdracht 1.1 : Break The Web
 
-# TODO HIER MOETEN DE AANTEKENINGEN KOMEN VAN DEZE OPDRACHT/HET ONDERZOEK (ZIE NOTES)
+Afbeeldingen uitzetten
+Deze kan je disabelen in chrome settings > site settings > images
+
+https://www.baasenbaas.nl/
+* Navigatie bar werkt niet meer op Baas & Baas, de navigatie items/text zijn er wel maar hebben dezelfde kleur als de achtergrond
+* Logos laden niet
+* Background-images werken niet p -> sommige websites gebruiken heel veel background-images ter decoratie met tekst daarover heen, deze tekst is soms niet meer leesbaar als de background-image weg is omdat de tekst dan dezelfde kleur heeft als de background-color. Een oplossing hiervoor is om de container ook een background-color te geven (wanneer images uitstaan en de background image niet geladen word kan word de background color zichtbaar en kan je de tekst alsnog lezen)
+* Images missen, dit kan ervoor zorgend dat de pagina een awkward layout heeft. Een oplossing hiervoor zou om images in een container te zetten en de container een background-color te geven. Op deze manier ziet de gebruiker alsnog de skeleton UI en blijft de layout intact.
+* Als een pagina bestaat uit alleen maar images en deze ontbreken dan heb je eigenlijk een lege pagina met een header en een footer. Het is niet duidelijk waarvoor de pagina bedoeld is
+
+https://esportsgamearena.nl/
+* Videos worden niet geblocked 
+* <i> tags werken wel met unicode karakters dus het is mogelijk om “images” na te maken (zie hieronder)
+￼
+* Grote lege ruimtes waar images moeten zijn, vaak heb je eerst niet door dat er een image moet komen omdat er niet zo’n “image not loaded” icon komt. Dit heeft te maken met dat het background images zijn en die laten niet zo’n icon zien.
+* Sommige pagina’s werken 100%, sommige pagina’s zijn totaal niet te gebruiken (bv de kalender => deze gebruikt veel images die allemaal niet laden & de tekst heeft dezelfde achtergrond kleur als de tekst waardoor deze niet meer te lezen valt)
+* Kleine images ter decoratie voor tekst in buttons mist
+
+http://grandcafedezaak.nl/home.html
+* Grote witruimtes waar grote plaatjes horen te staan
+* Layout misvormd maar wel bruikbaar
+
+https://www.cmd-amsterdam.nl/
+* Videos doen het 
+* Gebruikt backgroundcolors waardoor de layout intact blijft
+* Sommige pagina’s hebben alleen een foto waardoor de hele pagina niet meer te gebruiken valt
+* Favicon.png doen het wel -> komt waarhschijnlijk omdat dit in een <link> tag staat in de <head>
+
+
+
+LocalStorage uitzetten (hierbij staan cookies ook uit)
+Deze kan je disabelen in chrome settings > site settings > cookies
+
+het valt op dat sommige websites een error krijgen hierdoor: "Failed to read the 'localStorage' property from 'Window': Access is denied for this document." de websites checken waarschijnlijk of localStorage leeg is of niet. maar er word niet gecheckt of ze toestemming hebben tot de localStorage. de website kan de localStorage niet eens accessen en kan dus ook niet checken of deze leeg is.
+
+ik denk dat de browser onderwater kijkt of je toegang hebt tot hun localStorage database
+
+het is dus slim om eerst te checken of je toegang hebt tot localStorage voordat je deze probeert te accessen
+
+https://www.reddit.com/r/Monstercat/new/
+* Op reddit ben ik uitgelogd -> Subreddit specific styling opties doen het niet meer
+
+https://www.twitch.tv/
+* Twitch gaat helemaal kapot en laat niks zien, de homepage kan niet eens laden
+
+https://www.linkedin.com/feed/
+* Linkedin logt je ook uit 
+
+https://soundcloud.com/
+* Soundcloud logt je uit
 
 
 
