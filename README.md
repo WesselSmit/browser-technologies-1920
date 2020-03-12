@@ -1,7 +1,9 @@
 # Opdracht 1.1 : Break The Web
 
 <details><summary>Opdracht 1.1 : Break The Web</summary>
+	
 ## Afbeeldingen uitzetten
+
 >Deze kan je disabelen in chrome settings > site settings > images
 
 https://www.baasenbaas.nl/
