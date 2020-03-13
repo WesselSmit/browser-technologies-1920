@@ -460,9 +460,9 @@ Dit probleem valt te voorkomen door te kijken of je access hebt tot de localStor
 
 ## Screenreader
 
-Het is mij niet gelukt om succesvol de pagina's voor te laten lezen door een screenreader; ik krijg het ook niet voor elkaar om de voice-over utility op een logische manier in te stellen zodat ik het kan gebruiken.
+De website laten voorlezen met een screenreader was bijna onmoglijk (ik denk ook dat ik wat settings niet goed heb staan). Content kon wel voorgelezen worden maar dit was niet te volgen aangezien de reader engels spreekt en de website nederlandse content bevat. Verder kreeg je ook vaak te horen dat elementen gegroepeerd waren of op welk element je zat.
 
-De screenreader leest alleen maar voor in wele tab ik zit en dat de als ik over iets hover dat de elementen gegrouped zijn en dat ik erin moet, maar als je er dan in gaat kan je ze alsnog niet laten voorlezen.
+Geen fijne ervaring maar nogmaals; het heeft waarschijnlijk ook te maken met de settings die aanstaan.
 
 Tips zijn welkom!
 
