@@ -356,6 +356,8 @@ Een van de grootste problemen is dat zonder images de layouts van websites kapot
 
 Deze problemen zijn allemaal voorkombaar; gebruik een skeleton UI om image reflow te voorkomen en je layout intact te houden. Geef naast een background-image ook een background-color op. Door een background-color te gebruiken valt de tekst niet meer weg.
 
+Verder kan je dus ook door allemaal andere tags te gebruiken images na doen; kleine iconen hoeven niet perse `<img>` te zijn maar kunnen ook `<i>` (fontawesome) of unicode karakters zijn die gestyled zijn om op een image te lijken.
+
 
 </details>
 
