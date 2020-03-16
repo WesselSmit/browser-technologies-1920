@@ -460,10 +460,18 @@ Dit probleem valt te voorkomen door te kijken of je access hebt tot de localStor
 
 ## Screenreader
 
-De website laten voorlezen met een screenreader was bijna onmoglijk (ik denk ook dat ik wat settings niet goed heb staan). Content kon wel voorgelezen worden maar dit was niet te volgen aangezien de reader engels spreekt en de website nederlandse content bevat. Verder kreeg je ook vaak te horen dat elementen gegroepeerd waren of op welk element je zat.
+Ik heb in de HTML het `lang` attribuut van **en** verandert naar **nl** zodat de nederlandee content ook voorgelezen word door een nederlandse stem. 
 
-Geen fijne ervaring maar nogmaals; het heeft waarschijnlijk ook te maken met de settings die aanstaan.
+De overviewpagina is uitleesbaar, wel erg vervelend dat de elementen uitgelezen worden; zo krijg je elke keer te horen “heading level 4” etc. 
 
-Tips zijn welkom!
+Ik weet niet of de mensen die screenreaders gebruiken het interessant vinden om te horen wat voor element de focus heeft maar als dat niet belangrijk is dan kan je dit misschien voorkomen door er een “aria” attribuut op te zetten.
+Aan de andere kant kan ik me ook wel weer voorstellen dat mensen die screenreaders gebruiken willen weten dat het een titel of iets dergelijk is (blinde mensen).
+
+Wanneer je letterlijk op de `<a>` hoverde werd alle content voorgelezen (wat de bedoeling is), maar als je over een van de child-nodes hoverde dan word alleen dat element voorgelezen. Met `tab` werkt dit dus erg goed, maar met de muis minder. Een manier om dit probleem te voorkomen kan misschoen `pointer-events: none` zijn. Op deze manier werkt de link nogsteeds en is alle content leesbaar terwijl het element geen hover-state heeft en dus niet een screenreader kan trigerren.
+
+Verder viel het me op dat als in een `<a>` een `<h4>`, `<p>` & `<p>` bevat dat er geen pauzes tussen de elementen zitten. Er word rechtstreeks van element naar element gegaan; ik kan me voorstellen dat als je dit dagelijks gebruikt dat dit geen probleem is. Maar voor de personen bij wie het wel een probleem is valt dit probleem te verhelpen; er moeten `.` achter de zinnen gezet worden zodat de screenreader een korte pauze neemt tussen de zinnen.
+
+
+De profielpagina werkt ook normaal, echter kan ik de `<input>` niet laten voorlezen door de screenreader, dit zo mogelijk zijn met `aria-label`.
 
 </details>
