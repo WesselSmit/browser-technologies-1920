@@ -7,8 +7,7 @@ const route_home = require('#routes/home.js')
 const route_identification = require('#routes/identification.js')
 const route_key = require('#routes/invalid-key.js')
 const route_new = require('#routes/new.js')
-const route_favorites = require('#routes/favorites.js')
-const route_open = require('#routes/open.js')
+const route_person = require('#routes/person.js')
 
 //Set path to static assets folder
 app.use(express.static('static'))
@@ -21,13 +20,14 @@ app.set('views', __dirname + '/views')
 app.set('view engine', 'ejs')
 
 
+//todo: maak in (indetification.js & invalid-key.js) de 'session exists' routes nog
+
 //Routes
 app.get('/', route_home)
 app.post('/identification', route_identification)
 app.post('/invalid-key', route_key)
-app.post('/favorites', route_favorites)
-app.post('/open', route_open)
-
+app.get('/new', route_new)
+app.post('/person', route_person)
 
 //Set port to host app
 app.listen(port, () => console.log(`App now listening on port ${port}`))

@@ -23,7 +23,7 @@ form {
 	margin-right: -50%;
 	transform: translate(-50%, -50%);
 	padding: 20px;
-	/* Not fully supported */
+	/* Not fully supported: */
 	border: 1px solid #00ffa2;
 	border-radius: 5px;
 	box-shadow: 0 0 30px #004466;
@@ -31,7 +31,7 @@ form {
 
 fieldset {
 	margin: 0;
-	/* Not fully supported */
+	/* Not fully supported: */
 	border: 0;
 }
 
@@ -86,7 +86,7 @@ input[type="text"] {
 	background-color: #00ffa2;
 	color: #004466;
 	width: 50%;
-	/* Not fully supported */
+	/* Not fully supported: */
 	border: 1px solid #004466;
 	border-radius: 5px;
 }
@@ -98,7 +98,7 @@ input[type="submit"] {
 	float: right;
 	margin-top: 50px;
 	margin-bottom: 0;
-	/* Not fully supported */
+	/* Not fully supported: */
 	border: 1px solid #00ffa2;
 	border-radius: 5px;
 	cursor: pointer;
@@ -107,7 +107,7 @@ input[type="submit"] {
 input[type="submit"]:hover {
 	background-color: #00ffa2;
 	color: #004466;
-	/* Not fully supported */
+	/* Not fully supported: */
 	border: 1px solid #004466;
 }
 
@@ -116,7 +116,7 @@ input[type="submit"]:hover {
 
 /* Specific Styles */
 
-#start p {
+#start {
 	margin-top: 10px;
 	margin-bottom: 30px;
 }
@@ -125,7 +125,27 @@ input[type="submit"]:hover {
 	float: left;
 }
 
+#new p {
+	margin-top: 25px;
+	margin-bottom: 0;
+	display: inline-block;
+	padding-right: 5px;
+}
 
+#new samp {
+	font-size: 30px;
+	padding: 3px 5px;
+	display: inline-block;
+	background-color: #004466;
+	color: #00ffa2;
+	/* Not fully supported: */
+	border: 1px solid #00ffa2;
+	border-radius: 5px;
+}
+
+#new input[type="submit"] {
+	margin-top: 110px;
+}
 
 
 

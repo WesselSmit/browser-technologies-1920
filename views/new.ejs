@@ -2,7 +2,20 @@
 
 <body>
 
-	dit is de start van een nieuwe sessie
+	<form action="/person" method="POST" id="new">
+		<fieldset>
+			<legend><strong>Welcome</strong> to the questionnaire</legend>
+
+			<% if (locals.key) { %>
+			<p>Your key is: </p>
+			<samp><%= key %></samp>
+			<% } %>
+
+			<input name="key" type="hidden" value="<%= key %>">
+
+			<input type="submit" value="Start">
+		</fieldset>
+	</form>
 
 </body>
 

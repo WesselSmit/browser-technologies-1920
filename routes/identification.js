@@ -1,5 +1,4 @@
 const storage = require('#modules/storage.js')
-const uid = require('uid')
 
 module.exports = (req, res) => {
 	const passedKey = req.body.key
@@ -13,6 +12,6 @@ module.exports = (req, res) => {
 		}
 	} else {
 		console.log('start new session')
-		res.render("new")
+		res.redirect('/new')
 	}
 }
