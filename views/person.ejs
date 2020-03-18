@@ -1,0 +1,21 @@
+<%- include('head') %>
+
+<body>
+
+	<form action="/favorites" method="POST" id="person">
+		<fieldset>
+			<legend><strong>Hello World</strong>, who are you?</legend>
+
+			<!-- todo: hier moet het form komen met de persoons vragen -->
+
+			<% if (locals.key) { %>
+			<input name="key" type="hidden" value="<%= key %>">
+			<% } %>
+
+			<input type="submit" value="Next">
+		</fieldset>
+	</form>
+
+</body>
+
+</html>

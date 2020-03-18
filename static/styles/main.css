@@ -150,6 +150,7 @@ input[type="submit"]:hover {
 
 
 
+
 /* Resized Styles */
 
 @media (max-width: 660px) {
@@ -172,6 +173,11 @@ input[type="submit"]:hover {
 		transform: translate(-50%, 0%);
 		padding: 10px;
 	}
+
+	#new {
+		border: 0;
+		box-shadow: 0 0 0;
+	}
 }
 
 
@@ -191,5 +197,12 @@ input[type="submit"]:hover {
 
 	#invalidKey input[type="submit"]:last-of-type {
 		margin-top: 10px;
+	}
+}
+
+@media (max-width: 283px) {
+	#new input[type="submit"] {
+		position: absolute;
+		top: 100px;
 	}
 }
