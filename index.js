@@ -6,6 +6,7 @@ const app = express()
 const route_home = require('#routes/home.js')
 const route_identification = require('#routes/identification.js')
 const route_key = require('#routes/invalid-key.js')
+const route_new = require('#routes/new.js')
 const route_favorites = require('#routes/favorites.js')
 const route_open = require('#routes/open.js')
 

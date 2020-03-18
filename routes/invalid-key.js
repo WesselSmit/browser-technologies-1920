@@ -12,7 +12,7 @@ module.exports = (req, res) => {
 			res.render("invalidKey")
 		}
 	} else {
-		const key = uid(7)
-		console.log('start new session', 'new key:', key) //todo
+		console.log('start new session')
+		res.render("new")
 	}
 }

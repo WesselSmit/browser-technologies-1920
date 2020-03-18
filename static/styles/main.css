@@ -85,9 +85,10 @@ input[type="text"] {
 	padding: 3px 5px;
 	background-color: #00ffa2;
 	color: #004466;
-	border: 1px solid #004466;
-
 	width: 50%;
+	/* Not fully supported */
+	border: 1px solid #004466;
+	border-radius: 5px;
 }
 
 input[type="submit"] {
@@ -122,4 +123,53 @@ input[type="submit"]:hover {
 
 #invalidKey input[type="submit"]:last-of-type {
 	float: left;
+}
+
+
+
+
+
+
+/* Resized Styles */
+
+@media (max-width: 660px) {
+
+	#start,
+	#invalidKey {
+		border: 0;
+		box-shadow: 0 0 0;
+	}
+
+	#start input[type="text"],
+	#invalidKey input[type="text"] {
+		width: 65%;
+	}
+}
+
+@media (max-width: 550px) {
+	form {
+		top: 0%;
+		transform: translate(-50%, 0%);
+		padding: 10px;
+	}
+}
+
+
+@media (max-width: 367px) {
+
+	#start input[type="text"],
+	#invalidKey input[type="text"] {
+		width: 100%;
+		/* Not fully supported & can't be tested for browser-detection in some browsers => resulting in this strategy */
+		/* (https://stackoverflow.com/questions/23667208/calc-not-working-within-media-queries) */
+		width: calc(100% - 10px);
+	}
+
+	#invalidKey [name="tried"] {
+		float: left;
+	}
+
+	#invalidKey input[type="submit"]:last-of-type {
+		margin-top: 10px;
+	}
 }
