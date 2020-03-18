@@ -475,3 +475,60 @@ Verder viel het me op dat als in een `<a>` een `<h4>`, `<p>` & `<p>` bevat dat e
 De profielpagina werkt ook normaal, echter kan ik de `<input>` niet laten voorlezen door de screenreader, dit zo mogelijk zijn met `aria-label`.
 
 </details>
+
+
+
+
+
+# Opdracht 2
+
+<details><summary>Wireframes</summary>
+
+### Identificatie
+![Screenshot 2020-03-18 at 13 50 54](https://user-images.githubusercontent.com/45405413/76962466-943ab700-691f-11ea-96e9-ca31ef15ef88.png)
+
+### Gegevens
+![Screenshot 2020-03-18 at 13 51 05](https://user-images.githubusercontent.com/45405413/76962469-956be400-691f-11ea-9554-3bcfce88739b.png)
+
+### Favorieten
+![Screenshot 2020-03-18 at 13 51 13](https://user-images.githubusercontent.com/45405413/76962470-96047a80-691f-11ea-8032-04b45d827dab.png)
+
+
+### Open Vragen
+![Screenshot 2020-03-18 at 13 51 19](https://user-images.githubusercontent.com/45405413/76962472-969d1100-691f-11ea-90f5-2d73ae307c68.png)
+
+</details>
+
+<details><summary>Layers</summary>
+	
+## Functionaliteit Laag
+
+De applicatie bestaat puur uit HTML & CSS.
+Alle 4 pagina’s hebben een knop om naar de volgende page te gaan, 
+deze submit() ook de gegevens naar de server.
+
+Er word een UID gemaakt om je progressie op te slaan.
+Je kan in het only scherm inloggen met je UID (dan word serverside
+je  data opgehaald en ingevuld in het form), als je geen key hebt dan moet 
+je een nieuwe sessie aanmaken en krijg je een key om de volgende keer
+mee in te loggen.
+
+Je kan pas naar de volgende pagina als alles ingevuld is (required)
+Als je je key invult en dus verder gaat met je sessie dan word je automatisch 
+naar de page genavigeerd die je nog niet af hebt.
+
+## Useable
+
+De applicatie bestaat puur uit HTML & CSS en JS.
+
+Verbeteringen:
+- Elke keer dat de gebruiker iets invult word het antwoord opgeslagen (ipv alleen de pagina’s)
+- De pagination knoppen zijn alleen zichtbaar als alle vragen beantwoord zijn
+- Sliders laten nu ook de huidige waarde zien in de slider
+- Er word feedback gegeven wanneer de gebruiker iets invult, denk aan:
+        - inputs geven aan dat ze ingevuld zijn 
+        - evt. progressie balk
+
+## Enhanced Laag
+
+</details>
