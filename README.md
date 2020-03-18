@@ -499,36 +499,3 @@ De profielpagina werkt ook normaal, echter kan ik de `<input>` niet laten voorle
 
 </details>
 
-<details><summary>Layers</summary>
-	
-## Functionaliteit Laag
-
-De applicatie bestaat puur uit HTML & CSS.
-Alle 4 pagina’s hebben een knop om naar de volgende page te gaan, 
-deze submit() ook de gegevens naar de server.
-
-Er word een UID gemaakt om je progressie op te slaan.
-Je kan in het only scherm inloggen met je UID (dan word serverside
-je  data opgehaald en ingevuld in het form), als je geen key hebt dan moet 
-je een nieuwe sessie aanmaken en krijg je een key om de volgende keer
-mee in te loggen.
-
-Je kan pas naar de volgende pagina als alles ingevuld is (required)
-Als je je key invult en dus verder gaat met je sessie dan word je automatisch 
-naar de page genavigeerd die je nog niet af hebt.
-
-## Useable Laag
-
-De applicatie bestaat puur uit HTML & CSS en JS.
-
-Verbeteringen:
-- Elke keer dat de gebruiker iets invult word het antwoord opgeslagen (ipv alleen de pagina’s)
-- De pagination knoppen zijn alleen zichtbaar als alle vragen beantwoord zijn
-- Sliders laten nu ook de huidige waarde zien in de slider
-- Er word feedback gegeven wanneer de gebruiker iets invult, denk aan:
-        - inputs geven aan dat ze ingevuld zijn 
-        - evt. progressie balk
-
-## Enhanced Laag
-
-</details>
