@@ -4,8 +4,8 @@ const uid = require('uid')
 module.exports = (req, res) => {
 	const passedKey = req.body.key
 
-	if (passedKey != "") {
-		if (storage.checkIfFileExists(`./storage/${passedKey}.json`)) {
+	if (req.body.hasOwnProperty('tried')) { //User wants to try another key
+		if (passedKey != "" && storage.checkIfFileExists(`./storage/${passedKey}.json`)) {
 			console.log('session exists') //todo
 		} else {
 			console.log('invalid key')

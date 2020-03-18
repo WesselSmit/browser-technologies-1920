@@ -5,6 +5,7 @@ const app = express()
 
 const route_home = require('#routes/home.js')
 const route_person = require('#routes/person.js')
+const route_key = require('#routes/invalid-key.js')
 const route_favorites = require('#routes/favorites.js')
 const route_open = require('#routes/open.js')
 
@@ -22,6 +23,7 @@ app.set('view engine', 'ejs')
 //Routes
 app.get('/', route_home)
 app.post('/person', route_person)
+app.post('/invalid-key', route_key)
 app.post('/favorites', route_favorites)
 app.post('/open', route_open)
 

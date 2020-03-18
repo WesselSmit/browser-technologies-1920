@@ -4,7 +4,7 @@
 }
 
 
-
+/* TODO: zorg dat op kleine schermen het blok weg is en dat het het gehele scherm in neemt (dus niet de box-shadow van het form) */
 
 /* Global Element Styles */
 
@@ -18,7 +18,7 @@ body {
 form {
 	max-width: 600px;
 	position: absolute;
-	top: 40%;
+	top: 50%;
 	left: 50%;
 	margin-right: -50%;
 	transform: translate(-50%, -50%);
@@ -50,12 +50,12 @@ p {
 	font-family: Arial, Helvetica, sans-serif;
 }
 
-/* Prefixe for Edge */
+/* Prefix for Edge */
 ::-webkit-input-placeholder {
 	color: #004466;
 }
 
-/* Prefixe for Internet Explorer 10-11 */
+/* Prefix for Internet Explorer 10-11 */
 ::-ms-input-placeholder {
 	color: #004466;
 }
@@ -118,4 +118,8 @@ input[type="submit"]:hover {
 #start p {
 	margin-top: 10px;
 	margin-bottom: 30px;
+}
+
+#invalidKey input[type="submit"]:last-of-type {
+	float: left;
 }
