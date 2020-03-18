@@ -2,9 +2,18 @@
 
 <body>
 
-	<main id="start">
-		<p>hier moet je inloggen</p>
-	</main>
+	<form action="/person" method="POST" id="start">
+		<fieldset>
+			<legend><strong>Minor Webdev Experience</strong> questionnaire</legend>
+			<p>This questionnaire aims to map how students of the Amsterdam University are experiencing their webdev
+				minor so far.</p>
+
+			<label for="key">Enter key to resume questionnaire</label>
+			<input type="text" id="key" name="key" placeholder="key (example: e01ip1c)" autocomplete="off">
+
+			<input type="submit" value="Resume || Start new">
+		</fieldset>
+	</form>
 
 </body>
 

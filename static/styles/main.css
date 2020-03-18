@@ -1,0 +1,78 @@
+@font-face {
+	font-family: Sudo-Bold;
+	src: url(../media/fonts/Sudo-Bold.woff);
+}
+
+
+
+
+/* Global Element Styles */
+
+body {
+	margin: 0;
+	font-family: Arial, Helvetica, sans-serif;
+	background-color: #00ffa2;
+	color: #004466;
+}
+
+form {
+	max-width: 600px;
+	position: absolute;
+	top: 40%;
+	left: 50%;
+	margin-right: -50%;
+	transform: translate(-50%, -50%);
+	padding: 20px;
+}
+
+fieldset {
+	margin: 0;
+}
+
+legend {
+	font-size: 28px;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+strong {
+	font-size: 35px;
+	font-family: "Sudo-Bold", Arial, Helvetica, sans-serif;
+}
+
+label {
+	display: block;
+}
+
+input {
+	display: block;
+}
+
+
+
+
+
+/* Element Specific Styling */
+
+
+
+
+
+
+/* Additional Styling if supported */
+
+@supports (border: 1px solid red) and (border-radius: 1px) {
+	form {
+		border: 1px solid #00ffa2;
+		border-radius: 5px;
+	}
+
+	form fieldset {
+		border: 0;
+	}
+}
+
+@supports (box-shadow: 1px 1px 1px red) {
+	form {
+		box-shadow: 0 0 30px #004466;
+	}
+}

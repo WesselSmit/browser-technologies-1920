@@ -10,7 +10,9 @@ const route_open = require('#routes/open.js')
 
 //Set path to static assets folder
 app.use(express.static('static'))
-
+app.use(express.urlencoded({
+	extended: true
+}))
 
 //Set template engine & path to template folder
 app.set('views', __dirname + '/views')
@@ -19,9 +21,9 @@ app.set('view engine', 'ejs')
 
 //Routes
 app.get('/', route_home)
-app.get('/person', route_person)
-app.get('/favorites', route_favorites)
-app.get('/open', route_open)
+app.post('/person', route_person)
+app.post('/favorites', route_favorites)
+app.post('/open', route_open)
 
 
 //Set port to host app
