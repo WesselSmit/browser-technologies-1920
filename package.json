@@ -22,7 +22,8 @@
     "dotenv": "^8.2.0",
     "ejs": "^3.0.1",
     "express": "^4.17.1",
-    "link-module-alias": "^1.2.0"
+    "link-module-alias": "^1.2.0",
+    "uid": "^1.0.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.2"
@@ -34,5 +35,4 @@
     "#views": "views",
     "#static": "static"
   }
-
 }
