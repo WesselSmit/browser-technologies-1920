@@ -517,7 +517,7 @@ Je kan pas naar de volgende pagina als alles ingevuld is (required)
 Als je je key invult en dus verder gaat met je sessie dan word je automatisch 
 naar de page genavigeerd die je nog niet af hebt.
 
-## Useable
+## Useable Laag
 
 De applicatie bestaat puur uit HTML & CSS en JS.
 
