@@ -7,8 +7,10 @@
 
 /* Global Element Styles */
 
-:focus {
+input[type="submit"]:focus,
+input[type="radio"]:focus+label {
 	text-transform: uppercase;
+	text-decoration: underline;
 }
 
 body {
@@ -138,12 +140,6 @@ input[type="radio"]:checked+label {
 
 }
 
-input[type="radio"]:focus+label {
-	text-transform: uppercase;
-	text-decoration: underline;
-}
-
-
 
 
 
@@ -199,6 +195,8 @@ input[type="radio"]:focus+label {
 
 
 
+
+
 /* Resized Styles */
 
 @media (max-width: 660px) {
@@ -229,7 +227,6 @@ input[type="radio"]:focus+label {
 		box-shadow: 0 0 0;
 	}
 }
-
 
 @media (max-width: 367px) {
 
