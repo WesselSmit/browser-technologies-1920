@@ -189,7 +189,8 @@ input[type="radio"]:checked+label {
 	margin-top: 110px;
 }
 
-#person>fieldset>label:first-of-type {
+#person>fieldset>label:first-of-type,
+#favorites>fieldset>label:first-of-type {
 	margin-top: 18px;
 }
 
