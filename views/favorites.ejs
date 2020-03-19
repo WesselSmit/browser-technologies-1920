@@ -11,8 +11,7 @@
 					<% } else { %>
 					anonymous,
 					<% } %>
-				</strong>
-				what are your favorites?
+				</strong>what are your favorites?
 			</legend>
 
 			<label for="browser">Favorite browser</label>
@@ -22,6 +21,7 @@
 			<input type="text" id="code_editor" name="code_editor" placeholder="Visual Studio Code" autocomplete="off">
 
 			<fieldset>
+				<!-- * dit kan een range input worden -->
 				<legend>Development</legend>
 
 				<input type="radio" name="development" value="Frontend" id="Frontend" />
@@ -41,35 +41,9 @@
 				<label for="Spaces">Spaces</label>
 			</fieldset>
 
-			<details>
-				<summary>Favorite language</summary>
-				<input type="radio" name="language" value="Java" id="Java" />
-				<label for="Java">Java</label>
-
-				<input type="radio" name="language" value="Python" id="Python" />
-				<label for="Python">Python</label>
-
-				<input type="radio" name="language" value="C" id="C" />
-				<label for="C">C</label>
-
-				<input type="radio" name="language" value="C#" id="C#" />
-				<label for="C#">C#</label>
-
-				<input type="radio" name="language" value="C++" id="C++" />
-				<label for="C++">C++</label>
-
-				<input type="radio" name="language" value="Javascript" id="Javascript" />
-				<label for="Javascript">Javascript</label>
-
-				<input type="radio" name="language" value="PHP" id="PHP" />
-				<label for="PHP">PHP</label>
-
-				<input type="radio" name="language" value="Ruby" id="Ruby" />
-				<label for="Ruby">Ruby</label>
-
-				<input type="radio" name="language" value="SQL" id="SQL" />
-				<label for="SQL">SQL</label>
-			</details>
+			<!-- * dit kan een select input worden -->
+			<label for="language">Favorite coding language</label>
+			<input type="text" id="language" name="language" placeholder="Javascript" autocomplete="off">
 
 			<input name="key" type="hidden" value="<%= key %>">
 

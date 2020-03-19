@@ -40,9 +40,21 @@ fieldset {
 	border: 0;
 }
 
+fieldset fieldset {
+	padding: 10px 12px 10px 0;
+	margin: 5px 0;
+}
+
 legend {
 	font-size: 28px;
 	font-family: Arial, Helvetica, sans-serif;
+}
+
+fieldset fieldset legend {
+	font-size: 16px;
+	font-weight: bolder;
+	/* Not fully supported: */
+	cursor: pointer;
 }
 
 strong {
@@ -137,7 +149,6 @@ input[type="radio"]:checked+label {
 	color: #00ffa2;
 	/* Not fully supported: */
 	border: 1px solid #00ffa2;
-
 }
 
 
@@ -182,17 +193,7 @@ input[type="radio"]:checked+label {
 	margin-top: 18px;
 }
 
-#person fieldset fieldset {
-	padding: 10px 12px 10px 0;
-	margin: 5px 0;
-}
 
-#person fieldset fieldset legend {
-	font-size: 16px;
-	font-weight: bolder;
-	/* Not fully supported: */
-	cursor: pointer;
-}
 
 
 
@@ -206,14 +207,16 @@ input[type="radio"]:checked+label {
 @media (max-width: 660px) {
 
 	#start,
-	#invalidKey {
+	#invalidKey,
+	#favorites {
 		border: 0;
 		box-shadow: 0 0 0;
 	}
 
 	#start input[type="text"],
 	#invalidKey input[type="text"],
-	#person input[type="text"] {
+	#person input[type="text"],
+	#favorites input[type="text"] {
 		width: 65%;
 	}
 }
@@ -235,7 +238,8 @@ input[type="radio"]:checked+label {
 @media (max-width: 367px) {
 
 	#start input[type="text"],
-	#invalidKey input[type="text"] {
+	#invalidKey input[type="text"],
+	#favorites input[type="text"] {
 		width: 100%;
 		/* Not fully supported & can't be tested for browser-detection in some browsers => resulting in this strategy */
 		/* (https://stackoverflow.com/questions/23667208/calc-not-working-within-media-queries) */
@@ -263,7 +267,8 @@ input[type="radio"]:checked+label {
 		padding: 3px 5px;
 	}
 
-	#person input[type="radio"]:last-of-type+label {
+	#person input[type="radio"]:last-of-type+label,
+	#favorites fieldset fieldset input[type="radio"]:last-of-type+label {
 		margin-top: 15px;
 	}
 }
