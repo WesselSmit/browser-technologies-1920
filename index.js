@@ -22,6 +22,7 @@ app.set('view engine', 'ejs')
 
 
 //todo: maak in (indetification.js & invalid-key.js) de 'session exists' routes nog
+//todo: 'favorites.js' data moet nog opgeslagen worden in JSON
 
 //Routes
 app.get('/', route_home)
