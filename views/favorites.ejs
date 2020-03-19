@@ -15,35 +15,36 @@
 			</legend>
 
 			<label for="browser">Favorite browser</label>
-			<input type="text" id="browser" name="browser" placeholder="Firefox" autocomplete="off">
+			<input type="text" id="browser" name="browser" placeholder="Firefox" autocomplete="off" required>
 
 			<label for="code_editor">Favorite code editor</label>
-			<input type="text" id="code_editor" name="code_editor" placeholder="Visual Studio Code" autocomplete="off">
+			<input type="text" id="code_editor" name="code_editor" placeholder="Visual Studio Code" autocomplete="off"
+				required>
 
 			<fieldset>
 				<!-- * dit kan een range input worden -->
 				<legend>Development</legend>
 
-				<input type="radio" name="development" value="Frontend" id="Frontend" />
+				<input type="radio" name="development" value="Frontend" id="Frontend" required />
 				<label for="Frontend">Frontend</label>
 
-				<input type="radio" name="development" value="Backend" id="Backend" />
+				<input type="radio" name="development" value="Backend" id="Backend" required />
 				<label for="Backend">Backend</label>
 			</fieldset>
 
 			<fieldset>
 				<legend>Indentation</legend>
 
-				<input type="radio" name="indentation" value="Tabs" id="Tabs" />
+				<input type="radio" name="indentation" value="Tabs" id="Tabs" required />
 				<label for="Tabs">Tabs</label>
 
-				<input type="radio" name="indentation" value="Spaces" id="Spaces" />
+				<input type="radio" name="indentation" value="Spaces" id="Spaces" required />
 				<label for="Spaces">Spaces</label>
 			</fieldset>
 
 			<!-- * dit kan een select input worden -->
 			<label for="language">Favorite coding language</label>
-			<input type="text" id="language" name="language" placeholder="Javascript" autocomplete="off">
+			<input type="text" id="language" name="language" placeholder="Javascript" autocomplete="off" required>
 
 			<input name="key" type="hidden" value="<%= key %>">
 

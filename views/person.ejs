@@ -7,27 +7,27 @@
 			<legend><strong>Hello World</strong>, who are you?</legend>
 
 			<label for="first_name">First name</label>
-			<input type="text" id="first_name" name="first_name" placeholder="John" autocomplete="off">
+			<input type="text" id="first_name" name="first_name" placeholder="John" autocomplete="off" required>
 
 			<label for="surname">Surname</label>
-			<input type="text" id="surname" name="surname" placeholder="Doe" autocomplete="off">
+			<input type="text" id="surname" name="surname" placeholder="Doe" autocomplete="off" required>
 
 			<fieldset>
 				<legend>Gender</legend>
 
-				<input type="radio" name="gender" value="Man" id="Man" />
+				<input type="radio" name="gender" value="Man" id="Man" required />
 				<label for="Man">Man</label>
 
-				<input type="radio" name="gender" value="Woman" id="Woman" />
+				<input type="radio" name="gender" value="Woman" id="Woman" required />
 				<label for="Woman">Woman</label>
 			</fieldset>
 
 			<label for="age">Age</label>
 			<input type="text" id="age" name="age" placeholder="30" inputmode="numeric" pattern="[0-9]*"
-				autocomplete="off">
+				autocomplete="off" required>
 
 			<label for="github_name">Github name</label>
-			<input type="text" id="github_name" name="github_name" placeholder="user1337" autocomplete="off">
+			<input type="text" id="github_name" name="github_name" placeholder="user1337" autocomplete="off" required>
 
 			<input name="key" type="hidden" value="<%= key %>">
 
