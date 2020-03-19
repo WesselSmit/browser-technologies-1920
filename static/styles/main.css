@@ -96,7 +96,7 @@ input {
 	font-family: "Sudo-Bold", Arial, Helvetica, sans-serif;
 }
 
-input:not([type="submit"]) {
+label input:not([type="submit"]) {
 	margin-bottom: 15px;
 }
 
@@ -151,6 +151,22 @@ input[type="radio"]:checked+label {
 	border: 1px solid #00ffa2;
 }
 
+textarea {
+	background-color: #00ffa2;
+	color: #004466;
+	padding: 3px;
+	font-size: 16px;
+	font-size: 20px;
+	font-family: "Sudo-Bold", Arial, Helvetica, sans-serif;
+	min-height: 50px;
+	resize: vertical;
+	width: 100%;
+	/* Not fully supported: */
+	width: calc(100% - 12px);
+	border: 1px solid #004466;
+	border-radius: 5px;
+}
+
 
 
 
@@ -189,15 +205,38 @@ input[type="radio"]:checked+label {
 	margin-top: 110px;
 }
 
+#person [for="surname"],
+#person [for="github"] {
+	margin-top: 15px;
+}
+
+#person #surname {
+	margin-bottom: 15px;
+}
+
 #person>fieldset>label:first-of-type,
 #favorites>fieldset>label:first-of-type {
 	margin-top: 18px;
 }
 
+#favorites [for="code_editor"] {
+	margin-top: 15px;
+}
 
+#favorites #code_editor {
+	margin-bottom: 15px;
+}
 
+#openQuestions legend {
+	margin-bottom: 8px;
+}
 
-
+/* Selecting the labels for textarea's */
+#openQuestions label[for="tip"],
+#openQuestions label[for="change"],
+#openQuestions label[for="upcoming"] {
+	margin-top: 10px;
+}
 
 
 
@@ -209,7 +248,8 @@ input[type="radio"]:checked+label {
 
 	#start,
 	#invalidKey,
-	#favorites {
+	#favorites,
+	#openQuestions {
 		border: 0;
 		box-shadow: 0 0 0;
 	}
