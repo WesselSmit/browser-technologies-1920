@@ -24,8 +24,7 @@ app.set('view engine', 'ejs')
 
 
 //todo: maak in (indetification.js & invalid-key.js) de 'session exists' routes nog
-//todo: 'person.js & favorites.js' data moet nog opgeslagen worden in JSON
-//todo: voeg "required" attributes toe aan de HTML
+//todo: alle form data moet nog opgelagen worden in de storage
 //todo: maak een slider & select input bij "favorites.ejs"
 
 //Routes

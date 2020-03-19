@@ -20,6 +20,14 @@ body {
 	color: #004466;
 }
 
+h1 {
+	font-size: 28px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: lighter;
+	margin: 0;
+}
+
+article,
 form {
 	max-width: 600px;
 	position: absolute;
@@ -238,6 +246,9 @@ textarea {
 	margin-top: 10px;
 }
 
+#end p:last-of-type {
+	margin-bottom: 0;
+}
 
 
 
@@ -249,7 +260,8 @@ textarea {
 	#start,
 	#invalidKey,
 	#favorites,
-	#openQuestions {
+	#openQuestions,
+	#end {
 		border: 0;
 		box-shadow: 0 0 0;
 	}
