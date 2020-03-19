@@ -8,6 +8,7 @@ const route_identification = require('#routes/identification.js')
 const route_key = require('#routes/invalid-key.js')
 const route_new = require('#routes/new.js')
 const route_person = require('#routes/person.js')
+const route_favorites = require('#routes/favorites.js')
 
 //Set path to static assets folder
 app.use(express.static('static'))
@@ -28,6 +29,7 @@ app.post('/identification', route_identification)
 app.post('/invalid-key', route_key)
 app.get('/new', route_new)
 app.post('/person', route_person)
+app.post('/favorites', route_favorites)
 
 //Set port to host app
 app.listen(port, () => console.log(`App now listening on port ${port}`))
