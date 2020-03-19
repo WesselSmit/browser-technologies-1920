@@ -1,0 +1,32 @@
+<%- include('head') %>
+
+<body>
+
+	<form action="/end" method="POST" id="openQuestions">
+		<fieldset>
+			<legend><strong>Hello World</strong>, who are you?</legend>
+
+			<label for="tip">What tip has been the most helpful in your programming career?</label>
+			<textarea name="tip" id="tip" cols="100" rows="6"
+				placeholder="What tip has been the most helpful in your programming career?" autocomplete="off"
+				required></textarea>
+
+			<label for="change">If you could change one thing about your job, what would it be?</label>
+			<textarea name="change" id="change" cols="100" rows="6"
+				placeholder="If you could change one thing about your job, what would it be?" autocomplete="off"
+				required></textarea>
+
+			<label for="upcoming">What upcoming technologies/features are you excited for?</label>
+			<textarea name="upcoming" id="upcoming" cols="100" rows="6"
+				placeholder="What upcoming technologies/features are you excited for?" autocomplete="off"
+				required></textarea>
+
+			<input name="key" type="hidden" value="<%= key %>">
+
+			<input type="submit" value="Submit">
+		</fieldset>
+	</form>
+
+</body>
+
+</html>
