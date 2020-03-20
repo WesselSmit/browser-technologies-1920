@@ -5,6 +5,7 @@ module.exports = (req, res) => {
 	const session = storage.getStoredData(`./storage/${key}.json`)
 
 	session["openQuestions"] = req.body
+	delete session["openQuestions"].key
 
 	storage.saveJSON(session, `./storage/${key}.json`)
 

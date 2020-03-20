@@ -1,0 +1,22 @@
+{
+	"key": "ocvqlfj",
+	"person": {
+		"first_name": "wessel",
+		"surname": "smit",
+		"gender": "Man",
+		"age": "20",
+		"github": "wesselsmit"
+	},
+	"favorites": {
+		"browser": "chrome",
+		"code_editor": "vsc",
+		"development": "Frontend",
+		"indentation": "Tabs",
+		"language": "js"
+	},
+	"openQuestions": {
+		"tip": "a",
+		"change": "b",
+		"upcoming": "c"
+	}
+}
