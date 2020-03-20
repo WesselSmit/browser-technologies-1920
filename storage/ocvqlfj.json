@@ -8,11 +8,11 @@
 		"github": "wesselsmit"
 	},
 	"favorites": {
-		"browser": "chrome",
-		"code_editor": "vsc",
+		"browser": "test",
+		"code_editor": "test",
 		"development": "Frontend",
 		"indentation": "Tabs",
-		"language": "js"
+		"language": "test"
 	},
 	"openQuestions": {
 		"tip": "a",

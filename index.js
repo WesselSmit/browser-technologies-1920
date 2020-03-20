@@ -24,7 +24,6 @@ app.set('view engine', 'ejs')
 
 
 //todo: maak in (indetification.js & invalid-key.js) de 'session exists' routes nog
-//todo: alle form data moet nog opgelagen worden in de storage
 //todo: maak een slider & select input bij "favorites.ejs"
 
 //Routes
