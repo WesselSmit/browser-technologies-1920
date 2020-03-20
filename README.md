@@ -1,3 +1,5 @@
+[live link](https://webdev-questionnaire.herokuapp.com/)
+
 # Opdracht 1.1 : Break The Web
 
 <details><summary>Opdracht 1.1 : Break The Web</summary>
@@ -480,7 +482,9 @@ De profielpagina werkt ook normaal, echter kan ik de `<input>` niet laten voorle
 
 
 
-# Opdracht 2
+# Opdracht 2 (case 1)
+
+Ik heb case 1 gekozen; een formulier dat je progressie opslaat en weer kan inladen op een later moment.
 
 <details><summary>Wireframes</summary>
 
@@ -499,3 +503,16 @@ De profielpagina werkt ook normaal, echter kan ik de `<input>` niet laten voorle
 
 </details>
 
+## Feedback 
+
+Tot nu toe heb ik me vooral gefocust op de frontend side van de app. De backend werkt nog niet maar ik heb er wel vertrouwen in dat dat lukt.
+
+Ik wil graag feedback op:
+* mijn ideeen voor de usable/pleasurable laag; ik vind het moeilijk om te bedenken hoe ik de applicatie zou kunnen verbeteren in deze lagen dus suggesties zijn welkom! Hieronder mijn ideeen tot nu toe:
+![image](https://user-images.githubusercontent.com/45405413/77154334-c4a76000-6a9b-11ea-9338-38be83830ff7.png)
+* formulier verbeteringen (HTML trucjes of als iets anders je opvalt)
+* als iets niet op jouw **browser (version) / device** werkt qua:
+	* responsiveness
+	* tab (accessibility)
+	* css support
+	* of iets er gewoon raar uit ziet
