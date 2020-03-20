@@ -10,6 +10,7 @@ module.exports = (req, res) => {
 	storage.saveJSON(session, `./storage/${key}.json`)
 
 	res.render('openQuestions', {
-		key
+		key,
+		data: session
 	})
 }

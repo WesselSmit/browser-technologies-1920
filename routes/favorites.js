@@ -13,6 +13,7 @@ module.exports = (req, res) => {
 
 	res.render('favorites', {
 		key,
-		name
+		name,
+		data: session
 	})
 }
