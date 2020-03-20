@@ -25,7 +25,9 @@ module.exports = (req, res) => {
 		}
 	}
 
+	// storage.saveJSON(obj, `./storage/${key}.json`)
 	storage.saveJSON(obj, `storage/${key}.json`)
+
 
 	res.render('person', {
 		key,
