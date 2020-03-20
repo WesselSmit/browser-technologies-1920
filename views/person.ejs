@@ -7,27 +7,57 @@
 			<legend><strong>Hello World</strong>, who are you?</legend>
 
 			<label for="first_name">First name</label>
+			<% if (locals.data.person.first_name) { %>
+			<input type="text" id="first_name" name="first_name" placeholder="John"
+				value="<%= data.person.first_name %>" autocomplete="off" required>
+			<% } else { %>
 			<input type="text" id="first_name" name="first_name" placeholder="John" autocomplete="off" required>
+			<% } %>
+
 
 			<label for="surname">Surname</label>
+			<% if (locals.data.person.surname) { %>
+			<input type="text" id="surname" name="surname" placeholder="Doe" value="<%= data.person.surname %>"
+				autocomplete="off" required>
+			<% } else { %>
 			<input type="text" id="surname" name="surname" placeholder="Doe" autocomplete="off" required>
+			<% } %>
 
 			<fieldset>
 				<legend>Gender</legend>
 
-				<input type="radio" name="gender" value="Man" id="Man" required />
+				<% if (locals.data.person.gender) { %>
+				<% if (data.person.gender === "Man") { %>
+				<input type="radio" name="gender" value="Man" id="Man" checked required />
 				<label for="Man">Man</label>
 
 				<input type="radio" name="gender" value="Woman" id="Woman" required />
 				<label for="Woman">Woman</label>
+				<% } else { %>
+				<input type="radio" name="gender" value="Man" id="Man" required />
+				<label for="Man">Man</label>
+
+				<input type="radio" name="gender" value="Woman" id="Woman" checked required />
+				<label for="Woman">Woman</label>
+				<% }} %>
 			</fieldset>
 
 			<label for="age">Age</label>
+			<% if (locals.data.person.age) { %>
+			<input type="text" id="age" name="age" placeholder="30" inputmode="numeric" pattern="[0-9]*"
+				value="<%= data.person.age %>" autocomplete="off" required>
+			<% } else { %>
 			<input type="text" id="age" name="age" placeholder="30" inputmode="numeric" pattern="[0-9]*"
 				autocomplete="off" required>
+			<% } %>
 
 			<label for="github">Github name</label>
+			<% if (locals.data.person.github) { %>
+			<input type="text" id="github" name="github" placeholder="user1337" value="<%= data.person.github %>"
+				autocomplete="off" required>
+			<% } else { %>
 			<input type="text" id="github" name="github" placeholder="user1337" autocomplete="off" required>
+			<% } %>
 
 			<input name="key" type="hidden" value="<%= key %>">
 

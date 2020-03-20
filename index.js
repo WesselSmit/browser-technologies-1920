@@ -23,7 +23,6 @@ app.set('views', __dirname + '/views')
 app.set('view engine', 'ejs')
 
 
-//todo: maak in (indetification.js & invalid-key.js) de 'session exists' routes nog
 //todo: maak een slider & select input bij "favorites.ejs"
 
 //Routes

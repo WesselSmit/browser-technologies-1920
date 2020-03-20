@@ -12,17 +12,20 @@ module.exports = (req, res) => {
 			if (!progression[0]) {
 				console.log('person')
 				res.render("person", {
-					key: passedKey
+					key: passedKey,
+					data: session
 				})
 			} else if (!progression[1]) {
 				console.log('favorites')
 				res.render("favorites", {
-					key: passedKey
+					key: passedKey,
+					data: session
 				})
 			} else if (!progression[2]) {
 				console.log('openQuestions')
 				res.render("openQuestions", {
-					key: passedKey
+					key: passedKey,
+					data: session
 				})
 			} else {
 				console.log('end')

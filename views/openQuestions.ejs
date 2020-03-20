@@ -8,15 +8,18 @@
 
 			<label for="tip">What tip has been the most helpful in your programming career?</label>
 			<textarea name="tip" id="tip" cols="60" rows="4" placeholder="e.g. Save as much as possible."
-				autocomplete="off" required></textarea>
+				autocomplete="off"
+				required><% if (locals.data.openQuestions.tip) { %><%= data.openQuestions.tip %><% } %></textarea>
 
 			<label for="change">If you could change one thing about your job, what would it be?</label>
 			<textarea name="change" id="change" cols="60" rows="4" placeholder="e.g. Less boring meetings."
-				autocomplete="off" required></textarea>
+				autocomplete="off"
+				required><% if (locals.data.openQuestions.change) { %><%= data.openQuestions.change %><% } %></textarea>
 
 			<label for="upcoming">What upcoming technologies/features are you excited for?</label>
 			<textarea name="upcoming" id="upcoming" cols="60" rows="4" placeholder="e.g. The new flow browser"
-				autocomplete="off" required></textarea>
+				autocomplete="off"
+				required><% if (locals.data.openQuestions.upcoming) { %><%= data.openQuestions.upcoming %><% } %></textarea>
 
 			<input name="key" type="hidden" value="<%= key %>">
 

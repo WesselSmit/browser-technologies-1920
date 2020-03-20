@@ -2,21 +2,21 @@
 	"key": "ocvqlfj",
 	"person": {
 		"first_name": "wessel",
-		"surname": "smit",
+		"surname": "Smit",
 		"gender": "Man",
 		"age": "20",
-		"github": "wesselsmit"
+		"github": "WesselSmit"
 	},
 	"favorites": {
-		"browser": "test",
-		"code_editor": "test",
-		"development": "Frontend",
-		"indentation": "Tabs",
-		"language": "test"
+		"browser": "Chrome",
+		"code_editor": "VSC",
+		"development": "Backend",
+		"indentation": "Spaces",
+		"language": "JS"
 	},
 	"openQuestions": {
-		"tip": "a",
-		"change": "b",
-		"upcoming": "c"
+		"tip": "jgdjs",
+		"change": "misssss",
+		"upcoming": ""
 	}
 }
