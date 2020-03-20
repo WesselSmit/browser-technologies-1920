@@ -1,0 +1,25 @@
+{
+	"key": "8b5jh3f",
+	"person": {
+		"first_name": "wessel",
+		"surname": "smit",
+		"gender": "Man",
+		"age": "20",
+		"github": "WesselSmit",
+		"key": "8b5jh3f"
+	},
+	"favorites": {
+		"browser": "Chrome",
+		"code_editor": "Visual Studio Code",
+		"development": "Frontend",
+		"indentation": "Tabs",
+		"language": "Javascript",
+		"key": "8b5jh3f"
+	},
+	"openQuestions": {
+		"tip": "Save a lot",
+		"change": "Less frustration",
+		"upcoming": "JS ES10",
+		"key": "8b5jh3f"
+	}
+}
