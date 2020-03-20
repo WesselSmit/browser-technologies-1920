@@ -25,7 +25,6 @@
 
 			<fieldset>
 				<legend>Gender</legend>
-
 				<% if (locals.data.person.gender) { %>
 				<% if (data.person.gender === "Man") { %>
 				<input type="radio" name="gender" value="Man" id="Man" checked required />
@@ -39,7 +38,13 @@
 
 				<input type="radio" name="gender" value="Woman" id="Woman" checked required />
 				<label for="Woman">Woman</label>
-				<% }} %>
+				<% }} else { %>
+				<input type="radio" name="gender" value="Man" id="Man" required />
+				<label for="Man">Man</label>
+
+				<input type="radio" name="gender" value="Woman" id="Woman" required />
+				<label for="Woman">Woman</label>
+				<% } %>
 			</fieldset>
 
 			<label for="age">Age</label>

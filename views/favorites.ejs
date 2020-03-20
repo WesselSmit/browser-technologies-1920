@@ -49,7 +49,13 @@
 
 				<input type="radio" name="development" value="Backend" id="Backend" checked required />
 				<label for="Backend">Backend</label>
-				<% }} %>
+				<% }} else { %>
+				<input type="radio" name="development" value="Frontend" id="Frontend" required />
+				<label for="Frontend">Frontend</label>
+
+				<input type="radio" name="development" value="Backend" id="Backend" required />
+				<label for="Backend">Backend</label>
+				<% } %>
 			</fieldset>
 
 			<fieldset>
@@ -68,7 +74,13 @@
 
 				<input type="radio" name="indentation" value="Spaces" id="Spaces" checked required />
 				<label for="Spaces">Spaces</label>
-				<% }} %>
+				<% }} else { %>
+				<input type="radio" name="indentation" value="Tabs" id="Tabs" required />
+				<label for="Tabs">Tabs</label>
+
+				<input type="radio" name="indentation" value="Spaces" id="Spaces" required />
+				<label for="Spaces">Spaces</label>
+				<% } %>
 			</fieldset>
 
 			<!-- todo: dit moet een select input worden -->
