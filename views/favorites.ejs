@@ -83,15 +83,117 @@
 				<% } %>
 			</fieldset>
 
-			<!-- todo: dit moet een select input worden -->
+
 			<label for="language">Favorite coding language</label>
 			<% if (locals.data.favorites.language) { %>
-			<input type="text" id="language" name="language" placeholder="Javascript" autocomplete="off"
-				value="<%= data.favorites.language %>" required>
-
-			<% } else { %>
-			<input type="text" id="language" name="language" placeholder="Javascript" autocomplete="off" required>
-
+			<% if (data.favorites.language === "Javascript") { %>
+			<select name="language" id="language" required>
+				<option value="" disabled hidden>Choose language</option>
+				<option value="Javascript" selected>Javascript</option>
+				<option value="Python">Python</option>
+				<option value="Java">Java</option>
+				<option value="PHP">PHP</option>
+				<option value="Ruby">Ruby</option>
+				<option value="C">C</option>
+				<option value="C++">C++</option>
+				<option value="C#">C#</option>
+			</select>
+			<% } else if (data.favorites.language === "Python") { %>
+			<select name="language" id="language" required>
+				<option value="" disabled hidden>Choose language</option>
+				<option value="Javascript">Javascript</option>
+				<option value="Python" selected>Python</option>
+				<option value="Java">Java</option>
+				<option value="PHP">PHP</option>
+				<option value="Ruby">Ruby</option>
+				<option value="C">C</option>
+				<option value="C++">C++</option>
+				<option value="C#">C#</option>
+			</select>
+			<% } else if (data.favorites.language === "Java") { %>
+			<select name="language" id="language" required>
+				<option value="" disabled hidden>Choose language</option>
+				<option value="Javascript">Javascript</option>
+				<option value="Python">Python</option>
+				<option value="Java" selected>Java</option>
+				<option value="PHP">PHP</option>
+				<option value="Ruby">Ruby</option>
+				<option value="C">C</option>
+				<option value="C++">C++</option>
+				<option value="C#">C#</option>
+			</select>
+			<% } else if (data.favorites.language === "PHP") { %>
+			<select name="language" id="language" required>
+				<option value="" disabled hidden>Choose language</option>
+				<option value="Javascript">Javascript</option>
+				<option value="Python">Python</option>
+				<option value="Java">Java</option>
+				<option value="PHP" selected>PHP</option>
+				<option value="Ruby">Ruby</option>
+				<option value="C">C</option>
+				<option value="C++">C++</option>
+				<option value="C#">C#</option>
+			</select>
+			<% } else if (data.favorites.language === "Ruby") { %>
+			<select name="language" id="language" required>
+				<option value="" disabled hidden>Choose language</option>
+				<option value="Javascript">Javascript</option>
+				<option value="Python">Python</option>
+				<option value="Java">Java</option>
+				<option value="PHP">PHP</option>
+				<option value="Ruby" selected>Ruby</option>
+				<option value="C">C</option>
+				<option value="C++">C++</option>
+				<option value="C#">C#</option>
+			</select>
+			<% } else if (data.favorites.language === "C") { %>
+			<select name="language" id="language" required>
+				<option value="" disabled hidden>Choose language</option>
+				<option value="Javascript">Javascript</option>
+				<option value="Python">Python</option>
+				<option value="Java">Java</option>
+				<option value="PHP">PHP</option>
+				<option value="Ruby">Ruby</option>
+				<option value="C" selected>C</option>
+				<option value="C++">C++</option>
+				<option value="C#">C#</option>
+			</select>
+			<% } else if (data.favorites.language === "C++") { %>
+			<select name="language" id="language" required>
+				<option value="" disabled hidden>Choose language</option>
+				<option value="Javascript">Javascript</option>
+				<option value="Python">Python</option>
+				<option value="Java">Java</option>
+				<option value="PHP">PHP</option>
+				<option value="Ruby">Ruby</option>
+				<option value="C">C</option>
+				<option value="C++" selected>C++</option>
+				<option value="C#">C#</option>
+			</select>
+			<% } else if (data.favorites.language === "C#") { %>
+			<select name="language" id="language" required>
+				<option value="" disabled hidden>Choose language</option>
+				<option value="Javascript">Javascript</option>
+				<option value="Python">Python</option>
+				<option value="Java">Java</option>
+				<option value="PHP">PHP</option>
+				<option value="Ruby">Ruby</option>
+				<option value="C">C</option>
+				<option value="C++">C++</option>
+				<option value="C#" selected>C#</option>
+			</select>
+			<% }} else { %>
+			<select name="language" id="language" required>
+				<option value="" selected disabled hidden>Choose language</option>
+				<option value="Javascript">Javascript</option>
+				<option value="Python">Python</option>
+				<option value="Java">Java</option>
+				<option value="PHP">PHP</option>
+				<option value="Ruby">Ruby</option>
+				<option value="C">C</option>
+				<option value="C++">C++</option>
+				<option value="C#">C#</option>
+			</select>
 			<% } %>
 
 			<input name="key" type="hidden" value="<%= key %>">

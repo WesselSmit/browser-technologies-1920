@@ -160,6 +160,22 @@ input[type="radio"]:checked+label {
 	border: 1px solid #00ffa2;
 }
 
+select {
+	font-size: 16px;
+	font-weight: bolder;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #004466;
+	width: 54%;
+	margin: 0;
+	background-position: right 12px top 50%, 0 0;
+	background-size: 10px auto, 100%;
+	background-color: #00ffa2;
+	/* Not fully supported */
+	cursor: pointer;
+	border: 1px solid #004466;
+	border-radius: 5px;
+}
+
 textarea {
 	background-color: #00ffa2;
 	color: #004466;
@@ -270,7 +286,8 @@ textarea {
 	#start input[type="text"],
 	#invalidKey input[type="text"],
 	#person input[type="text"],
-	#favorites input[type="text"] {
+	#favorites input[type="text"],
+	select {
 		width: 65%;
 	}
 }
@@ -293,7 +310,8 @@ textarea {
 
 	#start input[type="text"],
 	#invalidKey input[type="text"],
-	#favorites input[type="text"] {
+	#favorites input[type="text"],
+	select {
 		width: 100%;
 		/* Not fully supported & can't be tested for browser-detection in some browsers => resulting in this strategy */
 		/* (https://stackoverflow.com/questions/23667208/calc-not-working-within-media-queries) */
