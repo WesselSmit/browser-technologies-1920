@@ -139,8 +139,9 @@ input[type="submit"]:hover {
 }
 
 input[type="radio"] {
-	position: absolute;
-	left: -9999px;
+	display: inline-block;
+	opacity: 0;
+	margin: 0;
 }
 
 input[type="radio"]+label {

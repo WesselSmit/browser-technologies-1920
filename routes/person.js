@@ -25,6 +25,7 @@ module.exports = (req, res) => {
 		}
 	}
 
+	//todo: dit soort paths gaan kapot op heroku
 	// storage.saveJSON(obj, `./storage/${key}.json`)
 	storage.saveJSON(obj, `storage/${key}.json`)
 
