@@ -8,7 +8,29 @@ keyCodeElement.select()
 if (localStorageAvailable()) {
 	console.log('localStorage is supported and available')
 	const keyCode = keyCodeElement.value
-	localStorage.setItem('key', keyCode)
+	const emptyState = {
+		"key": keyCode,
+		"person": {
+			"first_name": "",
+			"surname": "",
+			"gender": "",
+			"age": "",
+			"github": ""
+		},
+		"favorites": {
+			"browser": "",
+			"code_editor": "",
+			"development": "",
+			"indentation": "",
+			"language": ""
+		},
+		"openQuestions": {
+			"tip": "",
+			"change": "",
+			"upcoming": ""
+		}
+	}
+	localStorage.setItem(keyCode, JSON.stringify(emptyState))
 } else {
 	console.log('localStorage is not supported or not available')
 }
