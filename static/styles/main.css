@@ -70,9 +70,28 @@ strong {
 	font-family: "Sudo-Bold", Arial, Helvetica, sans-serif;
 }
 
+h6 {
+	font-size: 16px;
+	font-weight: lighter;
+}
+
 p {
 	font-size: 18px;
 	font-family: Arial, Helvetica, sans-serif;
+}
+
+ul {
+	margin: 0;
+}
+
+li {
+	margin: 5px 0;
+}
+
+li:hover {
+	font-weight: bolder;
+	/* Not fully supported: */
+	cursor: pointer;
 }
 
 /* Prefix for Edge */
@@ -196,12 +215,26 @@ textarea {
 
 
 
-
 /* Specific Styles */
 
 #start {
 	margin-top: 10px;
 	margin-bottom: 30px;
+}
+
+#start #suggestionText,
+#invalidKey #suggestionText {
+	font-size: 16px;
+	margin: 30px 0 0 0;
+}
+
+#start input[readonly],
+#invalidKey input[readonly] {
+	background-color: #00ffa2;
+	color: #004466;
+	/* Not fully supported: */
+	border: 0;
+	cursor: pointer;
 }
 
 #invalidKey input[type="submit"]:last-of-type {

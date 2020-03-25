@@ -1,11 +1,13 @@
 if (localStorageAvailable()) {
 	console.log('localStorage is supported and available')
-	update()
+	fillInKnownDataFromLS()
+	updateLocalStorage()
 } else {
 	console.log('localStorage is not supported or not available')
 }
 
-function update() {
+
+function updateLocalStorage() {
 	const form = document.querySelector('form')
 	const allInputs = form.querySelectorAll('input:not([type=hidden]):not([type=submit]), textarea, select')
 	const key = form.querySelector('input[type=hidden').value
@@ -28,6 +30,40 @@ function update() {
 }
 
 
+function fillInKnownDataFromLS() {
+	const form = document.querySelector('form')
+	const key = form.querySelector('input[type=hidden').value
+	const storedData = getStoredData(key)
+
+	Object.values(storedData).forEach((val, i) => {
+		if (i > 0) {
+			Object.entries(val).forEach(item => {
+				const input = document.querySelector(`[name=${item[0]}]`)
+				if (input != null) {
+					if (input.type === 'text' && input.value === "") {
+						input.value = item[1]
+					} else if (input.type === 'radio') {
+						const radioInput = document.querySelectorAll(`[name=${item[0]}]`)
+						radioInput.forEach(radio => {
+							if (radio.value === item[1]) {
+								radio.checked = true
+							}
+						})
+					} else if (input.tagName === 'SELECT') {
+						const options = input.querySelectorAll('option')
+						options.forEach(option => {
+							if (option.value === item[1]) {
+								option.selected = true
+							}
+						})
+					} else if (input.tagName === 'TEXTAREA') {
+						input.value = item[1]
+					}
+				}
+			})
+		}
+	})
+}
 
 
 

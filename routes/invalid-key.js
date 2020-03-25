@@ -35,8 +35,36 @@ module.exports = (req, res) => {
 			console.log('invalid key')
 			res.render("invalidKey")
 		}
-	} else {
+	} else if (req.body.hasOwnProperty('new')) {
 		console.log('start new session')
 		res.redirect('/new')
+	} else {
+		console.log(passedKey)
+		const obj = {
+			"key": passedKey,
+			"person": {
+				"first_name": "",
+				"surname": "",
+				"gender": "",
+				"age": "",
+				"github": ""
+			},
+			"favorites": {
+				"browser": "",
+				"code_editor": "",
+				"development": "",
+				"indentation": "",
+				"language": ""
+			},
+			"openQuestions": {
+				"tip": "",
+				"change": "",
+				"upcoming": ""
+			}
+		}
+		res.render('person', {
+			key: passedKey,
+			data: obj
+		})
 	}
 }
