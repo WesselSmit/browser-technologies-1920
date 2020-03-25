@@ -215,7 +215,7 @@ textarea {
 	padding-right: 5px;
 }
 
-#new samp {
+#new input[readonly] {
 	font-size: 30px;
 	padding: 3px 5px;
 	display: inline-block;

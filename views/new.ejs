@@ -7,7 +7,7 @@
 			<legend><strong>Welcome</strong> to the questionnaire</legend>
 
 			<p>Your key is: </p>
-			<samp><%= key %></samp>
+			<input type="text" id="keyCode" value="<%= key %>" autofocus readonly>
 
 			<input name="key" type="hidden" value="<%= key %>">
 
@@ -15,6 +15,7 @@
 		</fieldset>
 	</form>
 
+	<script src="/scripts/newSession.js"></script>
 </body>
 
 </html>
