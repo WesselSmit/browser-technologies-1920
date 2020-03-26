@@ -8,7 +8,16 @@
 		<p>Thank you for taking the time to participate.</p>
 
 		<p>Have a nice day!</p>
+
+		<p>You can go back to a previous page if you want to change some answers:</p>
+
+		<a href="/person_back/<%= key %>">Person</a>
+		<a href="/favorites_back/<%= key %>">Favorites</a>
+		<a href="/openQuestions_back/<%= key %>">Open Questions</a>
+
 	</article>
+
+	<input name="key" type="hidden" value="<%= key %>">
 
 </body>
 

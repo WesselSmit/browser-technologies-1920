@@ -300,6 +300,10 @@ textarea {
 	margin-bottom: 0;
 }
 
+#backForm {
+	position: absolute;
+	left: -9999px;
+}
 
 
 

@@ -9,5 +9,7 @@ module.exports = (req, res) => {
 
 	storage.saveJSON(session, `./storage/${key}.json`)
 
-	res.render('end')
+	res.render('end', {
+		key
+	})
 }
