@@ -8,6 +8,15 @@ if (localStorageAvailable()) {
 	console.log('localStorage is not supported or not available');
 }
 
+//Give formatted input hint
+if (document.getElementById('person')) {
+	var formattedInput = document.getElementById('age');
+	var formatInfo = document.createElement('p');
+	formatInfo.textContent = "Only digits allowed [0-9]";
+	formatInfo.classList.add('additionalInfo');
+	document.querySelector('form > fieldset').insertBefore(formatInfo, formattedInput);
+}
+
 function updateLocalStorage() {
 	var form = document.querySelector('form');
 	var allInputs = form.querySelectorAll('input:not([type=hidden]):not([type=submit]), textarea, select');
@@ -66,6 +75,61 @@ function fillInKnownDataFromLS() {
 		}
 	});
 }
+
+var submitButton = document.querySelector('[type=submit]');
+submitButton.addEventListener('click', validation);
+
+function validation() {
+	var form = document.querySelector('form');
+	var allInputs = form.querySelectorAll('input:not([type=hidden]):not([type=submit]), textarea, select');
+	var _iteratorNormalCompletion = true;
+	var _didIteratorError = false;
+	var _iteratorError = undefined;
+
+	try {
+		for (var _iterator = allInputs[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+			var input = _step.value;
+
+			input.classList.remove('required');
+			document.querySelector('[for=' + input.id + ']').classList.remove('requiredLabel');
+			if (input.type === 'text') {
+				if (input.value === "") {
+					input.classList.add('required');
+					document.querySelector('[for=' + input.id + ']').classList.add('requiredLabel');
+				}
+			} else if (input.tagName === 'SELECT') {
+				var selectEl = document.querySelector('select');
+				if (selectEl.value === '') {
+					selectEl.classList.add('required');
+					document.querySelector('[for=' + input.id + ']').classList.add('requiredLabel');
+				}
+			} else if (input.tagName === 'TEXTAREA') {
+				if (input.value === '') {
+					input.classList.add('required');
+					document.querySelector('[for=' + input.id + ']').classList.add('requiredLabel');
+				}
+			} else if (input.type === 'radio') {
+				var radioPair = input.parentElement;
+				console.log(radioPair);
+			}
+		}
+	} catch (err) {
+		_didIteratorError = true;
+		_iteratorError = err;
+	} finally {
+		try {
+			if (!_iteratorNormalCompletion && _iterator.return) {
+				_iterator.return();
+			}
+		} finally {
+			if (_didIteratorError) {
+				throw _iteratorError;
+			}
+		}
+	}
+}
+
+// Helper functions:
 
 function getStoredData(key) {
 	return JSON.parse(localStorage.getItem(key));

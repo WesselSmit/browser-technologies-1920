@@ -2,7 +2,6 @@ if (localStorageAvailable()) {
 	console.log('localStorage is supported and available')
 	fillInKnownDataFromLS()
 	updateLocalStorage()
-	console.log('ja')
 } else {
 	console.log('localStorage is not supported or not available')
 }
@@ -45,6 +44,9 @@ function updateLocalStorage() {
 }
 
 
+
+
+
 function fillInKnownDataFromLS() {
 	const form = document.querySelector('form')
 	const key = form.querySelector('input[type=hidden').value
@@ -83,7 +85,50 @@ function fillInKnownDataFromLS() {
 
 
 
+const submitButton = document.querySelector('[type=submit]')
+submitButton.addEventListener('click', validation)
 
+
+function validation() {
+	const form = document.querySelector('form')
+	const allInputs = form.querySelectorAll('input:not([type=hidden]):not([type=submit]), textarea, select')
+	for (const input of allInputs) {
+		input.classList.remove('required')
+		document.querySelector(`[for=${input.id}]`).classList.remove('requiredLabel')
+		if (input.type === 'text') {
+			if (input.value === "") {
+				input.classList.add('required')
+				document.querySelector(`[for=${input.id}]`).classList.add('requiredLabel')
+			}
+		} else if (input.tagName === 'SELECT') {
+			const selectEl = document.querySelector('select')
+			if (selectEl.value === '') {
+				selectEl.classList.add('required')
+				document.querySelector(`[for=${input.id}]`).classList.add('requiredLabel')
+			}
+		} else if (input.tagName === 'TEXTAREA') {
+			if (input.value === '') {
+				input.classList.add('required')
+				document.querySelector(`[for=${input.id}]`).classList.add('requiredLabel')
+			}
+		} else if (input.type === 'radio') {
+			const radioContainer = input.parentElement
+			radioContainer.classList.add('requiredField')
+			radioContainer.querySelector('legend').classList.add('requiredLabel')
+			for (const radio of radioContainer.querySelectorAll('input[type=radio')) {
+				if (radio.checked) {
+					radioContainer.classList.remove('requiredField')
+					radioContainer.querySelector('legend').classList.remove('requiredLabel')
+				}
+			}
+		}
+	}
+}
+
+
+
+
+// Helper functions:
 
 function getStoredData(key) {
 	return JSON.parse(localStorage.getItem(key))
