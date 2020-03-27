@@ -293,6 +293,18 @@ textarea {
 	margin-top: 15px;
 }
 
+#person [for=age] {
+	display: inline-block;
+}
+
+#person .additionalInfo {
+	margin: 0;
+	display: inline-block;
+	font-size: 12px;
+	font-style: italic;
+	font-weight: lighter;
+}
+
 #person #surname {
 	margin-bottom: 15px;
 }

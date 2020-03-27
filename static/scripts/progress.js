@@ -2,9 +2,24 @@ if (localStorageAvailable()) {
 	console.log('localStorage is supported and available')
 	fillInKnownDataFromLS()
 	updateLocalStorage()
+	console.log('ja')
 } else {
 	console.log('localStorage is not supported or not available')
 }
+
+
+
+//Give formatted input hint
+if (document.getElementById('person')) {
+	const formattedInput = document.getElementById('age')
+	const formatInfo = document.createElement('p')
+	formatInfo.textContent = "Only digits allowed [0-9]"
+	formatInfo.classList.add('additionalInfo')
+	document.querySelector('form > fieldset').insertBefore(formatInfo, formattedInput)
+}
+
+
+
 
 
 function updateLocalStorage() {

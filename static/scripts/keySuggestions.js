@@ -33,9 +33,7 @@ function showKnownKeys() {
 			//Replace value/textContent on click
 			suggestionItem.addEventListener('click', e => keyInput.value = e.target.value)
 
-			//Replace value/textContent on focus
-			suggestionItem.addEventListener('focus', e => keyInput.value = e.target.value)
-
+			//Start session on space key
 			suggestionItem.addEventListener('keyup', e => {
 				if (e.code === 'Space') {
 					keyInput.value = e.target.value

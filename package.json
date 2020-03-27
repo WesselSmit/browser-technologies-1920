@@ -4,11 +4,10 @@
   "description": "<details><summary>Opdracht 1.1 : Break The Web</summary>",
   "main": "index.js",
   "scripts": {
-    "prestart": "link-module-alias && npm run transpile:js",
+    "prestart": "link-module-alias",
     "start": "node index.js",
-    "pretranspile:js": "rimraf ./static/public",
-    "transpile:js": "node ./build-scripts/JS-transpiler.js",
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "build": "babel ./static/scripts -d ./static/transpiled"
   },
   "repository": {
     "type": "git",
@@ -21,15 +20,12 @@
   },
   "homepage": "https://github.com/WesselSmit/browser-technologies-1920#readme",
   "dependencies": {
-    "@babel/core": "^7.9.0",
-    "@babel/preset-env": "^7.9.0",
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
     "dotenv": "^8.2.0",
     "ejs": "^3.0.1",
     "express": "^4.17.1",
-    "gulp": "^4.0.2",
-    "gulp-babel": "^8.0.0",
     "link-module-alias": "^1.2.0",
-    "rimraf": "^3.0.2",
     "uid": "^1.0.0"
   },
   "devDependencies": {
