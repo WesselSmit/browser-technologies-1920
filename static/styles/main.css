@@ -37,7 +37,7 @@ form {
 	transform: translate(-50%, -50%);
 	padding: 20px;
 	/* Not fully supported: */
-	border: 1px solid #00ffa2;
+	border: 2px solid #00ffa2;
 	border-radius: 5px;
 	box-shadow: 0 0 30px #004466;
 }
@@ -106,7 +106,7 @@ a {
 	text-decoration: none;
 	float: left;
 	/* Not fully supported: */
-	border: 1px solid #00ffa2;
+	border: 2px solid #00ffa2;
 	border-radius: 5px;
 	cursor: pointer;
 }
@@ -150,7 +150,7 @@ input[type="text"] {
 	color: #004466;
 	width: 50%;
 	/* Not fully supported: */
-	border: 1px solid #004466;
+	border: 2px solid #004466;
 	border-radius: 5px;
 }
 
@@ -162,7 +162,7 @@ input[type="submit"] {
 	margin-top: 50px;
 	margin-bottom: 0;
 	/* Not fully supported: */
-	border: 1px solid #00ffa2;
+	border: 2px solid #00ffa2;
 	border-radius: 5px;
 	cursor: pointer;
 }
@@ -171,7 +171,7 @@ input[type="submit"]:hover {
 	background-color: #00ffa2;
 	color: #004466;
 	/* Not fully supported: */
-	border: 1px solid #004466;
+	border: 2px solid #004466;
 }
 
 input[type="radio"] {
@@ -185,7 +185,7 @@ input[type="radio"]+label {
 	margin: 0 15px;
 	padding: 3px 5px;
 	/* Not fully supported: */
-	border: 1px solid #004466;
+	border: 2px solid #004466;
 	border-radius: 5px;
 }
 
@@ -193,7 +193,7 @@ input[type="radio"]:checked+label {
 	background-color: #004466;
 	color: #00ffa2;
 	/* Not fully supported: */
-	border: 1px solid #00ffa2;
+	border: 2px solid #00ffa2;
 }
 
 select {
@@ -208,7 +208,7 @@ select {
 	background-color: #00ffa2;
 	/* Not fully supported */
 	cursor: pointer;
-	border: 1px solid #004466;
+	border: 2px solid #004466;
 	border-radius: 5px;
 }
 
@@ -224,7 +224,7 @@ textarea {
 	width: 100%;
 	/* Not fully supported: */
 	width: calc(100% - 12px);
-	border: 1px solid #004466;
+	border: 2px solid #004466;
 	border-radius: 5px;
 }
 
@@ -238,39 +238,11 @@ textarea {
 #favorites .required,
 #favorites input:not([type=radio]).required,
 select.required,
-fieldset.requiredField>label {
+fieldset.requiredField>label,
+textarea.required {
 	/* Not fully supported */
-	border: 1px solid #de3333;
-}
-
-
-#person .requiredLabel,
-#favorites .requiredLabel,
-#openQuestions .requiredLabel,
-select.required,
-select.requiredLabel,
-fieldset.requiredField>label {
-	color: #de3333;
-}
-
-/* Prefix for Edge */
-#person .required::-webkit-input-placeholder,
-#favorites .required::-webkit-input-placeholder,
-#openQuestions .required::-webkit-input-placeholder {
-	color: #de3333;
-}
-
-/* Prefix for Internet Explorer 10-11 */
-#person .required::-ms-input-placeholder,
-#favorites .required::-ms-input-placeholder,
-#openQuestions .required::-ms-input-placeholder {
-	color: #de3333;
-}
-
-#person .required::placeholder,
-#favorites .required::placeholder,
-#openQuestions .required::placeholder {
-	color: #de3333;
+	border: 2px solid #de3333;
+	animation: pulseBorder 3000ms ease-out infinite alternate;
 }
 
 
@@ -318,7 +290,7 @@ fieldset.requiredField>label {
 	background-color: #004466;
 	color: #00ffa2;
 	/* Not fully supported: */
-	border: 1px solid #00ffa2;
+	border: 2px solid #00ffa2;
 	border-radius: 5px;
 }
 
@@ -467,6 +439,17 @@ fieldset.requiredField>label {
 
 /* Animations */
 
+@keyframes pulseBorder {
+	0% {
+		border-color: #004466;
+	}
+
+	25%,
+	100% {
+		border-color: #de333d;
+	}
+}
+
 .fadeAnim {
 	animation: fadeIn 300ms 1 ease-in forwards;
 }
@@ -478,35 +461,5 @@ fieldset.requiredField>label {
 
 	to {
 		opacity: 100%;
-	}
-}
-
-
-.enhancedAnimIn {
-	animation: swoopIn 500ms 1 ease-in forwards;
-}
-
-@keyframes swoopIn {
-	from {
-		transform: translate(-2000px, -50%);
-	}
-
-	to {
-		transform: translate(-50%, -50%);
-	}
-}
-
-
-.enhancedAnimOut {
-	animation: swoopOut 500ms 1 ease-in forwards;
-}
-
-@keyframes swoopOut {
-	from {
-		transform: translate(-50%, -50%);
-	}
-
-	to {
-		transform: translate(-50%, -2000px);
 	}
 }
