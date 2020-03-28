@@ -6,11 +6,7 @@
 		<fieldset>
 			<legend>Hello
 				<strong>
-					<% if (locals.name) { %>
-					<%= name %>,
-					<% } else { %>
-					anonymous,
-					<% } %>
+					<% if (locals.name) { %><%= name %>,<% } else { %>anonymous,<% } %>
 				</strong>what are your favorites?
 			</legend>
 
@@ -205,7 +201,6 @@
 	</form>
 
 	<script src="/scripts/progress.js"></script>
-	<script src="/scripts/enhanceAnim.js"></script>
 </body>
 
 </html>

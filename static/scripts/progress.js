@@ -21,20 +21,18 @@ if (document.getElementById('person')) {
 
 
 
+
 function updateLocalStorage() {
 	const form = document.querySelector('form')
 	const allInputs = form.querySelectorAll('input:not([type=hidden]):not([type=submit]), textarea, select')
 	const key = form.querySelector('input[type=hidden').value
 
 	const onInput = debounce((e) => {
-		const page = form.id
-		const name = e.target.name
-		const value = e.target.value
 		const data = {
 			key,
-			page,
-			name,
-			value
+			page: form.id,
+			name: e.target.name,
+			value: e.target.value
 		}
 
 		updateSession(data)
@@ -80,6 +78,12 @@ function fillInKnownDataFromLS() {
 			})
 		}
 	})
+
+	//Fix "anonymous" in title
+	var nameInTitle = document.querySelector('strong')
+	if (nameInTitle.textContent.includes('anonymous,')) {
+		nameInTitle.textContent = storedData.person.first_name + ", "
+	}
 }
 
 

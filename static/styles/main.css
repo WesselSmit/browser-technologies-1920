@@ -105,6 +105,7 @@ a {
 	margin-bottom: 0;
 	text-decoration: none;
 	float: left;
+	animation: slideIn 300ms 1 ease-in forwards;
 	/* Not fully supported: */
 	border: 2px solid #00ffa2;
 	border-radius: 5px;
@@ -161,6 +162,7 @@ input[type="submit"] {
 	float: right;
 	margin-top: 50px;
 	margin-bottom: 0;
+	animation: slideIn 300ms 1 ease-in forwards;
 	/* Not fully supported: */
 	border: 2px solid #00ffa2;
 	border-radius: 5px;
@@ -465,10 +467,10 @@ textarea.required {
 }
 
 .suggestedKey {
-	animation: fadeInKey 300ms 1 ease-in forwards;
+	animation: slideIn 300ms 1 ease-in forwards;
 }
 
-@keyframes fadeInKey {
+@keyframes slideIn {
 	0% {
 		opacity: 0%;
 		transform: translate(100%);
