@@ -460,3 +460,53 @@ fieldset.requiredField>label {
 		margin-top: 15px;
 	}
 }
+
+
+
+
+
+/* Animations */
+
+.fadeAnim {
+	animation: fadeIn 300ms 1 ease-in forwards;
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0%;
+	}
+
+	to {
+		opacity: 100%;
+	}
+}
+
+
+.enhancedAnimIn {
+	animation: swoopIn 500ms 1 ease-in forwards;
+}
+
+@keyframes swoopIn {
+	from {
+		transform: translate(-2000px, -50%);
+	}
+
+	to {
+		transform: translate(-50%, -50%);
+	}
+}
+
+
+.enhancedAnimOut {
+	animation: swoopOut 500ms 1 ease-in forwards;
+}
+
+@keyframes swoopOut {
+	from {
+		transform: translate(-50%, -50%);
+	}
+
+	to {
+		transform: translate(-50%, -2000px);
+	}
+}
