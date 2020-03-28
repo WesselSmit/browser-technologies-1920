@@ -13,6 +13,7 @@ function showKnownKeys() {
 	if (knownKeys.length > 0) {
 		const suggestionText = document.createElement('p')
 		suggestionText.id = 'suggestionText'
+		suggestionText.classList.add('fadeAnim')
 		const suggestionsList = document.createElement('ul')
 		document.querySelector('fieldset').insertBefore(suggestionText, document.getElementById('key').nextSibling)
 		document.querySelector('fieldset').insertBefore(suggestionsList, suggestionText.nextSibling)
@@ -21,7 +22,7 @@ function showKnownKeys() {
 		var interval = 125
 		for (var i = 0; i < knownKeys.length; i++) {
 			function fadeIn(i) {
-				setTimeout(function () {
+				var timeOut = setTimeout(function () {
 					const suggestionListItem = document.createElement('li')
 					document.querySelector('ul').append(suggestionListItem)
 					const suggestionItem = document.createElement('input')
