@@ -474,7 +474,7 @@ textarea.required {
 		transform: translate(100%);
 	}
 
-	25% {
+	100% {
 		opacity: 100%;
 		transform: translate(0);
 	}

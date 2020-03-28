@@ -18,7 +18,7 @@ function showKnownKeys() {
 		document.querySelector('fieldset').insertBefore(suggestionsList, suggestionText.nextSibling)
 		suggestionText.textContent = "Previous keys found in browser memory (from most to least recent):"
 
-		var interval = 500
+		var interval = 125
 		for (var i = 0; i < knownKeys.length; i++) {
 			function fadeIn(i) {
 				setTimeout(function () {
