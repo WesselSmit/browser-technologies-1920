@@ -13,61 +13,63 @@ function showKnownKeys() {
 	var keyInput = document.getElementById('key');
 
 	if (knownKeys.length > 0) {
-		var suggestionText = document.createElement('p');
-		suggestionText.id = 'suggestionText';
-		suggestionText.classList.add('fadeAnim');
-		var suggestionsList = document.createElement('ul');
-		document.querySelector('fieldset').insertBefore(suggestionText, document.getElementById('key').nextSibling);
-		document.querySelector('fieldset').insertBefore(suggestionsList, suggestionText.nextSibling);
-		suggestionText.textContent = "Previous keys found in browser memory (from most to least recent):";
+		(function () {
+			var suggestionText = document.createElement('p');
+			suggestionText.id = 'suggestionText';
+			suggestionText.classList.add('fadeAnim');
+			var suggestionsList = document.createElement('ul');
+			document.querySelector('fieldset').insertBefore(suggestionText, document.getElementById('key').nextSibling);
+			document.querySelector('fieldset').insertBefore(suggestionsList, suggestionText.nextSibling);
+			suggestionText.textContent = "Previous keys found in browser memory (from most to least recent):";
 
-		var interval = 125;
-		for (var i = 0; i < knownKeys.length; i++) {
-			var fadeIn = function fadeIn(i) {
-				var timeOut = setTimeout(function () {
-					var suggestionListItem = document.createElement('li');
-					document.querySelector('ul').append(suggestionListItem);
-					var suggestionItem = document.createElement('input');
-					suggestionItem.readOnly = true;
-					suggestionItem.value = knownKeys[i];
-					suggestionListItem.append(suggestionItem);
-					suggestionItem.classList.add('suggestedKey');
+			var interval = 125;
+			for (var i = 0; i < knownKeys.length; i++) {
+				var fadeIn = function fadeIn(i) {
+					var timeOut = setTimeout(function () {
+						var suggestionListItem = document.createElement('li');
+						document.querySelector('ul').append(suggestionListItem);
+						var suggestionItem = document.createElement('input');
+						suggestionItem.readOnly = true;
+						suggestionItem.value = knownKeys[i];
+						suggestionListItem.append(suggestionItem);
+						suggestionItem.classList.add('suggestedKey');
 
-					//Replace placeholder as indicator for interaction on hover
-					suggestionItem.addEventListener('mouseover', function (e) {
-						return keyInput.placeholder = e.target.value;
-					});
-
-					//Replace value/textContent on click
-					suggestionItem.addEventListener('click', function (e) {
-						return keyInput.value = e.target.value;
-					});
-
-					//Start session on space key
-					suggestionItem.addEventListener('keyup', function (e) {
-						if (e.code === 'Space') {
-							keyInput.value = e.target.value;
-							document.querySelector("form").submit();
-						}
-					});
-
-					//Show key-instruction
-					suggestionItem.addEventListener('focus', function (e) {
-						var instruction = document.createElement('div');
-						instruction.textContent = "Press spacebar to resume this session";
-						instruction.classList.add('instruction');
-						instruction.tabIndex = -1;
-						suggestionItem.parentElement.insertBefore(instruction, suggestionItem.nextSibling);
-
-						e.target.addEventListener('blur', function (e) {
-							return e.target.nextSibling.classList.add('hide');
+						//Replace placeholder as indicator for interaction on hover
+						suggestionItem.addEventListener('mouseover', function (e) {
+							return keyInput.placeholder = e.target.value;
 						});
-					});
-				}, i * interval + 500);
-			};
 
-			fadeIn(i);
-		}
+						//Replace value/textContent on click
+						suggestionItem.addEventListener('click', function (e) {
+							return keyInput.value = e.target.value;
+						});
+
+						//Start session on space key
+						suggestionItem.addEventListener('keyup', function (e) {
+							if (e.code === 'Space') {
+								keyInput.value = e.target.value;
+								document.querySelector("form").submit();
+							}
+						});
+
+						//Show key-instruction
+						suggestionItem.addEventListener('focus', function (e) {
+							var instruction = document.createElement('div');
+							instruction.textContent = "Press spacebar to resume this session";
+							instruction.classList.add('instruction');
+							instruction.tabIndex = -1;
+							suggestionItem.parentElement.insertBefore(instruction, suggestionItem.nextSibling);
+
+							e.target.addEventListener('blur', function (e) {
+								return e.target.nextSibling.classList.add('hide');
+							});
+						});
+					}, i * interval + 500);
+				};
+
+				fadeIn(i);
+			}
+		})();
 	}
 }
 

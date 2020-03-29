@@ -173,10 +173,10 @@ function invalidMsg() {
 	var invalidMSGExists = document.getElementById('invalidMSG');
 
 	if (!invalidMSGExists) {
-		var invalidMsg = document.createElement('div');
-		invalidMsg.id = "invalidMSG";
-		invalidMsg.innerHTML = "Complete the form before submitting!<span>Incomplete anwsers are highlighted.</span>";
-		document.querySelector('body').insertBefore(invalidMsg, document.querySelector('form'));
+		var _invalidMsg = document.createElement('div');
+		_invalidMsg.id = "invalidMSG";
+		_invalidMsg.innerHTML = "Complete the form before submitting!<span>Incomplete anwsers are highlighted.</span>";
+		document.querySelector('body').insertBefore(_invalidMsg, document.querySelector('form'));
 	}
 }
 
@@ -198,7 +198,7 @@ function updateSession(data) {
 
 //Debounce function taken from: https://davidwalsh.name/javascript-debounce-function
 function debounce(func, wait, immediate) {
-	var timeout;
+	var timeout = void 0;
 	return function () {
 		var context = this,
 		    args = arguments;
