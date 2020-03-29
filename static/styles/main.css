@@ -253,6 +253,8 @@ textarea {
 
 
 
+
+
 /* Validation */
 
 
@@ -264,8 +266,15 @@ fieldset.requiredField>label,
 textarea.required {
 	/* Not fully supported */
 	border: 2px solid #de3333;
-	animation: pulseBorder 3000ms ease-out infinite alternate;
+	animation: pulseBorder 1500ms ease-out infinite alternate;
 }
+
+
+
+
+
+
+
 
 
 

@@ -29,7 +29,9 @@ module.exports = (req, res) => {
 				})
 			} else {
 				console.log('end')
-				res.render('end')
+				res.render('end', {
+					key: passedKey
+				})
 			}
 		} else {
 			console.log('invalid key')
