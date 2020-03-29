@@ -228,11 +228,14 @@ select {
 	position: absolute;
 	left: 30px;
 	background-color: #00ffa2;
+	/* Hide dropdown-styling on firefox */
+	-moz-appearance: none;
 	/* Not fully supported */
 	cursor: pointer;
 	border: 2px solid #004466;
 	border-radius: 5px;
 }
+
 
 textarea {
 	background-color: #00ffa2;
