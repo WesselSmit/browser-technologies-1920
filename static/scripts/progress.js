@@ -80,7 +80,7 @@ function fillInKnownDataFromLS() {
 	})
 
 	//Fix "anonymous" in title
-	var nameInTitle = document.querySelector('strong')
+	let nameInTitle = document.querySelector('strong')
 	if (nameInTitle.textContent.includes('anonymous,')) {
 		nameInTitle.textContent = storedData.person.first_name + ", "
 	}
@@ -96,7 +96,7 @@ submitButton.addEventListener('click', validation)
 function validation() {
 	const form = document.querySelector('form')
 	const allInputs = form.querySelectorAll('input:not([type=hidden]):not([type=submit]), textarea, select')
-	var hasInvalidInput = false
+	let hasInvalidInput = false
 	for (const input of allInputs) {
 		input.classList.remove('required')
 		if (input.type === 'text') {
@@ -126,7 +126,7 @@ function validation() {
 		}
 	}
 
-	var selectEl = document.querySelector('select')
+	let selectEl = document.querySelector('select')
 	if (hasInvalidInput) {
 		if (selectEl === null) {
 			invalidMsg()
@@ -140,10 +140,10 @@ function validation() {
 
 
 function invalidMsg() {
-	var invalidMSGExists = document.getElementById('invalidMSG')
+	let invalidMSGExists = document.getElementById('invalidMSG')
 
 	if (!invalidMSGExists) {
-		var invalidMsg = document.createElement('div')
+		let invalidMsg = document.createElement('div')
 		invalidMsg.id = "invalidMSG"
 		invalidMsg.innerHTML = "Complete the form before submitting!<span>Incomplete anwsers are highlighted.</span>"
 		document.querySelector('body').insertBefore(invalidMsg, document.querySelector('form'))
@@ -172,15 +172,15 @@ function updateSession(data) {
 
 //Debounce function taken from: https://davidwalsh.name/javascript-debounce-function
 function debounce(func, wait, immediate) {
-	var timeout
+	let timeout
 	return function () {
-		var context = this,
+		let context = this,
 			args = arguments
-		var later = function () {
+		let later = function () {
 			timeout = null
 			if (!immediate) func.apply(context, args)
 		}
-		var callNow = immediate && !timeout
+		let callNow = immediate && !timeout
 		clearTimeout(timeout)
 		timeout = setTimeout(later, wait)
 		if (callNow) func.apply(context, args)

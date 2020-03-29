@@ -23,14 +23,11 @@ function updateLocalStorage() {
 	var key = form.querySelector('input[type=hidden').value;
 
 	var onInput = debounce(function (e) {
-		var page = form.id;
-		var name = e.target.name;
-		var value = e.target.value;
 		var data = {
 			key: key,
-			page: page,
-			name: name,
-			value: value
+			page: form.id,
+			name: e.target.name,
+			value: e.target.value
 		};
 
 		updateSession(data);
@@ -74,6 +71,12 @@ function fillInKnownDataFromLS() {
 			});
 		}
 	});
+
+	//Fix "anonymous" in title
+	var nameInTitle = document.querySelector('strong');
+	if (nameInTitle.textContent.includes('anonymous,')) {
+		nameInTitle.textContent = storedData.person.first_name + ", ";
+	}
 }
 
 var submitButton = document.querySelector('[type=submit]');
@@ -82,6 +85,7 @@ submitButton.addEventListener('click', validation);
 function validation() {
 	var form = document.querySelector('form');
 	var allInputs = form.querySelectorAll('input:not([type=hidden]):not([type=submit]), textarea, select');
+	var hasInvalidInput = false;
 	var _iteratorNormalCompletion = true;
 	var _didIteratorError = false;
 	var _iteratorError = undefined;
@@ -91,26 +95,51 @@ function validation() {
 			var input = _step.value;
 
 			input.classList.remove('required');
-			document.querySelector('[for=' + input.id + ']').classList.remove('requiredLabel');
 			if (input.type === 'text') {
 				if (input.value === "") {
 					input.classList.add('required');
-					document.querySelector('[for=' + input.id + ']').classList.add('requiredLabel');
+					hasInvalidInput = true;
 				}
 			} else if (input.tagName === 'SELECT') {
-				var selectEl = document.querySelector('select');
-				if (selectEl.value === '') {
-					selectEl.classList.add('required');
-					document.querySelector('[for=' + input.id + ']').classList.add('requiredLabel');
+				var _selectEl = document.querySelector('select');
+				if (_selectEl.value === '') {
+					_selectEl.classList.add('required');
+					hasInvalidInput = true;
 				}
 			} else if (input.tagName === 'TEXTAREA') {
 				if (input.value === '') {
 					input.classList.add('required');
-					document.querySelector('[for=' + input.id + ']').classList.add('requiredLabel');
+					hasInvalidInput = true;
 				}
 			} else if (input.type === 'radio') {
-				var radioPair = input.parentElement;
-				console.log(radioPair);
+				var radioContainer = input.parentElement;
+				radioContainer.classList.add('requiredField');
+				var _iteratorNormalCompletion2 = true;
+				var _didIteratorError2 = false;
+				var _iteratorError2 = undefined;
+
+				try {
+					for (var _iterator2 = radioContainer.querySelectorAll('input[type=radio')[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+						var radio = _step2.value;
+
+						if (radio.checked) {
+							radioContainer.classList.remove('requiredField');
+						}
+					}
+				} catch (err) {
+					_didIteratorError2 = true;
+					_iteratorError2 = err;
+				} finally {
+					try {
+						if (!_iteratorNormalCompletion2 && _iterator2.return) {
+							_iterator2.return();
+						}
+					} finally {
+						if (_didIteratorError2) {
+							throw _iteratorError2;
+						}
+					}
+				}
 			}
 		}
 	} catch (err) {
@@ -126,6 +155,28 @@ function validation() {
 				throw _iteratorError;
 			}
 		}
+	}
+
+	var selectEl = document.querySelector('select');
+	if (hasInvalidInput) {
+		if (selectEl === null) {
+			invalidMsg();
+		} else {
+			if (selectEl.value === "") {
+				invalidMsg();
+			}
+		}
+	}
+}
+
+function invalidMsg() {
+	var invalidMSGExists = document.getElementById('invalidMSG');
+
+	if (!invalidMSGExists) {
+		var invalidMsg = document.createElement('div');
+		invalidMsg.id = "invalidMSG";
+		invalidMsg.innerHTML = "Complete the form before submitting!<span>Incomplete anwsers are highlighted.</span>";
+		document.querySelector('body').insertBefore(invalidMsg, document.querySelector('form'));
 	}
 }
 
