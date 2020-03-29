@@ -7,7 +7,7 @@
 
 /* Global Element Styles */
 
-form>fieldset *:not(a),
+form>fieldset *:not(a):not(legend),
 article>*:not(a) {
 	animation: slideInVertical 500ms 1 ease-in forwards;
 }
@@ -60,6 +60,13 @@ fieldset {
 fieldset fieldset {
 	padding: 10px 12px 10px 0;
 	margin: 5px 0;
+}
+
+form>fieldset>legend,
+article>h1 {
+	animation: slideInVerticalReverse 300ms 1 ease-in forwards;
+	animation-delay: 200ms;
+	opacity: 0;
 }
 
 legend {
@@ -329,6 +336,8 @@ textarea.required {
 	font-style: italic;
 	font-weight: lighter;
 	animation: slideIn 300ms 1 ease-in forwards;
+	animation-delay: 500ms;
+	opacity: 0;
 }
 
 #person #surname {
@@ -502,6 +511,18 @@ textarea.required {
 	from {
 		opacity: 0%;
 		transform: translateY(100%);
+	}
+
+	to {
+		opacity: 100%;
+		transform: translateY(0);
+	}
+}
+
+@keyframes slideInVerticalReverse {
+	from {
+		opacity: 0%;
+		transform: translateY(-100%);
 	}
 
 	to {
