@@ -65,8 +65,6 @@ fieldset fieldset {
 form>fieldset>legend,
 article>h1 {
 	animation: slideInVerticalReverse 300ms 1 ease-in forwards;
-	animation-delay: 200ms;
-	opacity: 0;
 }
 
 legend {
@@ -121,9 +119,7 @@ a {
 	margin-bottom: 0;
 	text-decoration: none;
 	float: left;
-	opacity: 0;
-	animation: slideIn 300ms 1 ease-in forwards;
-	animation-delay: 500ms;
+	animation: slideInExtraOpacity 500ms 1 ease-in forwards;
 	/* Not fully supported: */
 	border: 2px solid #00ffa2;
 	border-radius: 5px;
@@ -180,9 +176,7 @@ input[type="submit"] {
 	float: right;
 	margin-top: 50px;
 	margin-bottom: 0;
-	opacity: 0;
-	animation: slideIn 300ms 1 ease-in forwards;
-	animation-delay: 500ms;
+	animation: slideInExtraOpacity 500ms 1 ease-in forwards;
 	/* Not fully supported: */
 	border: 2px solid #00ffa2;
 	border-radius: 5px;
@@ -228,8 +222,9 @@ select {
 	position: absolute;
 	left: 30px;
 	background-color: #00ffa2;
-	/* Hide dropdown-styling on firefox */
+	/* Hide dropdown-styling */
 	-moz-appearance: none;
+	-webkit-appearance: none;
 	/* Not fully supported */
 	cursor: pointer;
 	border: 2px solid #004466;
@@ -252,6 +247,7 @@ textarea {
 	border: 2px solid #004466;
 	border-radius: 5px;
 }
+
 
 
 
@@ -365,9 +361,7 @@ textarea.required {
 	font-size: 12px;
 	font-style: italic;
 	font-weight: lighter;
-	animation: slideIn 300ms 1 ease-in forwards;
-	animation-delay: 500ms;
-	opacity: 0;
+	animation: slideInExtraOpacity 500ms 1 ease-in forwards;
 }
 
 #person #surname {
@@ -547,6 +541,20 @@ textarea.required {
 	}
 
 	to {
+		opacity: 100%;
+		transform: translate(0);
+	}
+}
+
+
+@keyframes slideInExtraOpacity {
+	0% {
+		opacity: 0%;
+		transform: translate(100%);
+	}
+
+	75%,
+	100% {
 		opacity: 100%;
 		transform: translate(0);
 	}
