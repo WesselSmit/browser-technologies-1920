@@ -23,29 +23,41 @@ function showKnownKeys() {
 		for (var i = 0; i < knownKeys.length; i++) {
 			function fadeIn(i) {
 				var timeOut = setTimeout(function () {
-					const suggestionListItem = document.createElement('li')
-					document.querySelector('ul').append(suggestionListItem)
-					const suggestionItem = document.createElement('input')
-					suggestionItem.readOnly = true
-					suggestionItem.value = knownKeys[i]
-					suggestionListItem.append(suggestionItem)
-					suggestionItem.classList.add('suggestedKey')
+						const suggestionListItem = document.createElement('li')
+						document.querySelector('ul').append(suggestionListItem)
+						const suggestionItem = document.createElement('input')
+						suggestionItem.readOnly = true
+						suggestionItem.value = knownKeys[i]
+						suggestionListItem.append(suggestionItem)
+						suggestionItem.classList.add('suggestedKey')
 
 
-					//Replace placeholder as indicator for interaction on hover
-					suggestionItem.addEventListener('mouseover', e => keyInput.placeholder = e.target.value)
+						//Replace placeholder as indicator for interaction on hover
+						suggestionItem.addEventListener('mouseover', e => keyInput.placeholder = e.target.value)
 
-					//Replace value/textContent on click
-					suggestionItem.addEventListener('click', e => keyInput.value = e.target.value)
+						//Replace value/textContent on click
+						suggestionItem.addEventListener('click', e => keyInput.value = e.target.value)
 
-					//Start session on space key
-					suggestionItem.addEventListener('keyup', e => {
-						if (e.code === 'Space') {
-							keyInput.value = e.target.value
-							document.querySelector("form").submit()
-						}
-					})
-				}, i * interval + 500)
+						//Start session on space key
+						suggestionItem.addEventListener('keyup', e => {
+							if (e.code === 'Space') {
+								keyInput.value = e.target.value
+								document.querySelector("form").submit()
+							}
+						})
+
+						//Show key-instruction
+						suggestionItem.addEventListener('focus', e => {
+							const instruction = document.createElement('div')
+							instruction.textContent = "Press spacebar to resume this session"
+							instruction.classList.add('instruction')
+							instruction.tabIndex = -1
+							suggestionItem.parentElement.insertBefore(instruction, suggestionItem.nextSibling)
+
+							e.target.addEventListener('blur', e => e.target.nextSibling.classList.add('hide'))
+						})
+					},
+					i * interval + 500)
 			}
 			fadeIn(i)
 		}

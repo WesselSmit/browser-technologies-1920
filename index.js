@@ -27,7 +27,6 @@ app.set('views', __dirname + '/views')
 app.set('view engine', 'ejs')
 
 
-//todo: maak een range input ipv text input "favorites.ejs"
 
 //Routes
 app.get('/', route_home)

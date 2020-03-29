@@ -276,16 +276,34 @@ textarea.required {
 
 
 
-
-
-
-
-
 /* Specific Styles */
 
 #start {
 	margin-top: 10px;
 	margin-bottom: 30px;
+}
+
+.suggestedKey {
+	animation: slideIn 300ms 1 ease-in forwards;
+	display: inline-block;
+	/* Not fully supported: */
+	width: 65px;
+}
+
+.instruction {
+	display: inline-block;
+	background-color: #00ffa2;
+	color: #004466;
+	padding: 3px;
+	margin-left: 15px;
+	position: relative;
+	animation: slideIn 300ms 1 ease-in forwards;
+	/* Not fully supported: */
+	border: 1px solid #004466;
+}
+
+.instruction.hide {
+	display: none;
 }
 
 #start #suggestionText,
@@ -497,10 +515,6 @@ textarea.required {
 	to {
 		opacity: 100%;
 	}
-}
-
-.suggestedKey {
-	animation: slideIn 300ms 1 ease-in forwards;
 }
 
 @keyframes slideIn {
