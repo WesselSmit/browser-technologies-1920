@@ -405,6 +405,22 @@ textarea.required {
 	margin-right: 10px;
 }
 
+#invalidMSG {
+	background-color: #004466;
+	margin: 0;
+	color: #00ffa2;
+	padding: 5px 0;
+	font-weight: bolder;
+	font-size: 20px;
+	/* Not fully supported: */
+	text-align: center;
+}
+
+#invalidMSG span {
+	display: block;
+	font-size: 16px;
+	font-weight: lighter;
+}
 
 
 
@@ -441,6 +457,10 @@ textarea.required {
 	#person {
 		border: 0;
 		box-shadow: 0 0 0;
+	}
+
+	#invalidMSG {
+		display: none;
 	}
 }
 

@@ -96,20 +96,24 @@ submitButton.addEventListener('click', validation)
 function validation() {
 	const form = document.querySelector('form')
 	const allInputs = form.querySelectorAll('input:not([type=hidden]):not([type=submit]), textarea, select')
+	var hasInvalidInput = false
 	for (const input of allInputs) {
 		input.classList.remove('required')
 		if (input.type === 'text') {
 			if (input.value === "") {
 				input.classList.add('required')
+				hasInvalidInput = true
 			}
 		} else if (input.tagName === 'SELECT') {
 			const selectEl = document.querySelector('select')
 			if (selectEl.value === '') {
 				selectEl.classList.add('required')
+				hasInvalidInput = true
 			}
 		} else if (input.tagName === 'TEXTAREA') {
 			if (input.value === '') {
 				input.classList.add('required')
+				hasInvalidInput = true
 			}
 		} else if (input.type === 'radio') {
 			const radioContainer = input.parentElement
@@ -120,6 +124,29 @@ function validation() {
 				}
 			}
 		}
+	}
+
+	var selectEl = document.querySelector('select')
+	if (hasInvalidInput) {
+		if (selectEl === null) {
+			invalidMsg()
+		} else {
+			if (selectEl.value === "") {
+				invalidMsg()
+			}
+		}
+	}
+}
+
+
+function invalidMsg() {
+	var invalidMSGExists = document.getElementById('invalidMSG')
+
+	if (!invalidMSGExists) {
+		var invalidMsg = document.createElement('div')
+		invalidMsg.id = "invalidMSG"
+		invalidMsg.innerHTML = "Complete the form before submitting!<span>Incomplete anwsers are highlighted.</span>"
+		document.querySelector('body').insertBefore(invalidMsg, document.querySelector('form'))
 	}
 }
 
