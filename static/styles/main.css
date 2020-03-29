@@ -7,6 +7,15 @@
 
 /* Global Element Styles */
 
+form>fieldset *:not(a),
+article>*:not(a) {
+	animation: slideInVertical 500ms 1 ease-in forwards;
+}
+
+input[type=radio] {
+	animation: none;
+}
+
 input[type="submit"]:focus,
 input[type="radio"]:focus+label {
 	text-transform: uppercase;
@@ -105,7 +114,9 @@ a {
 	margin-bottom: 0;
 	text-decoration: none;
 	float: left;
+	opacity: 0;
 	animation: slideIn 300ms 1 ease-in forwards;
+	animation-delay: 500ms;
 	/* Not fully supported: */
 	border: 2px solid #00ffa2;
 	border-radius: 5px;
@@ -162,7 +173,9 @@ input[type="submit"] {
 	float: right;
 	margin-top: 50px;
 	margin-bottom: 0;
+	opacity: 0;
 	animation: slideIn 300ms 1 ease-in forwards;
+	animation-delay: 500ms;
 	/* Not fully supported: */
 	border: 2px solid #00ffa2;
 	border-radius: 5px;
@@ -315,6 +328,7 @@ textarea.required {
 	font-size: 12px;
 	font-style: italic;
 	font-weight: lighter;
+	animation: slideIn 300ms 1 ease-in forwards;
 }
 
 #person #surname {
@@ -354,6 +368,7 @@ textarea.required {
 	margin-top: 10px;
 	margin-right: 10px;
 }
+
 
 
 
@@ -471,13 +486,26 @@ textarea.required {
 }
 
 @keyframes slideIn {
-	0% {
+	from {
 		opacity: 0%;
 		transform: translate(100%);
 	}
 
-	100% {
+	to {
 		opacity: 100%;
 		transform: translate(0);
+	}
+}
+
+
+@keyframes slideInVertical {
+	from {
+		opacity: 0%;
+		transform: translateY(100%);
+	}
+
+	to {
+		opacity: 100%;
+		transform: translateY(0);
 	}
 }
