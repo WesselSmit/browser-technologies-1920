@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
@@ -6,7 +6,11 @@ if (documentBodyChecker() && documentChecker() && documentObjectChecker()) {
 	console.log("All necessary JS features are available");
 	if (localStorageAvailable()) {
 		console.log('localStorage is supported and available');
-		fillInKnownDataFromLS();
+		if (!Object.entries === false) {
+			fillInKnownDataFromLS();
+		} else {
+			console.log("Object.entries() is not supported");
+		}
 		updateLocalStorage();
 	} else {
 		console.log('localStorage is not supported or not available');
@@ -63,13 +67,13 @@ function fillInKnownDataFromLS() {
 	Object.keys(storedData).forEach(function (val, i) {
 		if (i > 0) {
 			Object.entries(storedData[val]).forEach(function (item) {
-				var input = document.querySelector('[name=' + item[0] + ']');
+				var input = document.querySelector("[name=" + item[0] + "]");
 
 				if (input != null) {
 					if (input.type === 'text' && input.value === "") {
 						input.value = item[1];
 					} else if (input.type === 'radio') {
-						var radioInput = document.querySelectorAll('[name=' + item[0] + ']');
+						var radioInput = document.querySelectorAll("[name=" + item[0] + "]");
 						radioInput.forEach(function (radio) {
 							if (radio.value === item[1]) {
 								radio.checked = true;

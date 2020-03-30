@@ -2,7 +2,11 @@ if (documentBodyChecker() && documentChecker() && documentObjectChecker()) {
 	console.log("All necessary JS features are available")
 	if (localStorageAvailable()) {
 		console.log('localStorage is supported and available')
-		fillInKnownDataFromLS()
+		if (!Object.entries === false) {
+			fillInKnownDataFromLS()
+		} else {
+			console.log("Object.entries() is not supported")
+		}
 		updateLocalStorage()
 	} else {
 		console.log('localStorage is not supported or not available')
