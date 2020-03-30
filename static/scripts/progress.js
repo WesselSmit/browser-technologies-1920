@@ -52,9 +52,9 @@ function fillInKnownDataFromLS() {
 	const key = form.querySelector('input[type=hidden').value
 	const storedData = getStoredData(key)
 
-	Object.values(storedData).forEach((val, i) => {
+	Object.keys(storedData).forEach((val, i) => {
 		if (i > 0) {
-			Object.entries(val).forEach(item => {
+			Object.entries(storedData[val]).forEach(item => {
 				const input = document.querySelector(`[name=${item[0]}]`)
 
 				if (input != null) {
@@ -84,12 +84,6 @@ function fillInKnownDataFromLS() {
 			})
 		}
 	})
-
-	//Fix "anonymous" in title
-	let nameInTitle = document.querySelector('strong')
-	if (nameInTitle.textContent.includes('anonymous,')) {
-		nameInTitle.textContent = storedData.person.first_name + ", "
-	}
 }
 
 

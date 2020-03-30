@@ -143,6 +143,13 @@ a {
 	cursor: pointer;
 }
 
+a:hover {
+	color: #004466;
+	background-color: #00ffa2;
+	/* Not fully supported: */
+	border: 2px solid #004466;
+}
+
 label {
 	display: block;
 	font-weight: bolder;
@@ -221,6 +228,7 @@ select {
 	color: #004466;
 	width: 54%;
 	margin: 0;
+	padding: 5px;
 	position: absolute;
 	left: 30px;
 	background-color: #00ffa2;
