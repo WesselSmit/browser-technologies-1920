@@ -29,11 +29,8 @@ module.exports = (req, res) => {
 
 	//todo: dit soort paths gaan kapot op heroku
 	// storage.saveJSON(obj, `./storage/${key}.json`)
-
-
 	storage.saveJSON(obj, `storage/${key}.json`)
-	storage.saveJSON(obj, `/storage/${key}.json`)
-	storage.saveJSON(obj, `./storage/${key}.json`)
+
 
 	console.log('starting new session, key is: ', key)
 	res.render('new', {
