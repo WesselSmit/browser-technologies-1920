@@ -63,15 +63,19 @@ function showKnownKeys() {
 							}
 						});
 
-						//Check for somer
+						//Check for 'append' (this isn't supported in IE (and neither is the keyup event needed for the complete interaction))
 						if ('append' in document && typeof document.body['append'] === 'function') {
 							//Show key-instruction
 							suggestionItem.addEventListener('focus', function (e) {
-								var instruction = document.createElement('div');
-								instruction.textContent = "Press spacebar to resume this session";
-								instruction.classList.add('instruction');
-								instruction.tabIndex = -1;
-								suggestionItem.parentElement.append(instruction);
+								if (e.target.nextSibling === null) {
+									var instruction = document.createElement('div');
+									instruction.textContent = "Press spacebar to resume this session";
+									instruction.classList.add('instruction');
+									instruction.tabIndex = -1;
+									suggestionItem.parentElement.append(instruction);
+								} else {
+									e.target.nextSibling.classList.remove('hide');
+								}
 
 								e.target.addEventListener('blur', function (e) {
 									return e.target.nextSibling.classList.add('hide');

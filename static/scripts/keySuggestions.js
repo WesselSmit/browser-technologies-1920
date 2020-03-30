@@ -61,11 +61,15 @@ function showKnownKeys() {
 						if ('append' in document && typeof document.body['append'] === 'function') {
 							//Show key-instruction
 							suggestionItem.addEventListener('focus', e => {
-								const instruction = document.createElement('div')
-								instruction.textContent = "Press spacebar to resume this session"
-								instruction.classList.add('instruction')
-								instruction.tabIndex = -1
-								suggestionItem.parentElement.append(instruction)
+								if (e.target.nextSibling === null) {
+									const instruction = document.createElement('div')
+									instruction.textContent = "Press spacebar to resume this session"
+									instruction.classList.add('instruction')
+									instruction.tabIndex = -1
+									suggestionItem.parentElement.append(instruction)
+								} else {
+									e.target.nextSibling.classList.remove('hide')
+								}
 
 								e.target.addEventListener('blur', e => e.target.nextSibling.classList.add('hide'))
 							})
