@@ -1,11 +1,18 @@
 'use strict';
 
-if (localStorageAvailable()) {
-	console.log('localStorage is supported and available');
-	showKnownKeys();
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+if (documentBodyChecker() && documentChecker() && documentObjectChecker()) {
+	console.log("All necessary JS features are available");
+	if (localStorageAvailable()) {
+		console.log('localStorage is supported and available');
+		showKnownKeys();
+	} else {
+		console.log('localStorage is not supported or not available');
+		showImportancePopUp();
+	}
 } else {
-	console.log('localStorage is not supported or not available');
-	showImportancePopUp();
+	console.log("Not all necessary JS features are available");
 }
 
 function showKnownKeys() {
@@ -115,4 +122,33 @@ function localStorageAvailable() {
 		// acknowledge QuotaExceededError only if there's something already stored
 		storage && storage.length !== 0;
 	}
+}
+
+//Check if minimal JS features are available
+
+function documentChecker() {
+	var features = ['querySelectorAll', 'addEventListener', 'insertBefore'];
+	var checker = function checker(feature) {
+		return feature in document && typeof document.body[feature] === 'function';
+	};
+
+	return features.every(checker);
+}
+
+function documentBodyChecker() {
+	var features = ['setAttribute'];
+	var checker = function checker(feature) {
+		return feature in document.body && typeof document.body[feature] === 'function';
+	};
+
+	return features.every(checker);
+}
+
+function documentObjectChecker() {
+	var features = ['classList', 'nextSibling'];
+	var checker = function checker(feature) {
+		return feature in document.documentElement && _typeof(document.body[feature]) === 'object';
+	};
+
+	return features.every(checker);
 }

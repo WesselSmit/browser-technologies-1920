@@ -1,10 +1,17 @@
-if (localStorageAvailable()) {
-	console.log('localStorage is supported and available')
-	showKnownKeys()
+if (documentBodyChecker() && documentChecker() && documentObjectChecker()) {
+	console.log("All necessary JS features are available")
+	if (localStorageAvailable()) {
+		console.log('localStorage is supported and available')
+		showKnownKeys()
+	} else {
+		console.log('localStorage is not supported or not available')
+		showImportancePopUp()
+	}
 } else {
-	console.log('localStorage is not supported or not available')
-	showImportancePopUp()
+	console.log("Not all necessary JS features are available")
 }
+
+
 
 function showKnownKeys() {
 	const knownKeys = getStoredKeys()
@@ -109,4 +116,35 @@ function localStorageAvailable() {
 			// acknowledge QuotaExceededError only if there's something already stored
 			(storage && storage.length !== 0)
 	}
+}
+
+
+
+
+
+//Check if minimal JS features are available
+
+function documentChecker() {
+	const features = ['querySelectorAll', 'addEventListener', 'insertBefore']
+	const checker = (feature) =>
+		feature in document && typeof document.body[feature] === 'function'
+
+	return features.every(checker)
+}
+
+function documentBodyChecker() {
+	const features = ['setAttribute']
+	const checker = (feature) =>
+		feature in document.body && typeof document.body[feature] === 'function'
+
+	return features.every(checker)
+}
+
+function documentObjectChecker() {
+	const features = ['classList', 'nextSibling']
+	const checker = (feature) =>
+		feature in document.documentElement &&
+		typeof document.body[feature] === 'object'
+
+	return features.every(checker)
 }

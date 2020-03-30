@@ -1,24 +1,38 @@
-if (localStorageAvailable()) {
-	console.log('localStorage is supported and available')
-	fillInKnownDataFromLS()
-	updateLocalStorage()
+if (documentBodyChecker() && documentChecker() && documentObjectChecker()) {
+	console.log("All necessary JS features are available")
+	if (localStorageAvailable()) {
+		console.log('localStorage is supported and available')
+		fillInKnownDataFromLS()
+		updateLocalStorage()
+	} else {
+		console.log('localStorage is not supported or not available')
+	}
+
+	giveFormatHint()
+
+	//Validate
+	const submitButton = document.querySelector('[type=submit]')
+	submitButton.addEventListener('click', validation)
+
 } else {
-	console.log('localStorage is not supported or not available')
+	console.log("Not all necessary JS features are available")
 }
 
 
 
-//Give formatted input hint
-if (document.getElementById('person')) {
-	const formattedInput = document.getElementById('age')
-	const formatInfo = document.createElement('p')
 
-	formatInfo.textContent = "Only digits allowed [0-9]"
-	formatInfo.classList.add('additionalInfo')
+//Give hint about format
+function giveFormatHint() {
+	if (document.getElementById('person')) {
+		const formattedInput = document.getElementById('age')
+		const formatInfo = document.createElement('p')
 
-	document.querySelector('form > fieldset').insertBefore(formatInfo, formattedInput)
+		formatInfo.textContent = "Only digits allowed [0-9]"
+		formatInfo.classList.add('additionalInfo')
+
+		document.querySelector('form > fieldset').insertBefore(formatInfo, formattedInput)
+	}
 }
-
 
 
 
@@ -89,8 +103,6 @@ function fillInKnownDataFromLS() {
 
 
 
-const submitButton = document.querySelector('[type=submit]')
-submitButton.addEventListener('click', validation)
 
 
 function validation() {
@@ -144,6 +156,9 @@ function validation() {
 }
 
 
+
+
+//Show invalid message
 function invalidMsg() {
 	let invalidMSGExists = document.getElementById('invalidMSG')
 
@@ -156,6 +171,9 @@ function invalidMsg() {
 		document.querySelector('body').insertBefore(invalidMsg, document.querySelector('form'))
 	}
 }
+
+
+
 
 
 
@@ -220,4 +238,35 @@ function localStorageAvailable() {
 			// acknowledge QuotaExceededError only if there's something already stored
 			(storage && storage.length !== 0)
 	}
+}
+
+
+
+
+
+//Check if minimal JS features are available
+
+function documentChecker() {
+	const features = ['querySelectorAll', 'addEventListener', 'insertBefore']
+	const checker = (feature) =>
+		feature in document && typeof document.body[feature] === 'function'
+
+	return features.every(checker)
+}
+
+function documentBodyChecker() {
+	const features = ['setAttribute']
+	const checker = (feature) =>
+		feature in document.body && typeof document.body[feature] === 'function'
+
+	return features.every(checker)
+}
+
+function documentObjectChecker() {
+	const features = ['classList', 'nextSibling']
+	const checker = (feature) =>
+		feature in document.documentElement &&
+		typeof document.body[feature] === 'object'
+
+	return features.every(checker)
 }

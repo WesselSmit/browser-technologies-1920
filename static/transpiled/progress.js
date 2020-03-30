@@ -1,22 +1,37 @@
 'use strict';
 
-if (localStorageAvailable()) {
-	console.log('localStorage is supported and available');
-	fillInKnownDataFromLS();
-	updateLocalStorage();
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+if (documentBodyChecker() && documentChecker() && documentObjectChecker()) {
+	console.log("All necessary JS features are available");
+	if (localStorageAvailable()) {
+		console.log('localStorage is supported and available');
+		fillInKnownDataFromLS();
+		updateLocalStorage();
+	} else {
+		console.log('localStorage is not supported or not available');
+	}
+
+	giveFormatHint();
+
+	//Validate
+	var submitButton = document.querySelector('[type=submit]');
+	submitButton.addEventListener('click', validation);
 } else {
-	console.log('localStorage is not supported or not available');
+	console.log("Not all necessary JS features are available");
 }
 
-//Give formatted input hint
-if (document.getElementById('person')) {
-	var formattedInput = document.getElementById('age');
-	var formatInfo = document.createElement('p');
+//Give hint about format
+function giveFormatHint() {
+	if (document.getElementById('person')) {
+		var formattedInput = document.getElementById('age');
+		var formatInfo = document.createElement('p');
 
-	formatInfo.textContent = "Only digits allowed [0-9]";
-	formatInfo.classList.add('additionalInfo');
+		formatInfo.textContent = "Only digits allowed [0-9]";
+		formatInfo.classList.add('additionalInfo');
 
-	document.querySelector('form > fieldset').insertBefore(formatInfo, formattedInput);
+		document.querySelector('form > fieldset').insertBefore(formatInfo, formattedInput);
+	}
 }
 
 function updateLocalStorage() {
@@ -45,9 +60,9 @@ function fillInKnownDataFromLS() {
 	var key = form.querySelector('input[type=hidden').value;
 	var storedData = getStoredData(key);
 
-	Object.values(storedData).forEach(function (val, i) {
+	Object.keys(storedData).forEach(function (val, i) {
 		if (i > 0) {
-			Object.entries(val).forEach(function (item) {
+			Object.entries(storedData[val]).forEach(function (item) {
 				var input = document.querySelector('[name=' + item[0] + ']');
 
 				if (input != null) {
@@ -74,16 +89,7 @@ function fillInKnownDataFromLS() {
 			});
 		}
 	});
-
-	//Fix "anonymous" in title
-	var nameInTitle = document.querySelector('strong');
-	if (nameInTitle.textContent.includes('anonymous,')) {
-		nameInTitle.textContent = storedData.person.first_name + ", ";
-	}
 }
-
-var submitButton = document.querySelector('[type=submit]');
-submitButton.addEventListener('click', validation);
 
 function validation() {
 	var form = document.querySelector('form');
@@ -174,6 +180,7 @@ function validation() {
 	}
 }
 
+//Show invalid message
 function invalidMsg() {
 	var invalidMSGExists = document.getElementById('invalidMSG');
 
@@ -244,4 +251,33 @@ function localStorageAvailable() {
 		// acknowledge QuotaExceededError only if there's something already stored
 		storage && storage.length !== 0;
 	}
+}
+
+//Check if minimal JS features are available
+
+function documentChecker() {
+	var features = ['querySelectorAll', 'addEventListener', 'insertBefore'];
+	var checker = function checker(feature) {
+		return feature in document && typeof document.body[feature] === 'function';
+	};
+
+	return features.every(checker);
+}
+
+function documentBodyChecker() {
+	var features = ['setAttribute'];
+	var checker = function checker(feature) {
+		return feature in document.body && typeof document.body[feature] === 'function';
+	};
+
+	return features.every(checker);
+}
+
+function documentObjectChecker() {
+	var features = ['classList', 'nextSibling'];
+	var checker = function checker(feature) {
+		return feature in document.documentElement && _typeof(document.body[feature]) === 'object';
+	};
+
+	return features.every(checker);
 }
