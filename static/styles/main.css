@@ -273,8 +273,6 @@ textarea.required {
 
 
 
-
-
 /* Specific Styles */
 
 #start {
@@ -422,6 +420,21 @@ textarea.required {
 .fadeAnim {
 	animation: fadeIn 300ms 1 ease-in forwards;
 }
+
+
+@supports (display: flex) {
+	@media (min-width: 660px) {
+		#backLinks {
+			display: flex;
+			justify-content: center;
+		}
+
+		#backLinks a {
+			margin: 10px 30px;
+		}
+	}
+}
+
 
 
 

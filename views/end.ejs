@@ -11,10 +11,11 @@
 
 		<p>You can go back to a previous page if you want to change some answers:</p>
 
-		<a href="/person_back/<%= key %>">Person</a>
-		<a href="/favorites_back/<%= key %>">Favorites</a>
-		<a href="/openQuestions_back/<%= key %>">Open Questions</a>
-
+		<div id="backLinks">
+			<a href="/person_back/<%= key %>">Person</a>
+			<a href="/favorites_back/<%= key %>">Favorites</a>
+			<a href="/openQuestions_back/<%= key %>">Open Questions</a>
+		</div>
 	</article>
 
 	<input name="key" type="hidden" value="<%= key %>">
