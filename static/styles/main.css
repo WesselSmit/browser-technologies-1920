@@ -5,6 +5,23 @@
 
 
 
+/* Prefix for Edge */
+::-webkit-input-placeholder {
+	color: #004466;
+}
+
+/* Prefix for Internet Explorer 10-11 */
+::-ms-input-placeholder {
+	color: #004466;
+}
+
+::placeholder {
+	color: #004466;
+	opacity: 0.6;
+}
+
+
+
 /* Global Element Styles */
 
 form>fieldset *:not(a):not(legend),
@@ -126,21 +143,6 @@ a {
 	cursor: pointer;
 }
 
-/* Prefix for Edge */
-::-webkit-input-placeholder {
-	color: #004466;
-}
-
-/* Prefix for Internet Explorer 10-11 */
-::-ms-input-placeholder {
-	color: #004466;
-}
-
-::placeholder {
-	color: #004466;
-	opacity: 0.6;
-}
-
 label {
 	display: block;
 	font-weight: bolder;
@@ -231,7 +233,6 @@ select {
 	border-radius: 5px;
 }
 
-
 textarea {
 	background-color: #00ffa2;
 	color: #004466;
@@ -255,7 +256,6 @@ textarea {
 
 
 /* Validation */
-
 
 #person .required,
 #favorites .required,
@@ -419,6 +419,10 @@ textarea.required {
 	font-weight: lighter;
 }
 
+.fadeAnim {
+	animation: fadeIn 300ms 1 ease-in forwards;
+}
+
 
 
 /* Resized Styles */
@@ -518,10 +522,6 @@ textarea.required {
 	100% {
 		border-color: #de333d;
 	}
-}
-
-.fadeAnim {
-	animation: fadeIn 300ms 1 ease-in forwards;
 }
 
 @keyframes fadeIn {
