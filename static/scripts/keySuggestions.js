@@ -12,24 +12,28 @@ function showKnownKeys() {
 
 	if (knownKeys.length > 0) {
 		const suggestionText = document.createElement('p')
+		const suggestionsList = document.createElement('ul')
+
 		suggestionText.id = 'suggestionText'
 		suggestionText.classList.add('fadeAnim')
-		const suggestionsList = document.createElement('ul')
+		suggestionText.textContent = "Previous keys found in browser memory (from most to least recent):"
+
 		document.querySelector('fieldset').insertBefore(suggestionText, document.getElementById('key').nextSibling)
 		document.querySelector('fieldset').insertBefore(suggestionsList, suggestionText.nextSibling)
-		suggestionText.textContent = "Previous keys found in browser memory (from most to least recent):"
 
 		let interval = 125
 		for (let i = 0; i < knownKeys.length; i++) {
 			function fadeIn(i) {
 				let timeOut = setTimeout(function () {
 						const suggestionListItem = document.createElement('li')
-						document.querySelector('ul').append(suggestionListItem)
 						const suggestionItem = document.createElement('input')
+
+						suggestionItem.classList.add('suggestedKey')
 						suggestionItem.readOnly = true
 						suggestionItem.value = knownKeys[i]
-						suggestionListItem.append(suggestionItem)
-						suggestionItem.classList.add('suggestedKey')
+
+						document.querySelector('ul').appendChild(suggestionListItem)
+						suggestionListItem.appendChild(suggestionItem)
 
 
 						//Replace placeholder as indicator for interaction on hover

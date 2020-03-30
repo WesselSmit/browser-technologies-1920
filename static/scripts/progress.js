@@ -12,8 +12,10 @@ if (localStorageAvailable()) {
 if (document.getElementById('person')) {
 	const formattedInput = document.getElementById('age')
 	const formatInfo = document.createElement('p')
+
 	formatInfo.textContent = "Only digits allowed [0-9]"
 	formatInfo.classList.add('additionalInfo')
+
 	document.querySelector('form > fieldset').insertBefore(formatInfo, formattedInput)
 }
 
@@ -54,9 +56,11 @@ function fillInKnownDataFromLS() {
 		if (i > 0) {
 			Object.entries(val).forEach(item => {
 				const input = document.querySelector(`[name=${item[0]}]`)
+
 				if (input != null) {
 					if (input.type === 'text' && input.value === "") {
 						input.value = item[1]
+
 					} else if (input.type === 'radio') {
 						const radioInput = document.querySelectorAll(`[name=${item[0]}]`)
 						radioInput.forEach(radio => {
@@ -64,6 +68,7 @@ function fillInKnownDataFromLS() {
 								radio.checked = true
 							}
 						})
+
 					} else if (input.tagName === 'SELECT') {
 						const options = input.querySelectorAll('option')
 						options.forEach(option => {
@@ -71,6 +76,7 @@ function fillInKnownDataFromLS() {
 								option.selected = true
 							}
 						})
+
 					} else if (input.tagName === 'TEXTAREA') {
 						input.value = item[1]
 					}
@@ -97,24 +103,29 @@ function validation() {
 	const form = document.querySelector('form')
 	const allInputs = form.querySelectorAll('input:not([type=hidden]):not([type=submit]), textarea, select')
 	let hasInvalidInput = false
+
 	for (const input of allInputs) {
 		input.classList.remove('required')
+
 		if (input.type === 'text') {
 			if (input.value === "") {
 				input.classList.add('required')
 				hasInvalidInput = true
 			}
+
 		} else if (input.tagName === 'SELECT') {
 			const selectEl = document.querySelector('select')
 			if (selectEl.value === '') {
 				selectEl.classList.add('required')
 				hasInvalidInput = true
 			}
+
 		} else if (input.tagName === 'TEXTAREA') {
 			if (input.value === '') {
 				input.classList.add('required')
 				hasInvalidInput = true
 			}
+
 		} else if (input.type === 'radio') {
 			const radioContainer = input.parentElement
 			radioContainer.classList.add('requiredField')
@@ -144,8 +155,10 @@ function invalidMsg() {
 
 	if (!invalidMSGExists) {
 		let invalidMsg = document.createElement('div')
+
 		invalidMsg.id = "invalidMSG"
 		invalidMsg.innerHTML = "Complete the form before submitting!<span>Incomplete anwsers are highlighted.</span>"
+
 		document.querySelector('body').insertBefore(invalidMsg, document.querySelector('form'))
 	}
 }

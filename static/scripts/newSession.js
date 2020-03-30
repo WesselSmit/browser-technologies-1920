@@ -7,6 +7,7 @@ keyCodeElement.select()
 //Check if localStorage is both supported & available (enabled)
 if (localStorageAvailable()) {
 	console.log('localStorage is supported and available')
+
 	const keyCode = keyCodeElement.value
 	const emptyState = {
 		"key": keyCode,
