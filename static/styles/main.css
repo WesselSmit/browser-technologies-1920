@@ -162,6 +162,8 @@ input {
 	display: block;
 	font-size: 20px;
 	font-family: "Sudo-Bold", Arial, Helvetica, sans-serif;
+	/* Fix firefox required / invalid: box-shadow */
+	box-shadow: none;
 }
 
 label input:not([type="submit"]) {
@@ -251,6 +253,8 @@ textarea {
 	min-height: 50px;
 	resize: vertical;
 	width: 100%;
+	/* Get rid of ugly styling in IE */
+	overflow: auto;
 	/* Not fully supported: */
 	width: calc(100% - 12px);
 	border: 2px solid #004466;

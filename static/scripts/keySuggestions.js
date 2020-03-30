@@ -57,16 +57,19 @@ function showKnownKeys() {
 							}
 						})
 
-						//Show key-instruction
-						suggestionItem.addEventListener('focus', e => {
-							const instruction = document.createElement('div')
-							instruction.textContent = "Press spacebar to resume this session"
-							instruction.classList.add('instruction')
-							instruction.tabIndex = -1
-							suggestionItem.parentElement.insertBefore(instruction, suggestionItem.nextSibling)
+						//Check for 'append' (this isn't supported in IE (and neither is the keyup event needed for the complete interaction))
+						if ('append' in document && typeof document.body['append'] === 'function') {
+							//Show key-instruction
+							suggestionItem.addEventListener('focus', e => {
+								const instruction = document.createElement('div')
+								instruction.textContent = "Press spacebar to resume this session"
+								instruction.classList.add('instruction')
+								instruction.tabIndex = -1
+								suggestionItem.parentElement.append(instruction)
 
-							e.target.addEventListener('blur', e => e.target.nextSibling.classList.add('hide'))
-						})
+								e.target.addEventListener('blur', e => e.target.nextSibling.classList.add('hide'))
+							})
+						}
 					},
 					i * interval + 500)
 			}

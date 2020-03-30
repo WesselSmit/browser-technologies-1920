@@ -63,18 +63,21 @@ function showKnownKeys() {
 							}
 						});
 
-						//Show key-instruction
-						suggestionItem.addEventListener('focus', function (e) {
-							var instruction = document.createElement('div');
-							instruction.textContent = "Press spacebar to resume this session";
-							instruction.classList.add('instruction');
-							instruction.tabIndex = -1;
-							suggestionItem.parentElement.insertBefore(instruction, suggestionItem.nextSibling);
+						//Check for somer
+						if ('append' in document && typeof document.body['append'] === 'function') {
+							//Show key-instruction
+							suggestionItem.addEventListener('focus', function (e) {
+								var instruction = document.createElement('div');
+								instruction.textContent = "Press spacebar to resume this session";
+								instruction.classList.add('instruction');
+								instruction.tabIndex = -1;
+								suggestionItem.parentElement.append(instruction);
 
-							e.target.addEventListener('blur', function (e) {
-								return e.target.nextSibling.classList.add('hide');
+								e.target.addEventListener('blur', function (e) {
+									return e.target.nextSibling.classList.add('hide');
+								});
 							});
-						});
+						}
 					}, i * interval + 500);
 				};
 
