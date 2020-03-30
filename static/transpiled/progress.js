@@ -12,8 +12,10 @@ if (localStorageAvailable()) {
 if (document.getElementById('person')) {
 	var formattedInput = document.getElementById('age');
 	var formatInfo = document.createElement('p');
+
 	formatInfo.textContent = "Only digits allowed [0-9]";
 	formatInfo.classList.add('additionalInfo');
+
 	document.querySelector('form > fieldset').insertBefore(formatInfo, formattedInput);
 }
 
@@ -47,6 +49,7 @@ function fillInKnownDataFromLS() {
 		if (i > 0) {
 			Object.entries(val).forEach(function (item) {
 				var input = document.querySelector('[name=' + item[0] + ']');
+
 				if (input != null) {
 					if (input.type === 'text' && input.value === "") {
 						input.value = item[1];
@@ -86,6 +89,7 @@ function validation() {
 	var form = document.querySelector('form');
 	var allInputs = form.querySelectorAll('input:not([type=hidden]):not([type=submit]), textarea, select');
 	var hasInvalidInput = false;
+
 	var _iteratorNormalCompletion = true;
 	var _didIteratorError = false;
 	var _iteratorError = undefined;
@@ -95,6 +99,7 @@ function validation() {
 			var input = _step.value;
 
 			input.classList.remove('required');
+
 			if (input.type === 'text') {
 				if (input.value === "") {
 					input.classList.add('required');
@@ -174,8 +179,10 @@ function invalidMsg() {
 
 	if (!invalidMSGExists) {
 		var _invalidMsg = document.createElement('div');
+
 		_invalidMsg.id = "invalidMSG";
 		_invalidMsg.innerHTML = "Complete the form before submitting!<span>Incomplete anwsers are highlighted.</span>";
+
 		document.querySelector('body').insertBefore(_invalidMsg, document.querySelector('form'));
 	}
 }
