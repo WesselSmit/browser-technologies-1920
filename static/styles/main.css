@@ -255,6 +255,8 @@ textarea {
 	width: 100%;
 	/* Get rid of ugly styling in IE */
 	overflow: auto;
+	/* Fix firefox required / invalid: box-shadow */
+	box-shadow: none;
 	/* Not fully supported: */
 	width: calc(100% - 12px);
 	border: 2px solid #004466;
