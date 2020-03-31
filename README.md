@@ -550,7 +550,11 @@ Door middel van states kan je de gebruiker duidelijk maken wat bepaalde elemente
 
 Ook kan je op deze manier goed duidelijk maken welk element momenteel de focus heeft, dit helpt mensen met een handicap die bijvoorbeeld geen muis kunnen gebruiken en puur emt `tab` door je website navigeren.
 
+>alle browsers supporten CSS, maar niet alle browsers supporten alle properties; IE was hierbij het grootste probleem en ondersteunde bijvoorbeeld `flex` niet
+
 <h2>LocalStorage</h2>
+
+>localStorage word niet door hele oude browser gesupport (de belangrijkste: IE 6-7)
 
 <details><summary>localStorage Detection</summary>
 
@@ -587,6 +591,8 @@ function localStorageAvailable() {
 ```
 
 >Snippet is afkomstig van [hier (MDN).](https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API#Testing_for_availability)
+
+>localStorage word niet door hele oude browser gesupport (de belangrijkste: IE 6-7)
 
 </details>
 
@@ -640,11 +646,13 @@ Met JS word er naar elke input geluisterd, elke keer als de gebruiker iets typed
 
 Op deze manier word elke keer dat de gebruiker iets typt het opgeslagen, op deze manier kan data constant up to date blijven en hoeft de gebruiker niet naar de volgende pagina te navigeren om zijn progressie op te slaan.
 
+>localStorage word niet door hele oude browser gesupport (de belangrijkste: IE 6-7)
 
 <h2>Filling in saved anwsers</h2>
 
 Wanneer de gebruiker verder wil gaan met een eerder gestarte sessie dan bepaalt de server op welke pagina de gebruiker was gebleven, vervolgens word deze pagina aan de gebruiker gerserveerd). Vervolgens kickt localStorage clientside in; er word gekeken welke vragen er allemaal zijn op de huidige pagina, vervolgens word er gecheckt of van deze vragen er antwoorden in de localStorage opgeslagen zijn. Als dit het geval is dan worden deze antwoorden ingevuld in de input. 
 
+>localStorage word niet door hele oude browser gesupport (de belangrijkste: IE 6-7)
 
 <h2>Auto-select key</h2>
 
@@ -658,6 +666,8 @@ Wanneer de gebruiker een nieuwe sessie start krijg je als eerst een pagina te zi
 Als JS aanstaat dan word er een additionele hint gegeven bij moeilijke inputs. Ik heb een input gebruikt die alleen nummers accepteert, omdat je leeftijd ook kan beantwoorden met "achttien" is het fijn om de gebruiker duidelijk te maken dat alleen nummers geaccepteerd worden.
 
 ![image](https://user-images.githubusercontent.com/45405413/77965207-d4674580-72e0-11ea-9897-2d4bad4cb23d.png)
+
+>Gebruikt `classist` wat in oudere versies van IE (6-9) niet werkt
 
 <h2>Validation</h2>
 
@@ -673,6 +683,10 @@ De gebruiker krijgt een error message te zien om aan te geven dat het formulier 
 
 Niet ingevulde inputs worden gehighlight om aan te geven dat het mis gaat bij deze inputs:
 ![image](https://user-images.githubusercontent.com/45405413/77965460-535c7e00-72e1-11ea-8f8c-c2a17b3ad02b.png)
+
+>Gebruikt `classist` wat in oudere versies van IE (6-9) niet werkt
+
+>Gebruikt `querySelectorAll` wat niet gesupport word in IE 6-9
 
 
 </details>
@@ -846,6 +860,8 @@ function localStorageAvailable() {
 
 ## Browser Tests
 
+<details><summary>Browser Tests</summary>
+
 Mijn applicatie is gedeveloped in `chrome`, maar ik heb het zelf ook veel getest in `FireFox 74.0`, `Safari 13.0.3` & `Iternet Explorer 11`.
 
 Ook heb ik het getest op mijn mobiel (Huawei P10) die ook chrome draait!
@@ -867,7 +883,9 @@ Zover ik weet werkt de core functionaliteit in elke browser (versie), vervolgens
 * validate de content van inputs meteen (voor het submitten al), met als gevolg dat veel inputs een rode box-shadow krijgen. Om dit te fixen heb ik alle inputs een `box-shadow: none` gegeven, deze kan je later overschrijven indien nodig!
 >`The :invalid CSS pseudo-class is applied automatically to elements whose contents fail to validate according to the input's type setting`
 
-* geeft `<a>` tags [geen focus state (op MacOS)](https://stackoverflow.com/questions/11704828/how-to-allow-keyboard-focus-of-links-in-firefox/11713537) en zijn van nature niet focussable. De gebruiker moet dit zelf in de about:config aanzetten/instellen. 
+* geeft `<a>` tags [geen focus state (op MacOS)](https://stackoverflow.com/questions/11704828/how-to-allow-keyboard-focus-of-links-in-firefox/11713537) en zijn van nature niet focussable. De gebruiker moet dit zelf in de about:config aanzetten/instellen.
+
+* Firefox rendert kleuren anders (kleuren zijn veel mee vibrant), kan mogelijk problemen opleveren met leesbaarheid?
 
 
 **Safari**
@@ -879,6 +897,12 @@ Zover ik weet werkt de core functionaliteit in elke browser (versie), vervolgens
 * `<legend>` werkt maar functioneert anders dan in HTML5;
 	* `color` kan niet verandert worden en de kleur blijft altijd zwart
 	* wrapt tekst niet als het buiten beeld valt (dit valt op te lossen met `display: table`)
+		```css
+			/* Enable line-wrapping in IE8+ */
+			display: table;
+			/* Enable line-wrapping in old versions of some other browsers */
+			white-space: normal;
+		```
 	* veel basis vormgeving (textarea - scrollbar, select - dropdown icon) 
 
 
@@ -888,20 +912,409 @@ Om dit soort problemen op te lossen moest je soms een prefix gebruiken in de CSS
 ### Known Bugs 
 
 * Firefox geeft `<a>` tags [geen focus state (op MacOS)](https://stackoverflow.com/questions/11704828/how-to-allow-keyboard-focus-of-links-in-firefox/11713537) en zijn van nature niet focussable. De gebruiker moet dit zelf in de about:config aanzetten/instellen. 
-
 * `<legend>` element styling is erg lelijk op IE, alternatief is door de legend te vervangen met een ander HTML element, maar dit betekent wel dat de HTML minder semantisch is.
 
+</details>
+
+## Wat gebeurt er als...?
+
+<details><summary>Afbeeldingen uitstaan</summary>
+
+Mijn website heeft geen afbeeldingen en dus werkt de website zoals normaal.
+
+</details>
 
 
 
-# todo:
+<details><summary>Custom fonts uitstaan</summary>
 
-- [ ] known bugs (zie readme "testen" hiervoor + FF `<anchor>`)
-- [ ] 8 features testen van opdracht 1.2
-- [ ] onderzoek / onderzochte bronnen en hoe je ze verwerkt hebt
-- [ ] accessibility onderzoek: wat heb je gedaan? hoe werkt het? (html semantisch)
-- [ ] leg uit wat progressive enhancement is
-- [ ] leg uit wat feature detection is
-- [ ] conlusie die ingaat op de leerdoelen en criteria & hoe je dit hebt gehaald
-- [ ] check de rubric en of je aan alles voldoet
+Wanneer custom fonts uitstaan blijft de tekst leesbaar, het is alleen een wat ordinairder font. Dit komt doordat ik fallbacks gebruik in mijn `font-family` declaration;
+
+```css
+	font-family: "Sudo-Bold", Arial, Helvetica, sans-serif;
+```
+
+</details>
+
+
+
+<details><summary>Je de muis niet kan gebruiken</summary>
+
+Wanneer de gebruiker de muis niet kan gebruiken kan hij dmv `tab` door de website navigeren. Dit is mogelijk door semantische HTML te schrijven, voor alles waar de gebruiker moet kunnen komen een focussable element te gebruiken & door de focussable state duidelijk te stylen.
+
+Ook text die de gebruiker moet kunnen kopieren is tabbaar; dit is mogelijk omdat ik een input met een `readonly` attribuut heb gebruikt.
+
+</details>
+
+
+<details><summary>Breedband internet uitstaat</summary>
+
+Dit is wel erg belangrijk, zonder internet geen formulier.
+
+Als je wel internet hebt maar het valt om de zoveel tijd kort weg; dat is een minder groot probleem. Als de resources (CSS, JS) wel al ingeladen zijn dan functioneert de pagina gewoon zoals normaal, je kan alleen niet naar een andere pagina. Als localStorage gebruikt kan worden slaat deze wel alle ingevulde antwoorden op! 
+
+Als de website geladen is maar de resources (CSS, JS) nog niet dan werkt de app nogsteeds en kan de core-funcitonaliteit nog steeds uitgevoerd worden!
+
+</details>
+
+
+<details><summary>Javascript uitstaat</summary>
+
+Als Javascript uitstaat werkt de app! De gebruiker kan de core-functionaliteit uitvoeren. 
+
+Het is echter wel wat minder fijn om te gebruiken! Zo worden antwoorden alleen opgeslagen wanneer de gebruiker van pagina naar pagina navigeert & is het de bedoeling dat je zelf je key onthoud/opslaat!
+
+Ook zal je niet de highlighting krijgen als je iets niet hebt ingevuld, in plaats hiervan krijg je de standaard popup melding van de browser.
+
+</details>
+
+ 
+<details><summary>Cookies uitstaan</summary>
+
+Er worden geen cookies gebruikt in mijn applicatie en dus werkt de app zoals verwacht.
+
+>De app werkt niet helemaal meer als je cookies uitzet; maar dat komt omdat cookies ook automatisch localStorage uitschakelen. De cookies zelf hebben niks te maken met mijn app.
+
+</details>
+
+
+
+<details><summary>LocalStorage uitstaat</summary>
+
+Wanneer localStorage uitstaat werkt mijn app prima, het enige wat veranderd wanneer je localStorage uitzet is dat de antwoorden alleen opgeslagen worden wanneer je van pagina naar pagina navigeert. 
+
+Alle andere JS funcitonaliteiten werken nog normaal omdat ik in JS check of ik toegang heb tot localStorage. Dit foe ik als volgt:
+
+```javascript
+if (localStorageAvailable()) {
+	//localStorage functions here
+} else {
+	//non-localStorage functions here
+}
+
+/* Best way to detect if localStorage is supported & available (taken from MDN: 
+	https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API#Testing_for_availability) */
+function localStorageAvailable() {
+	let storage
+	try {
+		storage = window['localStorage']
+		const x = '__storage_test__'
+		storage.setItem(x, x)
+		storage.removeItem(x)
+		return true;
+	} catch (err) {
+		return err instanceof DOMException && (
+				// everything except Firefox
+				err.code === 22 ||
+				// Firefox
+				err.code === 1014 ||
+				// test name field too, because code might not be present
+				// everything except Firefox
+				err.name === 'QuotaExceededError' ||
+				// Firefox
+				err.name === 'NS_ERROR_DOM_QUOTA_REACHED') &&
+			// acknowledge QuotaExceededError only if there's something already stored
+			(storage && storage.length !== 0)
+	}
+}
+```
+
+Door een if/else statement te gebruiken kan ik de JS functions die geen localStorage gebruiken als nog uitvoeren. Op deze manier geeft mijn code geen error als localStorage niet available is en loopt mijn code niet vast!
+
+</details>
+
+## Artikelen
+
+<details><summary>The Web I Want</summary>
+
+By [Chris James](https://dev.to/quii/the-web-i-want-43o)
+
+>In practice your website would do everything it needed to with some HTML files linking to some CSS.
+
+Dit is de aanpak die ik heb gevolgd; de core-functionaliteit is mogekijk met alleen maar HTML. Vervolgens heb ik CSS gebruikt om het mooier, duidelijker en geanimeerd te maken. JS word gebruikt om extra features aan te bieden als dat mogelijk is.
+
+CSS en JS zijn echter niet nodig om de core-functionaliteit uit te kunnen voeren!
+
+>Semantic, accessible, HTML.
+
+Belangrijk als je wilt dat het goed werkt met `tab` en dat screenreaders het kunnen interpreteren.
+
+</details>
+
+
+<details><summary>Understanding Progressive Enhancement</summary>
+
+By [Aaron Gustafson](https://alistapart.com/article/understandingprogressiveenhancement/)
+
+Graceful-degredation:
+
+>Advanced technology > polyfills / older techniques to make it (partially) work
+
+<hr>
+
+Progressive-enhancement:
+
+>Think from the content out; content > presentation > client-side scripting
+
+
+Het verschil in mijn ogen is het beginpunt; bij PE begin je met de basis (de core-functionaliteit), vervolgens ga je deze enhancen/verbeteren indien mogelijk. Dit gebeurt door te detecten of dingen gesupport worden; als dat het geval is dan krijgt de gebruiker een betere ervaring en anders is er altijd nog de basis.
+
+Bij GD doe je het tegenovergestelde; je begint met het maken van een super vette en gave app die heel smooth werkt en allemaal vette technologieen gebruikt. Vervolgens ga je hem backwards compatible maken door alternatieven in je logica te implementeren voor als de advanced technologieen niet werken. 
+
+Persoonlijk ben ik een grotere fan van PE omdat ik uit ervaring weet dat het met GD heel makkelijk is om dingen over het hoofd te zien.
+
+</details>
+
+<details><summary>HTML: The Inaccessible Parts</summary>
+
+By [Dave Rupert](https://daverupert.com/2020/02/html-the-inaccessible-parts/)
+
+Deze lijst heb ik er bij gehouden tijdens het schrijven van mijn HTML; zo zijn er een heleboel inputs die eigenlijk niet zo goed meer werken of in ieder geval niet gebruikersvriendelijk zijn voor mensen met een beperking.
+
+>Gov.UK finds Number Inputs aren’t inclusive. (2020)
+
+Zo heb ik ervoor gekozen om mijn number input op een andere manier te doen;
+
+```html
+	<input type="text" id="age" name="age" placeholder="30" inputmode="numeric" pattern="[0-9]*" required>
+```
+
+Op deze manier kan de gebruiker geen formulier verzenden met een karakter dat geen getal is. het is voor de gebruiker echter wel mogelijk om andere karakters in te vullen, alleen word het formulier dan niet verzonden!
+
+Op mobiel word het getallen toetsenbord weergegeven.
+
+</details>
+
+
+<details><summary>Accessibility Through Semantic HTML</summary>
+
+By [laura Kalbag](https://24ways.org/2017/accessibility-through-semantic-html/)
+
+Laura Kalbag legt heel goed uit waarom semantische HDTML belangrijk is en wat het nut ervan is. Ik heb veel van deze principes gebruikt.
+
+1. Kijk altijd eerst of er een zemantisch correct element is voor wat je wilt doen (reik niet meteen naar een div)
+
+2. Differienteer tussen structuur en style. Het is makkelijk om een `<h3>` te gebruiken omdat je grotere tekst wilt maar gebruik hiervoor CSS. Houd de HTML structuur intact en geef deze niet op voor je CSS.
+
+Dit zijn een paar van de voordelen van semantische HTML die belangrijk zijn:
+
+1. HTML elementen hebben allemaal hun eigen werking; deze kunnen een goede fallback vormen mocht iets in je JS niet werken.
+
+2. Het vormt een goed leesbare basis voor screenreaders
+
+3. Het zorgt ervoor dat je website te navigeren is met `tab`
+
+</details>
+
+<details><summary>The Role of Enhancement in Web Design</summary>
+
+By [Raluca Budiu](https://www.nngroup.com/articles/enhancement/)
+
+>Progressive Enhancements: these features can be implemented in your interface, but the UI should not rely on them for accomplishing any one task
+
+Het zijn enhancements; het zin toevoegingen die alleen gebruikt worden waar mogelijk!
+
+</details>
+
+<details><summary>The accessibility Mindset</summary>
+
+By [Eric Eggert](https://24ways.org/2015/the-accessibility-mindset/)
+
+Als je HTML semantisch schrijft van de start, fallback attributen (zoals: alt attributen etc.) gebruikt en je content de HTML structuur volgt heb je al een sterke foundation voor accessibility.
+
+Houd je aan de best-practices en later kan je de website enhancen met JS features mits deze gesupprt worden.
+
+</details>
+
+
+<details><summary>Progressive Enhancement and Data Visualizations</summary>
+
+By [Chris Coyier](https://css-tricks.com/progressive-enhancement-data-visualizations/)
+
+Progressive enhancement in a nutshell:
+- basic content should be accessible to all web browsers
+- basic functionality should be accessible to all web browsers
+- sparse, semantic markup contains all content
+- enhanced layout is provided by externally linked CSS
+- enhanced behavior is provided by unobtrusive, externally linked JavaScript
+- end-user web browser preferences are respected
+
+Dit artikel legt een progressive-enhacement workflow uit; het laat zien dat je met semantische HMTL begint, deze bruibaar styled met CSS. Vervolgens kan je in JS kijken of de browser features support, als deat het geval is kan je bijvoorbeeld een SVG timeline laten zien.
+
+</details>
+
+## Accessibility
+
+Om mijn website accessible te maken heb ik de volgende dingen gedaan:
+
+1. Schrijf semantische HTML (gebruik de juiste elementen, styling doe je met CSS niet met HTML)
+
+2. Gebruik inputs & links voor alles wat tabbaar moet zijn. Op deze manier kan de gebruiker zonder muis door je app navigeren.
+
+3. Enhance de website met JS, dit voegt fijne features toe die de user experience beter maken maar halen niks af van de kern/core-functionaliteit.
+
+4. Zorg ervoor dat de focus state op elk element zichtbaar is (in elke browser)
+
+5. Houd `caniuse.com` & `mdn.com` in de gaten wanneer je code schrijft; check regelmatig of je code gesupport word & of je support moet detecten.
+(zo ben ik van `append()` naar `appendChild` overgestapt omdat het veel beter gesupport word en voor mij niet echt een probleem was!)
+
+6. Test regelmatig in verschillende contexts (browser(versie), device, schermgrootte & features uit etc.)
+
+## (Mijn) Progressive Enhacement Definitie
+
+<details><summary>PE definitie</summary>
+
+Pogressive enhancement is wanneer je begint met de core-functionaliteit; wat is het meest belangrijke aan mijn pagina/website?
+
+Vaak kom je er hier bij achter dat je eigenlijk alleen maar HTML content nodig hebt om de core-funcionaliteit te kunnen uitvoeren.
+
+Vervolgens style je de website, hierbij gebruik je browser-support om te kijken wat je wel en niet kan gebruiken. Als een browser iets niet ondersteunt is dat niet een limitatie voor de website maar alleen een limitatie voor de website op die browser. Dit betekent niet dat je geen flex kan gebruiken, het betekent dat je een fallback moet hebben moxht flex niet gesupport worden.
+
+Voorbeeld van browser detection:
+
+```css
+@supports (display: flex) {
+	@media (min-width: 660px) {
+		#backLinks {
+			display: flex;
+			justify-content: center;
+		}
+
+		#backLinks a {
+			margin: 10px 30px;
+		}
+	}
+}
+```
+
+als `flex` niet gesupport word dan slaat de browser alles binnen de `@supports` over en pakt hij deze styling:
+
+```css
+#backLinks a {
+	margin-top: 10px;
+	margin-right: 10px;
+}
+```
+
+Persoonlijk vind ik het een gemakkelijke workflow om uit te gaan van het minste support en dan later de nieuwere properties eroverheen te leggen als ze gesupport worden. Op deze manier weet je zeker dat je niet iets hebt gemist en dat alles gesupport word.
+
+Hetzelfde geld voor JS; je verbeterd de ervaring met client-side scripting; het is wel belangrijk dat je een feature detection doet om te kijken of de benodigde technologie (methods, functions, properties etc.) ondersteunt worden. 
+
+Door te checken of het gesupport word voorkom je errors, errors leggen je code plat en zoregen ervoor dat de wel gesupporte JS die volgt ook niet word uitgevoerd.
+
+Voorbeeld van feature detection:
+
+```javascript
+if (localStorageAvailable()) {
+	//code that needs localStorage here
+} else {
+	//code that doesn't need localStorage here
+}
+
+/* Best way to detect if localStorage is supported & available (taken from MDN: 
+	https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API#Testing_for_availability) */
+function localStorageAvailable() {
+	let storage
+	try {
+		storage = window['localStorage']
+		const x = '__storage_test__'
+		storage.setItem(x, x)
+		storage.removeItem(x)
+		return true;
+	} catch (err) {
+		return err instanceof DOMException && (
+				// everything except Firefox
+				err.code === 22 ||
+				// Firefox
+				err.code === 1014 ||
+				// test name field too, because code might not be present
+				// everything except Firefox
+				err.name === 'QuotaExceededError' ||
+				// Firefox
+				err.name === 'NS_ERROR_DOM_QUOTA_REACHED') &&
+			// acknowledge QuotaExceededError only if there's something already stored
+			(storage && storage.length !== 0)
+	}
+}
+```
+
+In consclusion:
+
+>Progressive enhancement is het verbeteren van een website door technologieen te gebruiken als ze gesupport worden, als ze niet gesupport worden dan heb je de basis nog waarin je de core-functionality kan uitvoeren.
+
+>Bij Progressive Enhancement begin je met de basis en breid je het vanuit daar uit indien mogelijk. Bij Graceful Degredation begin je met de meest nieuwe technologieen die je wilt gebruiken en ga je terug werken naar de wel gesupporte technologieen
+
+</details>
+
+## (Mijn) Feature deteciton Definitie
+
+<details><summary>FD definitie</summary>
+
+Feature detection (FD) is 2 dingen:
+
+- je kijkt of browsers een technologie (functie, method, property etc.) support
+- je kijkt of de browser jou toegang heeft gegeven tot deze technologie
+
+Een goed voorbeeld in mijn code is localStorage:
+
+localStorage moet gesupport worden door de browser maar mijn website moet er ook toegang tot hebben (gebruikers kunnen dit uitzetten).
+
+Mijn FD voor localStorage ziet er als volgt uit:
+
+```javascript
+if (localStorageAvailable()) {
+	//code that needs localStorage here
+} else {
+	//code that doesn't need localStorage here
+}
+
+/* Best way to detect if localStorage is supported & available (taken from MDN: 
+	https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API#Testing_for_availability) */
+function localStorageAvailable() {
+	let storage
+	try {
+		storage = window['localStorage']
+		const x = '__storage_test__'
+		storage.setItem(x, x)
+		storage.removeItem(x)
+		return true;
+	} catch (err) {
+		return err instanceof DOMException && (
+				// everything except Firefox
+				err.code === 22 ||
+				// Firefox
+				err.code === 1014 ||
+				// test name field too, because code might not be present
+				// everything except Firefox
+				err.name === 'QuotaExceededError' ||
+				// Firefox
+				err.name === 'NS_ERROR_DOM_QUOTA_REACHED') &&
+			// acknowledge QuotaExceededError only if there's something already stored
+			(storage && storage.length !== 0)
+	}
+}
+```
+
+Feature detection is een test waarin je kijkt of je en bepaalde technologie kan gebruiken.
+
+Het voordeel hiervan is dat je errors voorkomt waaroor je code die geen localStorage nodig heeft gewoon blijft functioneren.
+
+</details>
+
+# Conclusie
+
+Dit vak gaat erover dat je leert websites maken voor alle contexts; browsers(veries), beeld-formaten en alle mensen.
+
+De belangrijke dingen die je moet leren zijn:
+- bepalen wat de core-functionaliteit van je app is en deze voor iedereen mogelijk maken om uit te voeren
+- leren hoe je de app kan vertbeteren met progressive enhancement 
+- leren wat feature-/browser detection zijn en hoe je dit kan toepassen
+
+De core functionaliteit van mijn app is dat de gebruiker halverwege kan stoppen met het formulier en later kan terugkomen om deze af te maken. Deze BASIS is mogelijk doordat ik server-side antwoorden opsla in JSON files.
+
+Met progressive Enhancement verbeter ik de ervaring; zo gebruik ik localStorage om elk indivduele antwoord op te slaan. En weer in te vullen als de gebruiker terugkomt op de pagina op een later moment.
+
+localStorage kan je niet altijd gebruiken (soms heeft de user het uit staan) en dus moet je een feature-detect gebruiken om te kijken of je de feature kan gebruiken. Dit doe ik door te kijken of "localStorage" bekent is in het "document" en door te kijken of ik iets in localStorage kan plaatsen. Als dit allemaal gelukt is dan weet ik dat ik toegang heb tot localStorage heb en deze kan gebruiken!
+
+Een voorbeeld van browser-detect is wanneer ik kijk of flex gesupport word in een "@supports (display: flex)", als deze gesupport word dan gebruik ik het, als deze niet gesupport word dan worden deze regels overgeslagen en word de voorgaande styling gebruikt.
 
