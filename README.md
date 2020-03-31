@@ -776,7 +776,7 @@ In JS gebruik ik een aantal basis methods, functions etc. die nodig zijn om mijn
 ```js
 //Dit is de pre-babel JS file!
 
-if (documentChecker() && documentBodyChecker() && documentObjectChecker()) {
+if (documentChecker() && documentObjectChecker()) {
 	//browser support => do your stuff here
 } 
 
@@ -784,14 +784,6 @@ function documentChecker() {
 	const features = ['querySelectorAll', 'addEventListener', 'insertBefore']
 	const checker = (feature) =>
 		feature in document && typeof document.body[feature] === 'function'
-
-	return features.every(checker)
-}
-
-function documentBodyChecker() {
-	const features = ['setAttribute']
-	const checker = (feature) =>
-		feature in document.body && typeof document.body[feature] === 'function'
 
 	return features.every(checker)
 }
@@ -1160,6 +1152,14 @@ Om mijn website accessible te maken heb ik de volgende dingen gedaan:
 
 6. Test regelmatig in verschillende contexts (browser(versie), device, schermgrootte & features uit etc.)
 
+7. Zorg ervoor dat er een goed contrast is tussen je kleuren; ik gebruik hier 2 tools voor:
+* de website [colorable](https://colorable.jxnblk.com/004466/00ffa2)
+* de chrome inspect tool geeft ook aan of het een goed contrast is
+
+Mijn kleuren vormen een erg goed contrast; zo scoort het een 7.84 (AA) volgens chrome & een AAA volgens colorable.
+
+![image](https://user-images.githubusercontent.com/45405413/78030476-74b17e80-7362-11ea-9da1-828d256da48a.png)
+
 ## (Mijn) Progressive Enhacement Definitie
 
 <details><summary>PE definitie</summary>
@@ -1202,7 +1202,7 @@ Hetzelfde geld voor JS; je verbeterd de ervaring met client-side scripting; het 
 
 Door te checken of het gesupport word voorkom je errors, errors leggen je code plat en zoregen ervoor dat de wel gesupporte JS die volgt ook niet word uitgevoerd.
 
-Voorbeeld van feature detection:
+Voorbeeld van feature detection met localStorage:
 
 ```javascript
 if (localStorageAvailable()) {
@@ -1235,6 +1235,43 @@ function localStorageAvailable() {
 			// acknowledge QuotaExceededError only if there's something already stored
 			(storage && storage.length !== 0)
 	}
+}
+```
+
+voorbeeld van feature detection voor de meer basis JS functionaliteiten:
+
+```js
+//Pre-babel
+
+if (documentChecker() && documentBodyChecker() && documentObjectChecker()) {
+	//supported
+} else {
+	//not supported
+}
+
+function documentChecker() {
+	const features = ['querySelectorAll', 'addEventListener', 'insertBefore']
+	const checker = (feature) =>
+		feature in document && typeof document.body[feature] === 'function'
+
+	return features.every(checker)
+}
+
+function documentBodyChecker() {
+	const features = ['setAttribute']
+	const checker = (feature) =>
+		feature in document.body && typeof document.body[feature] === 'function'
+
+	return features.every(checker)
+}
+
+function documentObjectChecker() {
+	const features = ['classList', 'nextSibling']
+	const checker = (feature) =>
+		feature in document.documentElement &&
+		typeof document.body[feature] === 'object'
+
+	return features.every(checker)
 }
 ```
 
