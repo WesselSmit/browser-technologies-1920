@@ -503,16 +503,405 @@ Ik heb case 1 gekozen; een formulier dat je progressie opslaat en weer kan inlad
 
 </details>
 
-## Feedback 
+## Concept
 
-Tot nu toe heb ik me vooral gefocust op de frontend side van de app. De backend werkt nog niet maar ik heb er wel vertrouwen in dat dat lukt.
+Een survey over Webdevelopment om te zien hoe webdevelopers hun dagelijkse werk ervaren. Het is de bedoeling dat de gebruiker op elk moment kan stoppen en later kan terugkomen om de vragenlijst te voltooien. Het is belangrijk dat het voor iedereen werkt; elke browser, elk formaat elk device.. elke context!
 
-Ik wil graag feedback op:
-* mijn ideeen voor de usable/pleasurable laag; ik vind het moeilijk om te bedenken hoe ik de applicatie zou kunnen verbeteren in deze lagen dus suggesties zijn welkom! Hieronder mijn ideeen tot nu toe:
-![image](https://user-images.githubusercontent.com/45405413/77154334-c4a76000-6a9b-11ea-9338-38be83830ff7.png)
-* formulier verbeteringen (HTML trucjes of als iets anders je opvalt)
-* als iets niet op jouw **browser (version) / device** werkt qua:
-	* responsiveness
-	* tab (accessibility)
-	* css support
-	* of iets er gewoon raar uit ziet
+Om dit te kunnen doen gebruik ik NodeJS en Express; met Express vang ik alle routes op, haal/store ik data op en genereer ik de HTML bestanden die ik naar de browser stuur. Wanneer de gebruiker op de submit knop drukt word er een JSON aangemaakt/aangepast met de ingevulde antwoorden. Als de gebruiker op een pagina komt word de data van het bijhorende key opgehaald en ingeladen (deze keys zijn verstopt in de HTML als `<input type="hidden">`).
+
+## Layers
+
+<details><summary>Functional layer</summary>
+
+>De applicatie werkt / de core function is uit te voeren (formulier gegevens worden opgeslagen, op een later moment kan de gebruiker het formulier afmaken)
+
+In de functional laag is het belangrijk dat de applicatie werkt, er zijn heel weinig mensen die alleen maar deze laag te zien krijgen maar voor hun moet het ook werken.
+
+De functional laag bestaat uit alleen maar HTML en logica op de server. De server maakt de HTML met de data die het heeft. 
+
+![image](https://user-images.githubusercontent.com/45405413/77962177-679d7c80-72db-11ea-8f12-08b75e297246.png)
+
+Elk formulier bevat een `<input type="submit">` knop; wanneer de gebruiker hierop klikt worden alle elementen die een input `required` hebben gevalideerd, als elk deze validatie succesvol haalt dan word het formulier verzonden naar de server met de ingvulde waardes. Alles waardes worden in een JSON file opgeslagen die later weer opgehaald kan worden.
+
+Ingevulde waardes kunnen dus opgeslagen worden om opgehaald te worden wanneer de gebruiker de sessie wilt afronden op een later moment, de informatie word echter alleen maar opgeslagen als de volledige pagina ingevuld is en de validatie succesvol heeft gehaald.
+
+>"informatie word echter alleen maar opgeslagen als de volledige pagina ingevuld is en de validatie succesvol heeft gehaald."
+
+</details>
+
+
+
+
+
+<details><summary>Usable layer</summary>
+
+>De applicatie is goed te gebruiken, ziet er mooi uit en heeft een logische flow, de UI spreekt voor zich en is intuïtief 
+
+In de Usable laag willen we de applicatie wat minder robuust maken om te gebruiken; het moet de gebruiker duidelijk zijn wat er moet gebeuren, er moet feedback naar de gebruiker zijn & de applicatie moet over het algemeen goed bruikbaar zijn.
+
+<h2>Styling</h2>
+
+Om de applicatie fijner te maken moet er styling worden toegepast, dit helpt met duidelijk maken 
+van flow, het formulier responsive te maken, feedback naar de gebruiker geven en overal maakt het leuker om in te vullen. 
+
+Er is gebruik gemaakt van 3 kleuren, deze zijn gekozen omdat ze er visueel mooi uit zien, maar ook omdat ze een goed contrast vormen en goed duidelijk zijn.
+
+Door middel van states kan je de gebruiker duidelijk maken wat bepaalde elementen doen en de app meer intuïtief maken; als een element visueel verandert wanneer de gebruiker erover heen hovert dan suggereert dit dat dat het element interactief is.
+
+Ook kan je op deze manier goed duidelijk maken welk element momenteel de focus heeft, dit helpt mensen met een handicap die bijvoorbeeld geen muis kunnen gebruiken en puur emt `tab` door je website navigeren.
+
+<h2>LocalStorage</h2>
+
+<details><summary>localStorage Detection</summary>
+
+Voordat je de app kan verbeteren met localStorage moet je kijken of de browser localStorage ondersteunt en of de browser toegang heeft tot de localStorage!
+
+In de onderstaande snippet check ik of localStorage ondersteunt word en beschikbaar is:
+
+```javascript
+/* Best way to detect if localStorage is supported & available (taken from MDN: 
+	https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API#Testing_for_availability) */
+function localStorageAvailable() {
+	let storage
+	try {
+		storage = window['localStorage']
+		const x = '__storage_test__'
+		storage.setItem(x, x)
+		storage.removeItem(x)
+		return true;
+	} catch (err) {
+		return err instanceof DOMException && (
+				// everything except Firefox
+				err.code === 22 ||
+				// Firefox
+				err.code === 1014 ||
+				// test name field too, because code might not be present
+				// everything except Firefox
+				err.name === 'QuotaExceededError' ||
+				// Firefox
+				err.name === 'NS_ERROR_DOM_QUOTA_REACHED') &&
+			// acknowledge QuotaExceededError only if there's something already stored
+			(storage && storage.length !== 0)
+	}
+}
+```
+
+>Snippet is afkomstig van [hier (MDN).](https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API#Testing_for_availability)
+
+</details>
+
+Als localStorage gebruikt kan worden zijn er meerdere vormen van enhancements:
+<ul>
+	<li>Key suggestions</li>
+	<li>Saving individual inputs</li>
+	<li>Filling in saved anwsers</li>
+</ul>
+
+<h2>Key suggestions</h2>
+
+Wanneer de gebruiker op de eerste pagina komt kan hij of een nieuwe sessie starten OF een key invullen van een voorgaande sessie om die af te maken. Dat ziet er als volgt uit:
+
+![image](https://user-images.githubusercontent.com/45405413/77962152-59e7f700-72db-11ea-906b-228ffafe6d4e.png)
+
+Wanneer localStorage gebruikt kan worden laat het suggesties zien; alle keys die in localStorage opgeslagen zijn worden als suggesties weergegeven. Dit ziet er als volgt uit:
+
+![image](https://user-images.githubusercontent.com/45405413/77962366-bea35180-72db-11ea-9a1e-f94c2fb0dfcf.png)
+
+Als de gebruiker over een van de suggesties hovert word de placeholder text van de input de key; dit suggereert dat je de keys kan invullen in de input.
+
+In alle browsers behalve IE werken `append()` & het `keyup` event hetzelfde; als deze features beschikbaar zijn dan worden er dan 2 extra features aangeboden. 
+
+```js
+//Check of append() ondersteunt word
+if ('append' in document && typeof document.body['append'] === 'function') {}
+```
+
+
+Zo zijn alle key-suggesties inputs met een `readonly` attribute, dit betekent dat de text met JS geselecteerd kan worden; op deze manier hoeft de gebruiker het niet handmatig te selecteren maar alleen maar `copy + c` te doen. Dit betekent ook dat de key-suggesties focussable zijn en dat gebruikers er met `tab` doorheen kunnen navigeren zonder een muis te gebruiken.
+
+Er komt ook een popup naast de key-suggestion, in de popup staat dat je op `space` kan drukken om de sessie met deze key op te starten zonder dat je hem zelf hoeft over te typen in de input! 
+
+Foto van popup:
+
+![image](https://user-images.githubusercontent.com/45405413/77962668-4f7a2d00-72dc-11ea-958b-7fc731039fbc.png)
+
+Deze kleine toevoegingen maken het fijner voor de gebruiker om de app te gebruiken.
+
+Als localStorage niet bruikbaar is word er een message weergegeven om de gebruiker te laten weten dat het belangrijk is om je `key` te onthouden!
+
+![image](https://user-images.githubusercontent.com/45405413/77963854-64f05680-72de-11ea-8408-8225450e1552.png)
+
+
+<h2>Saving individual inputs</h2>
+
+Als localStorage bruikbaar is kunnen we deze inzetten om meer antwoorden te onthouden, momenteel worden de antwoorden alleen opgeslagen in de backend wat alleen gebeurt als de gebruiker van pagina naar pagina navigeert.
+
+Met JS word er naar elke input geluisterd, elke keer als de gebruiker iets typed word er in JS een `debounce` functie afgevuurd; deze kijkt of de gebruiker nog aan het typen is of dat hij uitgetypt is (debounce time: 250ms). Als de user niet typed binnen de debounce time dan word de data opgeslagen in een localStorage object. Dit object is identiek aan het object dat word bijgehouden bij op de server!
+
+Op deze manier word elke keer dat de gebruiker iets typt het opgeslagen, op deze manier kan data constant up to date blijven en hoeft de gebruiker niet naar de volgende pagina te navigeren om zijn progressie op te slaan.
+
+
+<h2>Filling in saved anwsers</h2>
+
+Wanneer de gebruiker verder wil gaan met een eerder gestarte sessie dan bepaalt de server op welke pagina de gebruiker was gebleven, vervolgens word deze pagina aan de gebruiker gerserveerd). Vervolgens kickt localStorage clientside in; er word gekeken welke vragen er allemaal zijn op de huidige pagina, vervolgens word er gecheckt of van deze vragen er antwoorden in de localStorage opgeslagen zijn. Als dit het geval is dan worden deze antwoorden ingevuld in de input. 
+
+
+<h2>Auto-select key</h2>
+
+Wanneer de gebruiker een nieuwe sessie start krijg je als eerst een pagina te zien met je `key`. Als JS aanstaat word de `key` automatisch geselecteerd; hierdoor hoeft de gebruiker niet zelf de key te selecteren en kan jem makkelijker `copy + c` / kopieren. Ook dit is weer een input met een `raedonly` attribute zodat mensen er ook met `tab` kunnen komen.
+
+![image](https://user-images.githubusercontent.com/45405413/77964811-088e3680-72e0-11ea-92dd-5a7cb4b4bdb3.png)
+
+
+<h2>Formatting hints</h2>
+
+Als JS aanstaat dan word er een additionele hint gegeven bij moeilijke inputs. Ik heb een input gebruikt die alleen nummers accepteert, omdat je leeftijd ook kan beantwoorden met "achttien" is het fijn om de gebruiker duidelijk te maken dat alleen nummers geaccepteerd worden.
+
+![image](https://user-images.githubusercontent.com/45405413/77965207-d4674580-72e0-11ea-9897-2d4bad4cb23d.png)
+
+<h2>Validation</h2>
+
+Wanneer de gebruiker een formulier probeert te verzenden kijkt de browser of alle inputs met het `required` attribute ingevuld zijn in het gewenste formaat. Als dit niet het geval is krijgt de gebruiker een foutmelding te zien:
+
+![image](https://user-images.githubusercontent.com/45405413/77965351-18f2e100-72e1-11ea-851e-d43d2ee747e7.png)
+
+Als JS aanstaat word dit wat duidelijker gemaakt om de gebruiker te helpen, zo word er een error message weergegeven & worden de inputs die nog niet correct ingevuld zijn gehighlight.
+
+De gebruiker krijgt een error message te zien om aan te geven dat het formulier nog niet helemaal goed ingevuld is:
+<img src="https://user-images.githubusercontent.com/45405413/77965578-96b6ec80-72e1-11ea-92af-cc37b2d5ae21.png" height="600px">
+
+
+Niet ingevulde inputs worden gehighlight om aan te geven dat het mis gaat bij deze inputs:
+![image](https://user-images.githubusercontent.com/45405413/77965460-535c7e00-72e1-11ea-8f8c-c2a17b3ad02b.png)
+
+
+</details>
+
+
+
+
+
+<details><summary>Pleasurable layer</summary>
+
+>De applicatie werkt super fijn, is vet en gaaf, prettig om te gebruiken. 
+
+In de pleasurable laag probeer je de app leuk te maken, dit doe ik voornamelijk door animaties te gebruiken om de ervaring wat minder statisch te maken. Ook kunnen animaties dingen duidelijk maken aan de gebruiker.
+
+<h2>Key Suggestions Animated</h2>
+
+Zo worden de key-suggesties later ingeladen dan de rest van de content. Dit geeft aan dat ze belangrijk zijn, maar ook dat ze wat meer los staan van de overige content!
+
+![key-suggestions animations](https://user-images.githubusercontent.com/45405413/77968192-f95eb700-72e6-11ea-8cde-48d71e9d2d5a.gif)
+
+
+<h2>Page Transitions Animated</h2>
+
+Ook de transities tussen pagina's zijn geanimeerd; titles sliden / faden van boven het beeld in, normale content slide / fade van onder het beeld in & belangrijke navigatie knoppen sliden / fade van rechs het beeld in.
+
+>Deze kon ik niet opnemen omdat het van pagina naar pagina transitioneert => check hem zelf uit door de [demo link](https://webdev-questionnaire.herokuapp.com/) te volgen ;)
+
+<h2>Required / Validation Animated</h2>
+
+Wanneer de gebruiker naar de volgende pagina probeert te gaan en niet alle antwooorden ingevult zijn worden de inputs die nog ingevult moeten worden gehighlight. Deze hebben een rode border die pulseert tussen de normale blauwe kleur en rood. Op deze manier word de aandacht nog net wat meer getrokken naar die inputs!
+
+![chrome-capture (2)](https://user-images.githubusercontent.com/45405413/77969084-30ce6300-72e9-11ea-8335-8310c3339b3c.gif)
+
+</details>
+
+## CSS- / JS Support 
+
+<details><summary>CSS</summary>
+
+Om ervoor te zorgen dat mijn CSS werkt in alle browsers heb ik ervoor gezorgd dat zonder nieuwere CSS properties de app er nogsteeds bruibaar en normaal uit ziet. 
+
+Vervolgens heb ik de app mooier gemaakt door nieuwere properties te gebruiken, voor de meeste properties heb ik geen `@supports` gebruikt omdat het niet nodig is! Ik heb gebruik gemaakt van CSS-specificity; 
+
+Door de properties in dezelfde selector direct onder elkaar te zetten word de laatste altijd gepakt, tenzij deze niet gesupport word; dan slaat de browser deze regel over en word de vorige gepakt.
+
+```css
+	#favorites input[type="text"] {
+		width: 100%;
+		width: calc(100% - 10px);
+	}
+```
+
+>Dit is minder code en werkt goed, het is echter wel minder leesbaar dan een `@supports`
+
+Met moeilijkere vormgeving-items heb ik wel een `@supports` gebruikt; zo check ik of `display: flex` gesupport word, als fex gesupport word dan gebruik ik:
+
+```css
+@supports (display: flex) {
+	@media (min-width: 660px) {
+		#backLinks {
+			display: flex;
+			justify-content: center;
+		}
+
+		#backLinks a {
+			margin: 10px 30px;
+		}
+	}
+}
+```
+
+als `flex` niet gesupport word dan slaat de browser alles binnen de `@supports` over en pakt hij deze styling
+
+```css
+a {
+	margin-top: 10px;
+	margin-right: 10px;
+}
+```
+
+</details>
+
+<details><summary>JS</summary>
+
+In JS gebruik ik een aantal basis methods, functions etc. die nodig zijn om mijn JS uit te kunnen voeren, in het onderstaande snippet laat ik zien hoe ik hier op check;
+
+```js
+//Dit is de pre-babel JS file!
+
+if (documentChecker() && documentBodyChecker() && documentObjectChecker()) {
+	//browser support => do your stuff here
+} 
+
+function documentChecker() {
+	const features = ['querySelectorAll', 'addEventListener', 'insertBefore']
+	const checker = (feature) =>
+		feature in document && typeof document.body[feature] === 'function'
+
+	return features.every(checker)
+}
+
+function documentBodyChecker() {
+	const features = ['setAttribute']
+	const checker = (feature) =>
+		feature in document.body && typeof document.body[feature] === 'function'
+
+	return features.every(checker)
+}
+
+function documentObjectChecker() {
+	const features = ['classList', 'nextSibling']
+	const checker = (feature) =>
+		feature in document.documentElement &&
+		typeof document.body[feature] === 'object'
+
+	return features.every(checker)
+}
+```
+
+Dit soort basis features van JS staan in een checker omdat als je dit niet doet de browser een `error` gooit. Een error stopt je script en betekent dat de volgende JS lines niet uitgeoverd worden!
+
+Met deze checker zou je de functies die niet deze methods/functions gebruiken nogesteeds kunnen uitvoeren in de `else` statement;
+
+```js
+if (documentChecker() && documentBodyChecker() && documentObjectChecker()) {
+	//browser support => do your stuff here
+} else {
+	//you can still do the more basic stuff that is supported :)
+}
+```
+
+Verder gebruik ik ook localStorage, hiervoor moet je ook kijken of de browser het ondersteunt en of de browser toegang heeft tot localStrage;
+
+```js
+if (localStorageAvailable()) {
+	//LocalStorage is supported
+} else {
+	//localStorage is NOT supported
+}
+
+/* Best way to detect if localStorage is supported & available (taken from MDN: 
+	https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API#Testing_for_availability) */
+function localStorageAvailable() {
+	let storage
+	try {
+		storage = window['localStorage']
+		const x = '__storage_test__'
+		storage.setItem(x, x)
+		storage.removeItem(x)
+		return true;
+	} catch (err) {
+		return err instanceof DOMException && (
+				// everything except Firefox
+				err.code === 22 ||
+				// Firefox
+				err.code === 1014 ||
+				// test name field too, because code might not be present
+				// everything except Firefox
+				err.name === 'QuotaExceededError' ||
+				// Firefox
+				err.name === 'NS_ERROR_DOM_QUOTA_REACHED') &&
+			// acknowledge QuotaExceededError only if there's something already stored
+			(storage && storage.length !== 0)
+	}
+}
+```
+
+>Nogmaals; al zou je niet voor localStorage checken en de browser zou bijvoorbeeld geen toegang hebben, dan zou je JS stoppen en kan de rest van je pagina misschien niet meer normaal functioneren!
+
+</details>
+
+## Browser Tests
+
+Mijn applicatie is gedeveloped in `chrome`, maar ik heb het zelf ook veel getest in `FireFox 74.0`, `Safari 13.0.3` & `Iternet Explorer 11`.
+
+Ook heb ik het getest op mijn mobiel (Huawei P10) die ook chrome draait!
+
+Tijdens het testen zijn me een paar dingen opgevallen die verschillen.
+
+1. Safari is een pain-in-the-ass zo moet je zelf `tab-element-highlighting` aanzetten en de developtools unlocken.
+
+2. Elke browser heeft zijn eigen :focus state vormgeving
+
+3. IE loopt support geen HTML5 omdat HTML5 pas na IE 11 is uitegkomen. Het `<legend>` element bestaat echter wel in HTML4 / IE. Let hierbij goed op dat het anders werkt dan wat je gewend bent met HTML5. 
+
+Zover ik weet werkt de core functionaliteit in elke browser (versie), vervolgens heb ik met progressive-enhancements de experience verbeterd waar mogelijk. 
+
+### Welke uitdagingen kwamen er in verschillende browsers bij kijken en wat heb ik hier aan gedaan?
+
+**FireFox**
+
+* validate de content van inputs meteen (voor het submitten al), met als gevolg dat veel inputs een rode box-shadow krijgen. Om dit te fixen heb ik alle inputs een `box-shadow: none` gegeven, deze kan je later overschrijven indien nodig!
+>`The :invalid CSS pseudo-class is applied automatically to elements whose contents fail to validate according to the input's type setting`
+
+* geeft `<a>` tags [geen focus state (op MacOS)](https://stackoverflow.com/questions/11704828/how-to-allow-keyboard-focus-of-links-in-firefox/11713537) en zijn van nature niet focussable. De gebruiker moet dit zelf in de about:config aanzetten/instellen. 
+
+
+**Safari**
+
+* je moet developer-tools & `tab-element-highlighting` zelf moet aanzetten in de settings
+
+**Internet Explorer** 
+
+* `<legend>` werkt maar functioneert anders dan in HTML5;
+	* `color` kan niet verandert worden en de kleur blijft altijd zwart
+	* wrapt tekst niet als het buiten beeld valt (dit valt op te lossen met `display: table`)
+	* veel basis vormgeving (textarea - scrollbar, select - dropdown icon) 
+
+
+Om dit soort problemen op te lossen moest je soms een prefix gebruiken in de CSS, of een losse CSS regel gebruiken om de browser basis-vormgeving te overschrijven.
+
+
+### Known Bugs 
+
+* Firefox geeft `<a>` tags [geen focus state (op MacOS)](https://stackoverflow.com/questions/11704828/how-to-allow-keyboard-focus-of-links-in-firefox/11713537) en zijn van nature niet focussable. De gebruiker moet dit zelf in de about:config aanzetten/instellen. 
+
+* `<legend>` element styling is erg lelijk op IE, alternatief is door de legend te vervangen met een ander HTML element, maar dit betekent wel dat de HTML minder semantisch is.
+
+
+
+
+# todo:
+
+- [ ] known bugs (zie readme "testen" hiervoor + FF `<anchor>`)
+- [ ] 8 features testen van opdracht 1.2
+- [ ] onderzoek / onderzochte bronnen en hoe je ze verwerkt hebt
+- [ ] accessibility onderzoek: wat heb je gedaan? hoe werkt het? (html semantisch)
+- [ ] leg uit wat progressive enhancement is
+- [ ] leg uit wat feature detection is
+- [ ] conlusie die ingaat op de leerdoelen en criteria & hoe je dit hebt gehaald
+- [ ] check de rubric en of je aan alles voldoet
+
